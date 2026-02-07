@@ -15,6 +15,7 @@ class ResolvedBox:
     y: float
     width: float
     height: float
+    rotation: float = 0.0  # gear mesh rotation in degrees
 
 
 DEFAULT_CANVAS_W = 800.0
@@ -49,6 +50,7 @@ def resolve_layout(doc: Document) -> dict[str, ResolvedBox]:
     canvas_h = canvas.height.to_pixels() if canvas and canvas.height else DEFAULT_CANVAS_H
 
     boxes: dict[str, ResolvedBox] = {}
+    gear_info: dict[str, tuple[int, float]] = {}  # name → (teeth, module)
     counter = 0
 
     # Canvas itself
@@ -59,7 +61,9 @@ def resolve_layout(doc: Document) -> dict[str, ResolvedBox]:
     for el in doc.elements:
         if el.element_type == "canvas":
             continue
-        counter = _resolve_element(el, boxes, canvas_w, canvas_h, 0, 0, counter)
+        counter = _resolve_element(
+            el, boxes, canvas_w, canvas_h, 0, 0, counter, gear_info,
+        )
 
     return boxes
 
@@ -72,6 +76,7 @@ def _resolve_element(
     container_x: float,
     container_y: float,
     counter: int,
+    gear_info: dict[str, tuple[int, float]],
 ) -> int:
     """Resolve a single element's position and recurse into children."""
     key = el.name or f"__element_{counter}"
@@ -87,17 +92,36 @@ def _resolve_element(
         w = r * 2
         h = r * 2
 
-    # Resolve position
-    x, y = _resolve_position(
-        el.position, w, h, container_w, container_h, container_x, container_y, boxes,
-    )
+    # For gears, compute size from teeth and module
+    if el.element_type == "gear" and el.teeth and el.tooth_module:
+        outer_r = el.tooth_module * el.teeth / 2 + el.tooth_module
+        w = outer_r * 2
+        h = outer_r * 2
 
-    box = ResolvedBox(x, y, w, h)
+    # Resolve position
+    rotation = 0.0
+    if el.position and el.position.mesh_ref:
+        x, y, rotation = _resolve_mesh_position(
+            el, w, h, boxes, gear_info,
+        )
+    else:
+        x, y = _resolve_position(
+            el.position, w, h,
+            container_w, container_h, container_x, container_y, boxes,
+        )
+
+    box = ResolvedBox(x, y, w, h, rotation=rotation)
     boxes[key] = box
+
+    # Store gear info for mesh calculations
+    if el.teeth and el.tooth_module:
+        gear_info[key] = (el.teeth, el.tooth_module)
 
     # Recurse into children with this element as container
     for child in el.children:
-        counter = _resolve_element(child, boxes, w, h, x, y, counter)
+        counter = _resolve_element(
+            child, boxes, w, h, x, y, counter, gear_info,
+        )
 
     return counter
 
@@ -157,6 +181,43 @@ def _resolve_anchor_in(
     x = ref_box.x + fx * (ref_box.width - el_w)
     y = ref_box.y + fy * (ref_box.height - el_h)
     return x, y
+
+
+def _resolve_mesh_position(
+    el: Element,
+    el_w: float,
+    el_h: float,
+    boxes: dict[str, ResolvedBox],
+    gear_info: dict[str, tuple[int, float]],
+) -> tuple[float, float, float]:
+    """Resolve mesh positioning for gears. Returns (x, y, rotation_deg)."""
+    mesh_ref = el.position.mesh_ref if el.position else None
+    if not mesh_ref:
+        return 0.0, 0.0, 0.0
+
+    ref_box = boxes.get(mesh_ref)
+    ref_info = gear_info.get(mesh_ref)
+
+    if not ref_box or not ref_info or not el.teeth or not el.tooth_module:
+        return 0.0, 0.0, 0.0
+
+    ref_teeth, ref_module = ref_info
+    # Pitch radii
+    pitch_r1 = ref_module * ref_teeth / 2
+    pitch_r2 = el.tooth_module * el.teeth / 2
+    # Center-to-center distance
+    center_dist = pitch_r1 + pitch_r2
+
+    # Place driven gear to the right of the driving gear
+    ref_cx = ref_box.x + ref_box.width / 2
+    ref_cy = ref_box.y + ref_box.height / 2
+    x = ref_cx + center_dist - el_w / 2
+    y = ref_cy - el_h / 2
+
+    # Rotation offset so teeth interleave
+    rotation = 180.0 * (el.teeth - 1) / el.teeth
+
+    return x, y, rotation
 
 
 def _resolve_relative(

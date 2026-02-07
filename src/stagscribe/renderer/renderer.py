@@ -31,14 +31,29 @@ def render_svg_file_to_png(
     return render_svg_to_png(svg_string, output_path, width)
 
 
+def _find_font_dir() -> str | None:
+    """Find the bundled Roboto font directory."""
+    # Walk up from this file to find the project root with fonts/
+    candidate = Path(__file__).resolve().parent.parent.parent.parent / "fonts" / "roboto"
+    if candidate.is_dir():
+        return str(candidate)
+    return None
+
+
 def _render_with_resvg_py(svg_string: str, output_path: Path, width: int | None) -> Path:
     """Render using resvg-py Python bindings."""
     from resvg_py import svg_to_bytes  # type: ignore[import-untyped]
 
+    kwargs: dict[str, object] = {"svg_string": svg_string}
     if width:
-        png_bytes: bytes = svg_to_bytes(svg_string=svg_string, width=width)
-    else:
-        png_bytes = svg_to_bytes(svg_string=svg_string)
+        kwargs["width"] = width
+
+    font_dir = _find_font_dir()
+    if font_dir:
+        kwargs["font_dirs"] = [font_dir]
+        kwargs["font_family"] = "Roboto"
+
+    png_bytes: bytes = svg_to_bytes(**kwargs)  # type: ignore[arg-type]
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_bytes(png_bytes)

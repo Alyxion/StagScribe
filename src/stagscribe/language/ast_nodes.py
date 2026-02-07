@@ -105,6 +105,15 @@ Statement = Union[
 
 
 @dataclass
+class GradientFill:
+    """Linear gradient fill specification."""
+
+    color1: str
+    color2: str
+    direction: str = "vertical"  # vertical = top to bottom
+
+
+@dataclass
 class Position:
     """Position specification for an element."""
 
@@ -120,6 +129,8 @@ class Position:
     gap: Value | None = None
     # Wall-based: "on the north wall"
     wall: str | None = None
+    # Gear meshing: "mesh with 'Other Gear'"
+    mesh_ref: str | None = None
 
 
 @dataclass
@@ -184,10 +195,15 @@ class Element:
 
     # Appearance
     fill: str | None = None
+    gradient: GradientFill | None = None
     stroke: StrokeStyle | None = None
     opacity: float | None = None
     rounded: Value | None = None
     rotate: float | None = None
+
+    # Gear-specific
+    teeth: int | None = None
+    tooth_module: float | None = None
 
     # Text
     text_style: TextStyle | None = None

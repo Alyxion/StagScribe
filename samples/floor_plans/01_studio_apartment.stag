@@ -126,4 +126,4 @@ text "Entry"
 
 -- Title
 text "Studio Apartment"
-  at top left
+  at 50% 3%

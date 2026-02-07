@@ -138,4 +138,4 @@ place window "Window 3"
 
 -- Title
 text "Classroom Layout"
-  at top left
+  at 50% 2%

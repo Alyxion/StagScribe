@@ -9,13 +9,7 @@ rectangle "NavBar"
   width 375
   height 56
   fill white
-  at 50% 0%
-
-text "< Back"
-  size 17
-  color #007AFF
-  inside "NavBar" at center left
-  at 16 50%
+  at top left
 
 text "Settings"
   size 17
@@ -23,240 +17,135 @@ text "Settings"
   color #333333
   at center of "NavBar"
 
--- Notifications section
+-- Notifications section header
 text "NOTIFICATIONS"
   size 13
   bold
   color gray
-  below "NavBar" with gap 24
-  at 16 0%
+  at 30% 12%
 
-group "NotifGroup"
-  width 375
-  height 148
-  below "NOTIFICATIONS" with gap 8
+-- Notifications group background
+rectangle "NotifBg"
+  width 350
+  height 140
+  fill white
+  rounded 12
+  at 50% 25%
 
-  rectangle "NotifBg"
-    width 358
-    height 148
-    fill white
-    rounded 12
-    at center of "NotifGroup"
+text "Push Notifications"
+  size 16
+  color #333333
+  at 34% 20%
 
-  -- Row 1: Push Notifications
-  text "Push Notifications"
-    size 16
-    color #333333
-    inside "NotifGroup" at center left
-    at 20 17%
+rectangle "PushToggleBg"
+  width 51
+  height 31
+  fill #34C759
+  rounded 16
+  at 85% 20%
 
-  rectangle "PushToggleBg"
-    width 51
-    height 31
-    fill #34C759
-    rounded 16
-    inside "NotifGroup" at center left
-    at 85% 17%
+text "Email Alerts"
+  size 16
+  color #333333
+  at 28% 25%
 
-  circle "PushToggleKnob"
-    radius 13
-    fill white
-    inside "NotifGroup" at center left
-    at 90% 17%
+rectangle "EmailToggleBg"
+  width 51
+  height 31
+  fill #E5E5EA
+  rounded 16
+  at 85% 25%
 
-  -- Divider
-  rectangle "Divider1"
-    width 318
-    height 1
-    fill #E5E5EA
-    inside "NotifGroup" at center left
-    at 40 34%
+text "Sound"
+  size 16
+  color #333333
+  at 22% 30%
 
-  -- Row 2: Email Alerts
-  text "Email Alerts"
-    size 16
-    color #333333
-    inside "NotifGroup" at center left
-    at 20 50%
+rectangle "SoundToggleBg"
+  width 51
+  height 31
+  fill #34C759
+  rounded 16
+  at 85% 30%
 
-  rectangle "EmailToggleBg"
-    width 51
-    height 31
-    fill #E5E5EA
-    rounded 16
-    inside "NotifGroup" at center left
-    at 85% 50%
-
-  circle "EmailToggleKnob"
-    radius 13
-    fill white
-    inside "NotifGroup" at center left
-    at 82% 50%
-
-  -- Divider
-  rectangle "Divider2"
-    width 318
-    height 1
-    fill #E5E5EA
-    inside "NotifGroup" at center left
-    at 40 67%
-
-  -- Row 3: Sound
-  text "Sound"
-    size 16
-    color #333333
-    inside "NotifGroup" at center left
-    at 20 83%
-
-  rectangle "SoundToggleBg"
-    width 51
-    height 31
-    fill #34C759
-    rounded 16
-    inside "NotifGroup" at center left
-    at 85% 83%
-
-  circle "SoundToggleKnob"
-    radius 13
-    fill white
-    inside "NotifGroup" at center left
-    at 90% 83%
-
--- Appearance section
+-- Appearance section header
 text "APPEARANCE"
   size 13
   bold
   color gray
-  below "NotifGroup" with gap 24
-  at 16 0%
+  at 28% 40%
 
-group "AppearGroup"
-  width 375
-  height 100
-  below "APPEARANCE" with gap 8
+-- Appearance group background
+rectangle "AppearBg"
+  width 350
+  height 96
+  fill white
+  rounded 12
+  at 50% 49%
 
-  rectangle "AppearBg"
-    width 358
-    height 100
-    fill white
-    rounded 12
-    at center of "AppearGroup"
+text "Dark Mode"
+  size 16
+  color #333333
+  at 26% 46%
 
-  -- Row 1: Dark Mode
-  text "Dark Mode"
-    size 16
-    color #333333
-    inside "AppearGroup" at center left
-    at 20 25%
+rectangle "DarkToggleBg"
+  width 51
+  height 31
+  fill #E5E5EA
+  rounded 16
+  at 85% 46%
 
-  rectangle "DarkToggleBg"
-    width 51
-    height 31
-    fill #E5E5EA
-    rounded 16
-    inside "AppearGroup" at center left
-    at 85% 25%
+text "Text Size"
+  size 16
+  color #333333
+  at 24% 52%
 
-  circle "DarkToggleKnob"
-    radius 13
-    fill white
-    inside "AppearGroup" at center left
-    at 82% 25%
+text "Medium"
+  size 16
+  color gray
+  at 82% 52%
 
-  -- Divider
-  rectangle "Divider3"
-    width 318
-    height 1
-    fill #E5E5EA
-    inside "AppearGroup" at center left
-    at 40 50%
-
-  -- Row 2: Text Size
-  text "Text Size"
-    size 16
-    color #333333
-    inside "AppearGroup" at center left
-    at 20 75%
-
-  text "Medium >"
-    size 16
-    color gray
-    inside "AppearGroup" at center left
-    at 82% 75%
-
--- Privacy section
+-- Privacy section header
 text "PRIVACY"
   size 13
   bold
   color gray
-  below "AppearGroup" with gap 24
-  at 16 0%
+  at 24% 61%
 
-group "PrivacyGroup"
-  width 375
-  height 100
-  below "PRIVACY" with gap 8
+-- Privacy group background
+rectangle "PrivacyBg"
+  width 350
+  height 96
+  fill white
+  rounded 12
+  at 50% 70%
 
-  rectangle "PrivacyBg"
-    width 358
-    height 100
-    fill white
-    rounded 12
-    at center of "PrivacyGroup"
+text "Location Services"
+  size 16
+  color #333333
+  at 32% 67%
 
-  -- Row 1: Location Services
-  text "Location Services"
-    size 16
-    color #333333
-    inside "PrivacyGroup" at center left
-    at 20 25%
+rectangle "LocationToggleBg"
+  width 51
+  height 31
+  fill #34C759
+  rounded 16
+  at 85% 67%
 
-  rectangle "LocationToggleBg"
-    width 51
-    height 31
-    fill #34C759
-    rounded 16
-    inside "PrivacyGroup" at center left
-    at 85% 25%
+text "Share Analytics"
+  size 16
+  color #333333
+  at 30% 73%
 
-  circle "LocationToggleKnob"
-    radius 13
-    fill white
-    inside "PrivacyGroup" at center left
-    at 90% 25%
-
-  -- Divider
-  rectangle "Divider4"
-    width 318
-    height 1
-    fill #E5E5EA
-    inside "PrivacyGroup" at center left
-    at 40 50%
-
-  -- Row 2: Analytics
-  text "Share Analytics"
-    size 16
-    color #333333
-    inside "PrivacyGroup" at center left
-    at 20 75%
-
-  rectangle "AnalyticsToggleBg"
-    width 51
-    height 31
-    fill #E5E5EA
-    rounded 16
-    inside "PrivacyGroup" at center left
-    at 85% 75%
-
-  circle "AnalyticsToggleKnob"
-    radius 13
-    fill white
-    inside "PrivacyGroup" at center left
-    at 82% 75%
+rectangle "AnalyticsToggleBg"
+  width 51
+  height 31
+  fill #E5E5EA
+  rounded 16
+  at 85% 73%
 
 -- Version info
 text "StagScribe v1.0.3 (build 42)"
   size 12
   color gray
-  below "PrivacyGroup" with gap 24
-  at 50% 0%
+  at 50% 84%

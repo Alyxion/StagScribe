@@ -164,4 +164,4 @@ text "Entry"
 
 -- Title
 text "Two Bedroom Apartment"
-  at top left
+  at 50% 2%

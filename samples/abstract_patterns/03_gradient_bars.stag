@@ -9,46 +9,46 @@ rectangle "Bar1"
   width 80
   height 360
   fill #4B0082
-  at 0% 5%
+  at 40 200
 
 -- Indigo bar
 rectangle "Bar2"
   width 80
   height 360
   fill #6A0DAD
-  at 14.3% 5%
+  right of "Bar1" with gap 0
 
 -- Blue bar
 rectangle "Bar3"
   width 80
   height 360
   fill dodgerblue
-  at 28.6% 5%
+  right of "Bar2" with gap 0
 
 -- Teal bar
 rectangle "Bar4"
   width 80
   height 360
   fill turquoise
-  at 42.9% 5%
+  right of "Bar3" with gap 0
 
 -- Green bar
 rectangle "Bar5"
   width 80
   height 360
   fill mediumseagreen
-  at 57.1% 5%
+  right of "Bar4" with gap 0
 
 -- Yellow bar
 rectangle "Bar6"
   width 80
   height 360
   fill gold
-  at 71.4% 5%
+  right of "Bar5" with gap 0
 
 -- Orange-red bar
 rectangle "Bar7"
   width 80
   height 360
   fill crimson
-  at 85.7% 5%
+  right of "Bar6" with gap 0

@@ -1,0 +1,41 @@
+-- Two Interlocking Gears
+-- A drive gear and a driven gear that mesh perfectly
+
+canvas 700 by 500 pixels
+  background white
+
+-- Drive gear (smaller, 12 teeth)
+gear "Drive Gear"
+  teeth 12
+  module 12
+  fill gradient silver to gray
+  stroke dark gray 2 pixels
+  at 38% 50%
+
+-- Driven gear (larger, 20 teeth)
+gear "Driven Gear"
+  teeth 20
+  module 12
+  fill gradient silver to gray
+  stroke dark gray 2 pixels
+  mesh with "Drive Gear"
+
+-- Center bore holes
+circle "Drive Hub"
+  radius 12
+  fill white
+  stroke dark gray 2 pixels
+  inside "Drive Gear" at center
+
+circle "Driven Hub"
+  radius 15
+  fill white
+  stroke dark gray 2 pixels
+  inside "Driven Gear" at center
+
+-- Title
+text "Interlocking Gears"
+  size 24 pixels
+  bold
+  align left
+  at 130 30

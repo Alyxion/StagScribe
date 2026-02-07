@@ -52,6 +52,8 @@ property_line: prop_pair _NL
           | font_prop
           | dashed_prop
           | scale_prop
+          | teeth_prop
+          | module_prop
 
 // --- Canvas/element size via "W by H" ---
 size_by_prop: expr "by" expr
@@ -59,8 +61,9 @@ size_by_prop: expr "by" expr
 // --- Dimension properties ---
 dimension_prop: DIM_KW expr
 
-// --- Fill ---
+// --- Fill (solid or gradient) ---
 fill_prop: "fill" color_value
+         | "fill" "gradient" color_value ENDPOINT_KW color_value
 
 // --- Stroke (no comma: "stroke gray 2 pixels") ---
 stroke_prop: "stroke" color_value expr?
@@ -102,9 +105,16 @@ point: "(" expr expr ")"
 // --- Line endpoints (no comma: "from 100 200") ---
 line_endpoint_prop: ENDPOINT_KW expr expr
 
+// --- Gear properties ---
+teeth_prop: "teeth" expr
+module_prop: "module" expr
+
 // --- Position properties ---
 ?position_prop: at_position
               | relative_position
+              | mesh_position
+
+mesh_position: "mesh" "with" ESCAPED_STRING
 
 at_position: "at" at_target
 ?at_target: anchor_position
@@ -159,6 +169,7 @@ align_prop: "align" ALIGN_KW
 // --- Terminals ---
 ELEMENT_KW.1: "canvas" | "rectangle" | "rect" | "circle" | "ellipse"
           | "line" | "path" | "polygon" | "text" | "group" | "image" | "arc"
+          | "gear"
 
 DIM_KW.1: "width" | "height"
 

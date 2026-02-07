@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from xml.etree.ElementTree import Element as XmlElement
-from xml.etree.ElementTree import tostring
+from xml.etree.ElementTree import SubElement, tostring
 
 from stagscribe.converter.layout import ResolvedBox, resolve_layout
 from stagscribe.converter.shapes import render_shape
@@ -26,6 +26,10 @@ def build_svg(doc: Document, debug: set[str] | None = None) -> str:
     svg.set("width", str(int(canvas_w)))
     svg.set("height", str(int(canvas_h)))
     svg.set("viewBox", f"0 0 {int(canvas_w)} {int(canvas_h)}")
+    svg.set("font-family", "Roboto, sans-serif")
+
+    # Create gradient defs
+    gradient_map = _create_gradient_defs(doc, svg)
 
     # Canvas background
     if canvas and canvas.background:
@@ -39,7 +43,7 @@ def build_svg(doc: Document, debug: set[str] | None = None) -> str:
     for el in doc.elements:
         if el.element_type == "canvas":
             continue
-        _render_element(el, svg, boxes)
+        _render_element(el, svg, boxes, gradient_map)
 
     # Debug overlays
     if debug:
@@ -52,10 +56,52 @@ def build_svg(doc: Document, debug: set[str] | None = None) -> str:
     return f'<?xml version="1.0" encoding="UTF-8"?>\n{xml_bytes}'
 
 
+def _create_gradient_defs(
+    doc: Document, svg: XmlElement,
+) -> dict[str, str]:
+    """Scan document for gradient fills and create SVG <defs>."""
+    gradient_map: dict[str, str] = {}
+    defs: XmlElement | None = None
+    counter = 0
+
+    for el in _all_elements(doc.elements):
+        if el.gradient and el.name:
+            if defs is None:
+                defs = SubElement(svg, "defs")
+            grad_id = f"grad_{counter}"
+            counter += 1
+            grad = SubElement(defs, "linearGradient", attrib={
+                "id": grad_id,
+                "x1": "0%", "y1": "0%",
+                "x2": "0%", "y2": "100%",
+            })
+            SubElement(grad, "stop", attrib={
+                "offset": "0%",
+                "stop-color": el.gradient.color1,
+            })
+            SubElement(grad, "stop", attrib={
+                "offset": "100%",
+                "stop-color": el.gradient.color2,
+            })
+            gradient_map[el.name] = f"url(#{grad_id})"
+
+    return gradient_map
+
+
+def _all_elements(elements: list[Element]) -> list[Element]:
+    """Flatten element tree to a list."""
+    result: list[Element] = []
+    for el in elements:
+        result.append(el)
+        result.extend(_all_elements(el.children))
+    return result
+
+
 def _render_element(
     el: Element,
     parent: XmlElement,
     boxes: dict[str, ResolvedBox],
+    gradient_map: dict[str, str],
 ) -> None:
     """Render a single element and its children."""
     key = el.name or _find_key(el, boxes)
@@ -67,9 +113,13 @@ def _render_element(
 
     svg_el = render_shape(el, box, parent)
 
+    # Apply gradient fill override
+    if key in gradient_map:
+        svg_el.set("fill", gradient_map[key])
+
     # Recurse into children
     for child in el.children:
-        _render_element(child, svg_el, boxes)
+        _render_element(child, svg_el, boxes, gradient_map)
 
 
 def _find_key(el: Element, boxes: dict[str, ResolvedBox]) -> str:

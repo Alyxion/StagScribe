@@ -229,4 +229,4 @@ text "Entrance"
 
 -- Title
 text "Restaurant Floor Plan"
-  at top left
+  at 50% 2%

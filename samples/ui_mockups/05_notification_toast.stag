@@ -24,10 +24,9 @@ rectangle "Toast"
 circle "IconCircle"
   radius 20
   fill #E8F5E9
-  inside "Toast" at center left
-  at 20 50%
+  at 16% 42%
 
--- Checkmark representation
+-- Checkmark
 text "ok"
   size 20
   bold
@@ -39,22 +38,19 @@ text "File uploaded successfully"
   size 15
   bold
   color #333333
-  inside "Toast" at center left
-  at 72 35%
+  at 52% 38%
 
-text "report_Q4_2025.pdf -- 2.4 MB"
+text "report_Q4.pdf -- 2.4 MB"
   size 12
   color gray
-  inside "Toast" at center left
-  at 72 62%
+  at 47% 52%
 
 -- Dismiss button
 text "Dismiss"
   size 13
   bold
   color #007AFF
-  inside "Toast" at center left
-  at 86% 50%
+  at 88% 45%
 
 -- Progress bar at bottom of toast
 rectangle "ProgressTrack"
@@ -62,13 +58,11 @@ rectangle "ProgressTrack"
   height 3
   fill #E8E8E8
   rounded 2
-  inside "Toast" at center left
-  at 20 90%
+  at 50% 62%
 
 rectangle "ProgressFill"
   width 220
   height 3
   fill #34C759
   rounded 2
-  inside "Toast" at center left
-  at 20 90%
+  at 38% 62%

@@ -9,7 +9,21 @@ rectangle "Sky"
   width 800
   height 250
   fill lightskyblue
-  at 0% 0%
+  at top left
+
+-- Grass field
+rectangle "Grass"
+  width 800
+  height 260
+  fill limegreen
+  below "Sky" with gap 0
+
+-- Darker grass at bottom
+rectangle "GrassDark"
+  width 800
+  height 120
+  fill forestgreen
+  at 50% 92%
 
 -- Clouds
 ellipse "Cloud1"
@@ -17,21 +31,21 @@ ellipse "Cloud1"
   height 35
   fill white
   opacity 0.85
-  at 10% 8%
+  at 14% 8%
 
 ellipse "Cloud2"
   width 100
   height 28
   fill white
   opacity 0.8
-  at 60% 12%
+  at 63% 12%
 
 ellipse "Cloud3"
   width 90
   height 25
   fill white
   opacity 0.75
-  at 35% 5%
+  at 38% 6%
 
 -- Sun
 circle "Sun"
@@ -39,235 +53,209 @@ circle "Sun"
   fill gold
   at 90% 10%
 
--- Grass field
-rectangle "Grass"
+-- Wooden fence horizontal rails
+rectangle "TopRail"
   width 800
-  height 260
-  fill limegreen
-  at 0% 48%
+  height 8
+  fill burlywood
+  stroke saddlebrown 1 pixels
+  at 50% 42%
 
-rectangle "GrassDark"
+rectangle "BottomRail"
   width 800
-  height 120
-  fill forestgreen
-  at 0% 76%
+  height 8
+  fill burlywood
+  stroke saddlebrown 1 pixels
+  at 50% 52%
 
--- Wooden fence
-group "Fence"
+-- Fence posts
+rectangle "Post1"
+  width 12
+  height 80
+  fill saddlebrown
+  at 56 235
 
-  -- Horizontal rails
-  rectangle "TopRail"
-    width 800
-    height 8
-    fill burlywood
-    stroke saddlebrown 1 pixels
-    at 0% 42%
+rectangle "Post2"
+  width 12
+  height 80
+  fill saddlebrown
+  at 156 235
 
-  rectangle "BottomRail"
-    width 800
-    height 8
-    fill burlywood
-    stroke saddlebrown 1 pixels
-    at 0% 52%
+rectangle "Post3"
+  width 12
+  height 80
+  fill saddlebrown
+  at 256 235
 
-  -- Fence posts
-  rectangle "Post1"
-    width 12
-    height 80
-    fill saddlebrown
-    at 50 195
+rectangle "Post4"
+  width 12
+  height 80
+  fill saddlebrown
+  at 356 235
 
-  rectangle "Post2"
-    width 12
-    height 80
-    fill saddlebrown
-    at 150 195
+rectangle "Post5"
+  width 12
+  height 80
+  fill saddlebrown
+  at 456 235
 
-  rectangle "Post3"
-    width 12
-    height 80
-    fill saddlebrown
-    at 250 195
+rectangle "Post6"
+  width 12
+  height 80
+  fill saddlebrown
+  at 556 235
 
-  rectangle "Post4"
-    width 12
-    height 80
-    fill saddlebrown
-    at 350 195
+rectangle "Post7"
+  width 12
+  height 80
+  fill saddlebrown
+  at 656 235
 
-  rectangle "Post5"
-    width 12
-    height 80
-    fill saddlebrown
-    at 450 195
-
-  rectangle "Post6"
-    width 12
-    height 80
-    fill saddlebrown
-    at 550 195
-
-  rectangle "Post7"
-    width 12
-    height 80
-    fill saddlebrown
-    at 650 195
-
-  rectangle "Post8"
-    width 12
-    height 80
-    fill saddlebrown
-    at 750 195
+rectangle "Post8"
+  width 12
+  height 80
+  fill saddlebrown
+  at 756 235
 
 -- Red flower 1
-group "FlowerRed1"
+rectangle "Stem_R1"
+  width 4
+  height 60
+  fill green
+  at 122 330
 
-  rectangle "Stem_R1"
-    width 4
-    height 60
-    fill green
-    at 120 300
+circle "Petal_R1a"
+  radius 10
+  fill red
+  at 122 295
 
-  circle "Petal_R1a"
-    radius 10
-    fill red
-    at 122 295
+circle "Petal_R1b"
+  radius 10
+  fill crimson
+  at 112 285
 
-  circle "Petal_R1b"
-    radius 10
-    fill crimson
-    at 112 285
+circle "Petal_R1c"
+  radius 10
+  fill red
+  at 132 285
 
-  circle "Petal_R1c"
-    radius 10
-    fill red
-    at 132 285
-
-  circle "Center_R1"
-    radius 6
-    fill gold
-    at 122 288
+circle "Center_R1"
+  radius 6
+  fill gold
+  at 122 288
 
 -- Yellow flower 1
-group "FlowerYellow1"
+rectangle "Stem_Y1"
+  width 4
+  height 55
+  fill green
+  at 252 340
 
-  rectangle "Stem_Y1"
-    width 4
-    height 55
-    fill green
-    at 250 310
+circle "Petal_Y1a"
+  radius 9
+  fill gold
+  at 252 305
 
-  circle "Petal_Y1a"
-    radius 9
-    fill gold
-    at 252 305
+circle "Petal_Y1b"
+  radius 9
+  fill yellow
+  at 243 297
 
-  circle "Petal_Y1b"
-    radius 9
-    fill yellow
-    at 243 297
+circle "Petal_Y1c"
+  radius 9
+  fill gold
+  at 261 297
 
-  circle "Petal_Y1c"
-    radius 9
-    fill gold
-    at 261 297
-
-  circle "Center_Y1"
-    radius 5
-    fill saddlebrown
-    at 252 300
+circle "Center_Y1"
+  radius 5
+  fill saddlebrown
+  at 252 300
 
 -- Purple flower 1
-group "FlowerPurple1"
+rectangle "Stem_P1"
+  width 4
+  height 65
+  fill darkgreen
+  at 402 325
 
-  rectangle "Stem_P1"
-    width 4
-    height 65
-    fill darkgreen
-    at 400 295
+circle "Petal_P1a"
+  radius 11
+  fill mediumpurple
+  at 402 288
 
-  circle "Petal_P1a"
-    radius 11
-    fill mediumpurple
-    at 402 288
+circle "Petal_P1b"
+  radius 11
+  fill darkorchid
+  at 392 278
 
-  circle "Petal_P1b"
-    radius 11
-    fill darkorchid
-    at 392 278
+circle "Petal_P1c"
+  radius 11
+  fill mediumpurple
+  at 412 278
 
-  circle "Petal_P1c"
-    radius 11
-    fill mediumpurple
-    at 412 278
+circle "Petal_P1d"
+  radius 11
+  fill purple
+  at 402 268
 
-  circle "Petal_P1d"
-    radius 11
-    fill purple
-    at 402 268
-
-  circle "Center_P1"
-    radius 6
-    fill lightyellow
-    at 402 278
+circle "Center_P1"
+  radius 6
+  fill lightyellow
+  at 402 278
 
 -- Pink flower 1
-group "FlowerPink1"
+rectangle "Stem_Pk1"
+  width 4
+  height 50
+  fill green
+  at 542 345
 
-  rectangle "Stem_Pk1"
-    width 4
-    height 50
-    fill green
-    at 540 315
+circle "Petal_Pk1a"
+  radius 9
+  fill hotpink
+  at 542 310
 
-  circle "Petal_Pk1a"
-    radius 9
-    fill hotpink
-    at 542 310
+circle "Petal_Pk1b"
+  radius 9
+  fill deeppink
+  at 533 302
 
-  circle "Petal_Pk1b"
-    radius 9
-    fill deeppink
-    at 533 302
+circle "Petal_Pk1c"
+  radius 9
+  fill hotpink
+  at 551 302
 
-  circle "Petal_Pk1c"
-    radius 9
-    fill hotpink
-    at 551 302
-
-  circle "Center_Pk1"
-    radius 5
-    fill gold
-    at 542 305
+circle "Center_Pk1"
+  radius 5
+  fill gold
+  at 542 305
 
 -- Orange flower 1
-group "FlowerOrange1"
+rectangle "Stem_O1"
+  width 4
+  height 58
+  fill green
+  at 682 335
 
-  rectangle "Stem_O1"
-    width 4
-    height 58
-    fill green
-    at 680 305
+circle "Petal_O1a"
+  radius 10
+  fill darkorange
+  at 682 298
 
-  circle "Petal_O1a"
-    radius 10
-    fill darkorange
-    at 682 298
+circle "Petal_O1b"
+  radius 10
+  fill orange
+  at 672 288
 
-  circle "Petal_O1b"
-    radius 10
-    fill orange
-    at 672 288
+circle "Petal_O1c"
+  radius 10
+  fill darkorange
+  at 692 288
 
-  circle "Petal_O1c"
-    radius 10
-    fill darkorange
-    at 692 288
-
-  circle "Center_O1"
-    radius 6
-    fill brown
-    at 682 292
+circle "Center_O1"
+  radius 6
+  fill brown
+  at 682 292
 
 -- Small grass tufts
 polygon "Tuft1"
@@ -287,27 +275,25 @@ polygon "Tuft4"
   fill darkgreen
 
 -- Butterfly
-group "Butterfly"
+ellipse "WingLeft"
+  width 18
+  height 24
+  fill cornflowerblue
+  opacity 0.8
+  at 325 200
 
-  ellipse "WingLeft"
-    width 18
-    height 24
-    fill cornflowerblue
-    opacity 0.8
-    at 320 200
+ellipse "WingRight"
+  width 18
+  height 24
+  fill cornflowerblue
+  opacity 0.8
+  at 347 200
 
-  ellipse "WingRight"
-    width 18
-    height 24
-    fill cornflowerblue
-    opacity 0.8
-    at 342 200
-
-  rectangle "Body_BF"
-    width 3
-    height 16
-    fill #333333
-    at 330 196
+rectangle "Body_BF"
+  width 3
+  height 16
+  fill #333333
+  at 336 200
 
 -- Garden path
 path "GardenPath"

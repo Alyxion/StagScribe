@@ -12,6 +12,7 @@ from stagscribe.language.ast_nodes import (
     Document,
     Element,
     Expr,
+    GradientFill,
     IsStatement,
     LiteralExpr,
     PlaceStatement,
@@ -152,9 +153,15 @@ class StagTransformer(Transformer):  # type: ignore[type-arg]
         val = items[1]
         return {keyword: val}
 
-    # --- Fill ---
+    # --- Fill (solid or gradient) ---
     def fill_prop(self, items: list) -> dict:  # type: ignore[type-arg]
-        return {"fill": _resolve_color_item(items[0])}
+        # Solid: items = [color_value]
+        # Gradient: items = [color_value, ENDPOINT_KW('to'), color_value]
+        if len(items) == 1:
+            return {"fill": _resolve_color_item(items[0])}
+        color1 = _resolve_color_item(items[0])
+        color2 = _resolve_color_item(items[2])
+        return {"gradient": GradientFill(color1=color1, color2=color2)}
 
     # --- Stroke ---
     def stroke_prop(self, items: list) -> dict:  # type: ignore[type-arg]
@@ -187,6 +194,24 @@ class StagTransformer(Transformer):  # type: ignore[type-arg]
     # --- Scale ---
     def scale_prop(self, items: list) -> dict:  # type: ignore[type-arg]
         return {"scale": items[0]}
+
+    # --- Gear: teeth and module ---
+    def teeth_prop(self, items: list) -> dict:  # type: ignore[type-arg]
+        val = items[0]
+        if isinstance(val, Value):
+            return {"teeth": int(val.number)}
+        return {"teeth": val}
+
+    def module_prop(self, items: list) -> dict:  # type: ignore[type-arg]
+        val = items[0]
+        if isinstance(val, Value):
+            return {"tooth_module": val.number}
+        return {"tooth_module": val}
+
+    # --- Mesh positioning ---
+    def mesh_position(self, items: list) -> dict:  # type: ignore[type-arg]
+        ref_name = str(items[0]).strip('"')
+        return {"position": Position(mesh_ref=ref_name)}
 
     # --- Radius ---
     def radius_prop(self, items: list) -> dict:  # type: ignore[type-arg]
@@ -432,3 +457,9 @@ def _apply_props(el: Element, props: dict) -> None:  # type: ignore[type-arg]
             el.path_data = val
         elif key == "src":
             el.src = val
+        elif key == "gradient":
+            el.gradient = val
+        elif key == "teeth":
+            el.teeth = val
+        elif key == "tooth_module":
+            el.tooth_module = val

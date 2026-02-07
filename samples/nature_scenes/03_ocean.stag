@@ -9,15 +9,22 @@ rectangle "UpperSky"
   width 800
   height 200
   fill skyblue
-  at 0% 0%
+  at top left
 
 -- Lower sky near horizon
 rectangle "LowerSky"
   width 800
   height 60
   fill lightskyblue
-  at 0% 40%
   opacity 0.7
+  below "UpperSky" with gap 0
+
+-- Ocean body
+rectangle "Ocean"
+  width 800
+  height 240
+  fill steelblue
+  below "LowerSky" with gap 0
 
 -- Clouds
 ellipse "CloudA"
@@ -25,21 +32,21 @@ ellipse "CloudA"
   height 35
   fill white
   opacity 0.85
-  at 12% 10%
+  at 15% 10%
 
 ellipse "CloudA2"
   width 100
   height 28
   fill white
   opacity 0.8
-  at 20% 8%
+  at 25% 8%
 
 ellipse "CloudB"
   width 120
   height 30
   fill white
   opacity 0.8
-  at 70% 15%
+  at 72% 15%
 
 -- Sun
 circle "Sun"
@@ -48,41 +55,34 @@ circle "Sun"
   opacity 0.9
   at 85% 10%
 
--- Ocean body
-rectangle "Ocean"
-  width 800
-  height 250
-  fill steelblue
-  at 0% 50%
-
 -- Wave layers
 ellipse "Wave1"
-  width 800
+  width 820
   height 40
   fill #4682b4
   opacity 0.6
-  at 0% 52%
+  at 50% 54%
 
 ellipse "Wave2"
-  width 820
+  width 830
   height 35
   fill #5a9bd4
   opacity 0.5
-  at 0% 60%
+  at 50% 62%
 
 ellipse "Wave3"
-  width 810
+  width 820
   height 30
   fill #3a75a8
   opacity 0.55
-  at 0% 68%
+  at 50% 70%
 
 ellipse "Wave4"
-  width 800
+  width 810
   height 35
   fill #4a8ac2
   opacity 0.45
-  at 1% 76%
+  at 50% 78%
 
 -- Foam lines
 rectangle "Foam1"
@@ -91,7 +91,7 @@ rectangle "Foam1"
   fill white
   opacity 0.5
   rounded 2
-  at 20% 56%
+  at 22% 57%
 
 rectangle "Foam2"
   width 90
@@ -99,7 +99,7 @@ rectangle "Foam2"
   fill white
   opacity 0.45
   rounded 2
-  at 55% 64%
+  at 58% 66%
 
 rectangle "Foam3"
   width 110
@@ -107,38 +107,32 @@ rectangle "Foam3"
   fill white
   opacity 0.4
   rounded 2
-  at 35% 72%
+  at 38% 74%
 
 -- Sailboat
-group "Sailboat"
+polygon "Hull"
+  points (340 290) (360 310) (440 310) (460 290)
+  fill saddlebrown
 
-  -- Hull
-  polygon "Hull"
-    points (340 290) (360 310) (440 310) (460 290)
-    fill saddlebrown
+rectangle "Mast"
+  width 3
+  height 70
+  fill #4a3728
+  at 400 255
 
-  -- Mast
-  rectangle "Mast"
-    width 3
-    height 70
-    fill #4a3728
-    at 398 220
+polygon "Sail"
+  points (401 225) (401 285) (450 275)
+  fill white
+  opacity 0.9
 
-  -- Sail
-  polygon "Sail"
-    points (401 225) (401 285) (450 275)
-    fill white
-    opacity 0.9
+polygon "SailLeft"
+  points (397 225) (397 280) (355 270)
+  fill ghostwhite
+  opacity 0.85
 
-  polygon "SailLeft"
-    points (397 225) (397 280) (355 270)
-    fill ghostwhite
-    opacity 0.85
-
-  -- Flag
-  polygon "Flag"
-    points (399 220) (399 230) (415 225)
-    fill red
+polygon "Flag"
+  points (399 220) (399 230) (415 225)
+  fill red
 
 -- Distant birds
 path "Bird1"

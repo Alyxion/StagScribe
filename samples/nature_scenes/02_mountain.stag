@@ -9,7 +9,7 @@ rectangle "Sky"
   width 800
   height 320
   fill cornflowerblue
-  at 0% 0%
+  at top left
 
 -- Distant mountain range (back layer)
 polygon "FarMountainLeft"
@@ -54,57 +54,55 @@ rectangle "Meadow"
   width 800
   height 180
   fill limegreen
-  at 0% 64%
+  at 50% 82%
 
 -- Meadow darker layer
 rectangle "MeadowDark"
   width 800
   height 80
   fill forestgreen
-  at 0% 84%
+  at 50% 92%
 
 -- Trees (simple triangle shapes)
-group "TreeCluster"
+polygon "Tree1"
+  points (100 310) (120 240) (140 310)
+  fill darkgreen
 
-  polygon "Tree1"
-    points (100 310) (120 240) (140 310)
-    fill darkgreen
+rectangle "Trunk1"
+  width 8
+  height 20
+  fill saddlebrown
+  at 120 320
 
-  rectangle "Trunk1"
-    width 8
-    height 20
-    fill saddlebrown
-    at 115 310
+polygon "Tree2"
+  points (180 310) (205 230) (230 310)
+  fill forestgreen
 
-  polygon "Tree2"
-    points (180 310) (205 230) (230 310)
-    fill forestgreen
+rectangle "Trunk2"
+  width 8
+  height 20
+  fill saddlebrown
+  at 205 320
 
-  rectangle "Trunk2"
-    width 8
-    height 20
-    fill saddlebrown
-    at 200 310
+polygon "Tree3"
+  points (620 310) (645 225) (670 310)
+  fill darkgreen
 
-  polygon "Tree3"
-    points (620 310) (645 225) (670 310)
-    fill darkgreen
+rectangle "Trunk3"
+  width 8
+  height 20
+  fill saddlebrown
+  at 645 320
 
-  rectangle "Trunk3"
-    width 8
-    height 20
-    fill saddlebrown
-    at 640 310
+polygon "Tree4"
+  points (700 310) (720 250) (740 310)
+  fill forestgreen
 
-  polygon "Tree4"
-    points (700 310) (720 250) (740 310)
-    fill forestgreen
-
-  rectangle "Trunk4"
-    width 8
-    height 20
-    fill saddlebrown
-    at 715 310
+rectangle "Trunk4"
+  width 8
+  height 20
+  fill saddlebrown
+  at 720 320
 
 -- Sun in the sky
 circle "Sun"
@@ -118,14 +116,14 @@ ellipse "Cloud1"
   height 30
   fill white
   opacity 0.8
-  at 15% 8%
+  at 18% 10%
 
 ellipse "Cloud2"
   width 80
   height 25
   fill white
   opacity 0.75
-  at 45% 15%
+  at 48% 16%
 
 -- Path through the meadow
 path "MeadowPath"
