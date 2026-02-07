@@ -1,0 +1,135 @@
+-- Mountain Landscape
+-- A mountain scene with layered peaks, evergreen trees, and a clear sky.
+
+canvas 800 by 500 pixels
+  background cornflowerblue
+
+-- Sky
+rectangle "Sky"
+  width 800
+  height 320
+  fill cornflowerblue
+  at 0% 0%
+
+-- Distant mountain range (back layer)
+polygon "FarMountainLeft"
+  points (0 320) (200 140) (400 320)
+  fill slategray
+  opacity 0.6
+
+polygon "FarMountainRight"
+  points (300 320) (550 100) (800 320)
+  fill slategray
+  opacity 0.6
+
+-- Snow caps on distant mountains
+polygon "SnowCapLeft"
+  points (160 180) (200 140) (240 180)
+  fill white
+  opacity 0.7
+
+polygon "SnowCapRight"
+  points (510 140) (550 100) (590 140)
+  fill white
+  opacity 0.7
+
+-- Near mountain range (front layer)
+polygon "NearMountainLeft"
+  points (0 320) (150 200) (350 320)
+  fill #4a6741
+  opacity 0.85
+
+polygon "NearMountainCenter"
+  points (250 320) (450 170) (650 320)
+  fill #3d5c34
+  opacity 0.9
+
+polygon "NearMountainRight"
+  points (550 320) (700 220) (800 320)
+  fill #4a6741
+  opacity 0.85
+
+-- Meadow
+rectangle "Meadow"
+  width 800
+  height 180
+  fill limegreen
+  at 0% 64%
+
+-- Meadow darker layer
+rectangle "MeadowDark"
+  width 800
+  height 80
+  fill forestgreen
+  at 0% 84%
+
+-- Trees (simple triangle shapes)
+group "TreeCluster"
+
+  polygon "Tree1"
+    points (100 310) (120 240) (140 310)
+    fill darkgreen
+
+  rectangle "Trunk1"
+    width 8
+    height 20
+    fill saddlebrown
+    at 115 310
+
+  polygon "Tree2"
+    points (180 310) (205 230) (230 310)
+    fill forestgreen
+
+  rectangle "Trunk2"
+    width 8
+    height 20
+    fill saddlebrown
+    at 200 310
+
+  polygon "Tree3"
+    points (620 310) (645 225) (670 310)
+    fill darkgreen
+
+  rectangle "Trunk3"
+    width 8
+    height 20
+    fill saddlebrown
+    at 640 310
+
+  polygon "Tree4"
+    points (700 310) (720 250) (740 310)
+    fill forestgreen
+
+  rectangle "Trunk4"
+    width 8
+    height 20
+    fill saddlebrown
+    at 715 310
+
+-- Sun in the sky
+circle "Sun"
+  radius 35
+  fill gold
+  at 80% 12%
+
+-- Small cloud
+ellipse "Cloud1"
+  width 100
+  height 30
+  fill white
+  opacity 0.8
+  at 15% 8%
+
+ellipse "Cloud2"
+  width 80
+  height 25
+  fill white
+  opacity 0.75
+  at 45% 15%
+
+-- Path through the meadow
+path "MeadowPath"
+  d "M380 500 Q390 420 400 370 Q420 340 450 320"
+  stroke sandybrown 12 pixels
+  fill sandybrown
+  opacity 0.6

@@ -1,0 +1,1 @@
+A user profile icon on a 64x64 transparent canvas. A large light blue circle serves as the avatar frame with a blue border. Inside, a smaller solid blue circle represents the head, positioned in the upper half. Below it, a curved path forms the shoulders and upper torso, clipped within the circular frame.

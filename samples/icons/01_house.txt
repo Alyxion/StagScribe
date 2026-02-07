@@ -1,0 +1,1 @@
+A simple house icon on a 64x64 transparent canvas. The house features a blue rectangular body with a red triangular roof on top. A brown door with a small yellow knob sits at the center bottom, flanked by two light blue windows on either side.

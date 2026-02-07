@@ -1,0 +1,1 @@
+A five-pointed star icon on a 64x64 transparent canvas. The star is constructed as a polygon with ten vertices, alternating between the five outer tips and five inner concave points. It is filled with a bright gold-yellow color and has a slightly darker golden stroke for definition.

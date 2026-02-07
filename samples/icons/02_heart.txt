@@ -1,0 +1,1 @@
+A classic heart icon on a 64x64 transparent canvas. The heart is drawn as a single SVG path with smooth bezier curves forming the two rounded lobes at the top and the pointed tip at the bottom. It is filled with a vibrant red color and outlined with a slightly darker red stroke.

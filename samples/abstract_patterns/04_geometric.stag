@@ -1,0 +1,60 @@
+-- Geometric Pattern
+-- Overlapping shapes with transparency creating a layered abstract composition
+
+canvas 500 by 500 pixels
+  background #0d0d0d
+
+-- Large background circle
+circle "BackCircle"
+  radius 160
+  fill mediumpurple
+  opacity 0.4
+  at 35% 40%
+
+-- Overlapping rectangle offset to the right
+rectangle "OverlapRect"
+  width 220
+  height 220
+  fill coral
+  opacity 0.5
+  stroke coral 2 pixels
+  at 50% 45%
+  rounded 12
+
+-- Smaller teal circle overlapping both
+circle "FrontCircle"
+  radius 90
+  fill turquoise
+  opacity 0.5
+  at 60% 55%
+
+-- Tilted diamond shape at the top
+rectangle "Diamond"
+  width 120
+  height 120
+  fill gold
+  opacity 0.45
+  at 45% 20%
+  rotate 45
+
+-- Thin horizontal line across the composition
+line "HorizontalLine"
+  from 40 250
+  to 460 250
+  stroke crimson 3 pixels
+  opacity 0.7
+
+-- Thin vertical line through center
+line "VerticalLine"
+  from 250 40
+  to 250 460
+  stroke dodgerblue 3 pixels
+  opacity 0.7
+
+-- Small accent ellipse in the lower left
+ellipse "AccentEllipse"
+  width 100
+  height 50
+  fill mediumseagreen
+  opacity 0.55
+  at 22% 75%

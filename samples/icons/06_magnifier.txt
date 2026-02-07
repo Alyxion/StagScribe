@@ -1,0 +1,1 @@
+A search magnifying glass icon on a 64x64 transparent canvas. The lens is a circle with a light blue fill and a bold blue stroke, with a small white highlight circle suggesting a glass reflection. A thick gray diagonal line extends from the lens to the bottom-right corner as the handle, finished with a small rectangular cap.

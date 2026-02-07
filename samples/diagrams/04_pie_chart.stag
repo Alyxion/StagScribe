@@ -1,0 +1,94 @@
+-- Pie Chart Legend
+-- Colored boxes with labels representing budget allocation
+-- (Legend-style representation since true pie slices are not primitives)
+
+canvas 500 by 450 pixels
+  background #FFFFFF
+
+-- Chart title
+text "Budget Allocation"
+  size 22
+  bold
+  color #212121
+  at 50% 8%
+
+-- Decorative circle to represent the pie
+circle "Pie Outline"
+  radius 90
+  fill #EEEEEE
+  stroke #BDBDBD 2 pixels
+  at 50% 40%
+
+text "FY 2025"
+  size 14
+  bold
+  color #616161
+  at center of "Pie Outline"
+
+-- Legend section
+group "Legend"
+
+  -- Engineering: 35%
+  rectangle "Eng Color"
+    width 24
+    height 24
+    fill #1E88E5
+    rounded 4
+    at 18% 72%
+
+  text "Engineering - 35%"
+    size 14
+    color #333333
+    at 33% 72%
+
+  -- Marketing: 25%
+  rectangle "Mkt Color"
+    width 24
+    height 24
+    fill #43A047
+    rounded 4
+    at 18% 80%
+
+  text "Marketing - 25%"
+    size 14
+    color #333333
+    at 33% 80%
+
+  -- Operations: 20%
+  rectangle "Ops Color"
+    width 24
+    height 24
+    fill #FB8C00
+    rounded 4
+    at 18% 88%
+
+  text "Operations - 20%"
+    size 14
+    color #333333
+    at 33% 88%
+
+  -- Research: 12%
+  rectangle "Res Color"
+    width 24
+    height 24
+    fill #8E24AA
+    rounded 4
+    at 58% 72%
+
+  text "Research - 12%"
+    size 14
+    color #333333
+    at 72% 72%
+
+  -- Admin: 8%
+  rectangle "Adm Color"
+    width 24
+    height 24
+    fill #E53935
+    rounded 4
+    at 58% 80%
+
+  text "Admin - 8%"
+    size 14
+    color #333333
+    at 72% 80%

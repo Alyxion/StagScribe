@@ -1,0 +1,1 @@
+An organization chart showing a corporate hierarchy with CEO Jane Morgan at the top. Three departments branch out below: Engineering, Marketing, and Finance, each color-coded for visual distinction. Each department further breaks down into two sub-teams -- Front-End and Back-End under Engineering, Digital and Brand under Marketing, and Accounting and Payroll under Finance.

@@ -1,0 +1,4 @@
+Room From Top — demonstrates StagScribe v2 features: variables with arithmetic
+expressions, color palettes, and calculated dimensions. Shows a room viewed from
+above with walls, floor, rug, table, chairs, bookshelf, lamp, and door.
+Dimensions are derived from variables (e.g., inner_w = room_w - wall * 2).

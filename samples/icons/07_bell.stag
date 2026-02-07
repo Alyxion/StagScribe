@@ -1,0 +1,34 @@
+-- Notification bell icon
+-- A bell shape with a clapper at the bottom
+
+canvas 64 by 64 pixels
+  background transparent
+
+-- Bell body
+path "BellBody"
+  d "M18 42 L18 28 C18 16 24 8 32 8 C40 8 46 16 46 28 L46 42 Z"
+  fill #F39C12
+  stroke #D68910 2 pixels
+
+-- Bell brim (wide bottom)
+rectangle "Brim"
+  width 40
+  height 4
+  fill #F39C12
+  stroke #D68910 2 pixels
+  at 50% 69%
+  rounded 2
+
+-- Clapper
+circle "Clapper"
+  radius 4
+  fill #D68910
+  stroke #B7770D 1 pixels
+  at 50% 82%
+
+-- Top knob
+circle "TopKnob"
+  radius 3
+  fill #F39C12
+  stroke #D68910 2 pixels
+  at 50% 11%

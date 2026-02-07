@@ -1,0 +1,1 @@
+A horizontal project timeline displaying four key milestones across a software development lifecycle. Each milestone is marked by a colored circle on a horizontal bar: Planning (January), Development (April), Testing (July), and Launch (October). The milestones are color-coded from blue to red to convey progression, with dates shown below each marker and phase labels above.

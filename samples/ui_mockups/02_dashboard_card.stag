@@ -1,0 +1,144 @@
+-- Dashboard Metric Card
+-- A single card widget showing a KPI with a sparkline chart placeholder
+
+canvas 360 by 220 pixels
+  background #F0F0F0
+
+rectangle "Card"
+  width 340
+  height 200
+  fill white
+  stroke #E0E0E0 1 pixels
+  rounded 16
+  at center
+
+-- Card header row
+group "Header"
+  width 300
+  height 32
+  inside "Card" at center left
+  at 20 20
+
+  text "MONTHLY REVENUE"
+    size 13
+    bold
+    color gray
+    inside "Header" at center left
+
+  rectangle "Badge"
+    width 56
+    height 24
+    fill #E8F5E9
+    rounded 12
+    inside "Header" at center left
+    at 85% 50%
+
+  text "+12.5%"
+    size 11
+    bold
+    color #2E7D32
+    at center of "Badge"
+
+-- Main metric value
+text "$48,250"
+  size 36
+  bold
+  color #333333
+  inside "Card" at center left
+  at 20 68
+
+text "vs $42,900 last month"
+  size 12
+  color gray
+  inside "Card" at center left
+  at 20 102
+
+-- Chart placeholder area
+rectangle "ChartArea"
+  width 300
+  height 60
+  fill #FAFAFA
+  rounded 8
+  inside "Card" at center left
+  at 20 125
+
+-- Simulated sparkline bars
+rectangle "Bar1"
+  width 20
+  height 25
+  fill #C8E6C9
+  rounded 3
+  inside "ChartArea" at center left
+  at 10 70%
+
+rectangle "Bar2"
+  width 20
+  height 35
+  fill #A5D6A7
+  rounded 3
+  inside "ChartArea" at center left
+  at 40 60%
+
+rectangle "Bar3"
+  width 20
+  height 20
+  fill #C8E6C9
+  rounded 3
+  inside "ChartArea" at center left
+  at 70 78%
+
+rectangle "Bar4"
+  width 20
+  height 40
+  fill #81C784
+  rounded 3
+  inside "ChartArea" at center left
+  at 100 55%
+
+rectangle "Bar5"
+  width 20
+  height 30
+  fill #A5D6A7
+  rounded 3
+  inside "ChartArea" at center left
+  at 130 65%
+
+rectangle "Bar6"
+  width 20
+  height 50
+  fill #66BB6A
+  rounded 3
+  inside "ChartArea" at center left
+  at 160 42%
+
+rectangle "Bar7"
+  width 20
+  height 45
+  fill #4CAF50
+  rounded 3
+  inside "ChartArea" at center left
+  at 190 48%
+
+rectangle "Bar8"
+  width 20
+  height 55
+  fill #43A047
+  rounded 3
+  inside "ChartArea" at center left
+  at 220 35%
+
+rectangle "Bar9"
+  width 20
+  height 38
+  fill #81C784
+  rounded 3
+  inside "ChartArea" at center left
+  at 250 58%
+
+rectangle "Bar10"
+  width 20
+  height 58
+  fill #2E7D32
+  rounded 3
+  inside "ChartArea" at center left
+  at 270 30%

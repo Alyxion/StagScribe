@@ -1,0 +1,63 @@
+-- Room From Top — demonstrates variable expressions
+-- A room viewed from above with calculated inner dimensions
+
+room_width is 500
+room_height is 400
+wall_thickness is 10
+inner_width is room_width - wall_thickness * 2
+inner_height is room_height - wall_thickness * 2
+rug_width is inner_width * 0.6
+rug_height is inner_height * 0.4
+
+colors:
+  walls is dark gray
+  floor_color is beige
+  rug_color is #8B4513
+  furniture is #654321
+
+canvas 600 by 500
+
+-- Room structure
+rect "Room" room_width by room_height
+  at center
+  fill walls
+rect "Floor" inner_width by inner_height
+  at center of "Room"
+  fill floor_color
+rect "Rug" rug_width by rug_height
+  at center of "Floor"
+  fill rug_color
+
+-- Furniture
+table_width is 120
+table_height is 60
+
+rect "Table" table_width by table_height
+  at center of "Floor"
+  fill furniture
+
+chair_size is 30
+
+rect "Chair 1" chair_size by chair_size
+  fill gray
+  above "Table" with gap 10
+rect "Chair 2" chair_size by chair_size
+  fill gray
+  below "Table" with gap 10
+
+-- Bookshelf on east wall
+rect "Bookshelf" 20 by inner_height * 0.5
+  fill furniture
+  inside "Floor" at center right
+
+-- Lamp in corner
+circle "Lamp"
+  radius 15
+  fill yellow
+  stroke gray 1 pixels
+  inside "Floor" at top left
+
+-- Door opening
+rect "Door" room_width * 0.15 by wall_thickness
+  fill floor_color
+  inside "Room" at bottom left

@@ -1,0 +1,32 @@
+-- Email envelope icon
+-- A simple envelope with a folded flap
+
+canvas 64 by 64 pixels
+  background transparent
+
+-- Envelope body
+rectangle "Body"
+  width 52
+  height 36
+  fill #ECF0F1
+  stroke #7F8C8D 2 pixels
+  at 50% 55%
+  rounded 3
+
+-- Left flap line (V shape for the envelope fold)
+line "FlapLeft"
+  from 6 37
+  to 32 54
+  stroke #7F8C8D 2 pixels
+
+-- Right flap line
+line "FlapRight"
+  from 58 37
+  to 32 54
+  stroke #7F8C8D 2 pixels
+
+-- Top flap triangle
+polygon "TopFlap"
+  points (6 37) (32 18) (58 37)
+  fill #D5DBDB
+  stroke #7F8C8D 2 pixels

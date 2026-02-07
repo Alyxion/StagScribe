@@ -1,0 +1,41 @@
+-- Concentric Circles
+-- A set of colorful concentric circles radiating outward from the center
+
+canvas 400 by 400 pixels
+  background #1a1a2e
+
+-- Outermost circle
+circle "Ring6"
+  radius 180
+  fill crimson
+  at center
+
+-- Fifth ring
+circle "Ring5"
+  radius 150
+  fill coral
+  at center
+
+-- Fourth ring
+circle "Ring4"
+  radius 120
+  fill gold
+  at center
+
+-- Third ring
+circle "Ring3"
+  radius 90
+  fill mediumseagreen
+  at center
+
+-- Second ring
+circle "Ring2"
+  radius 60
+  fill dodgerblue
+  at center
+
+-- Innermost circle
+circle "Ring1"
+  radius 30
+  fill mediumpurple
+  at center

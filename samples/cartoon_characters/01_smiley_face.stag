@@ -1,0 +1,58 @@
+-- Smiley Face
+-- A classic yellow smiley face with round eyes and a curved smile
+
+canvas 200 by 200 pixels
+  background white
+
+-- Face
+circle "Face"
+  radius 80
+  fill gold
+  stroke goldenrod 3 pixels
+  at center
+
+-- Left Eye
+circle "LeftEye"
+  radius 10
+  fill white
+  stroke darkslategray 2 pixels
+  at 40% 40%
+
+-- Left Pupil
+circle "LeftPupil"
+  radius 5
+  fill darkslategray
+  at center of "LeftEye"
+
+-- Right Eye
+circle "RightEye"
+  radius 10
+  fill white
+  stroke darkslategray 2 pixels
+  at 60% 40%
+
+-- Right Pupil
+circle "RightPupil"
+  radius 5
+  fill darkslategray
+  at center of "RightEye"
+
+-- Smile
+path "Smile"
+  d "M65 120 Q100 155 135 120"
+  stroke darkslategray 3 pixels
+  fill none
+
+-- Left Cheek
+circle "LeftCheek"
+  radius 8
+  fill peachpuff
+  opacity 0.5
+  at 32% 62%
+
+-- Right Cheek
+circle "RightCheek"
+  radius 8
+  fill peachpuff
+  opacity 0.5
+  at 68% 62%

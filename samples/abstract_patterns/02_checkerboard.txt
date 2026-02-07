@@ -1,0 +1,1 @@
+A classic 4x4 checkerboard pattern on a 400x400 canvas. Dark charcoal squares alternate with white gaps in a regular grid. The eight dark squares are positioned to create the traditional alternating tile layout.

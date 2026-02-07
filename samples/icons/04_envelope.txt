@@ -1,0 +1,1 @@
+An email envelope icon on a 64x64 transparent canvas. The envelope has a light gray rectangular body with rounded corners and a triangular top flap in a slightly darker shade. Two diagonal lines converge at the bottom center to suggest the envelope fold, all outlined with a medium gray stroke.

@@ -1,0 +1,123 @@
+-- Mobile Login Screen
+-- A clean, minimal login form for a mobile application
+
+canvas 375 by 812 pixels
+  background white
+
+-- App logo area
+circle "Logo"
+  radius 40
+  fill #007AFF
+  at 50% 15%
+
+text "StagScribe"
+  size 28
+  bold
+  color #333333
+  below "Logo" with gap 16
+
+text "Sign in to your account"
+  size 14
+  color gray
+  below "StagScribe" with gap 8
+
+-- Login form container
+group "LoginForm"
+  width 320
+  height 280
+  at 50% 55%
+
+  -- Email field
+  rectangle "EmailField"
+    width 300
+    height 48
+    fill #F5F5F5
+    stroke light gray 1 pixels
+    rounded 10
+    at 50% 15%
+
+  text "Email address"
+    size 15
+    color gray
+    inside "EmailField" at center left
+
+  -- Password field
+  rectangle "PasswordField"
+    width 300
+    height 48
+    fill #F5F5F5
+    stroke light gray 1 pixels
+    rounded 10
+    below "EmailField" with gap 16
+
+  text "Password"
+    size 15
+    color gray
+    inside "PasswordField" at center left
+
+  -- Forgot password link
+  text "Forgot password?"
+    size 13
+    color #007AFF
+    below "PasswordField" with gap 12
+
+  -- Sign in button
+  rectangle "SignInButton"
+    width 300
+    height 50
+    fill #007AFF
+    rounded 12
+    below "PasswordField" with gap 48
+
+  text "Sign In"
+    size 17
+    bold
+    color white
+    at center of "SignInButton"
+
+-- Divider with "or"
+rectangle "DividerLeft"
+  width 120
+  height 1
+  fill light gray
+  below "LoginForm" with gap 24
+  at 20% 0%
+
+text "or"
+  size 13
+  color gray
+  below "LoginForm" with gap 16
+  at 50% 0%
+
+rectangle "DividerRight"
+  width 120
+  height 1
+  fill light gray
+  below "LoginForm" with gap 24
+  at 80% 0%
+
+-- Social login button
+rectangle "GoogleButton"
+  width 300
+  height 48
+  fill white
+  stroke light gray 1 pixels
+  rounded 10
+  below "or" with gap 20
+
+text "Continue with Google"
+  size 15
+  color #333333
+  at center of "GoogleButton"
+
+-- Sign up prompt
+text "Don't have an account?"
+  size 14
+  color gray
+  at 35% 92%
+
+text "Sign Up"
+  size 14
+  bold
+  color #007AFF
+  at 65% 92%

@@ -1,0 +1,74 @@
+-- Notification Toast
+-- A floating toast notification popup with icon, message, and dismiss action
+
+canvas 400 by 160 pixels
+  background #F5F5F5
+
+-- Toast container with shadow effect
+rectangle "ToastShadow"
+  width 364
+  height 80
+  fill #E0E0E0
+  rounded 16
+  at 50% 52%
+
+rectangle "Toast"
+  width 360
+  height 78
+  fill white
+  stroke #E8E8E8 1 pixels
+  rounded 16
+  at 50% 50%
+
+-- Success icon circle
+circle "IconCircle"
+  radius 20
+  fill #E8F5E9
+  inside "Toast" at center left
+  at 20 50%
+
+-- Checkmark representation
+text "ok"
+  size 20
+  bold
+  color #2E7D32
+  at center of "IconCircle"
+
+-- Message content
+text "File uploaded successfully"
+  size 15
+  bold
+  color #333333
+  inside "Toast" at center left
+  at 72 35%
+
+text "report_Q4_2025.pdf -- 2.4 MB"
+  size 12
+  color gray
+  inside "Toast" at center left
+  at 72 62%
+
+-- Dismiss button
+text "Dismiss"
+  size 13
+  bold
+  color #007AFF
+  inside "Toast" at center left
+  at 86% 50%
+
+-- Progress bar at bottom of toast
+rectangle "ProgressTrack"
+  width 320
+  height 3
+  fill #E8E8E8
+  rounded 2
+  inside "Toast" at center left
+  at 20 90%
+
+rectangle "ProgressFill"
+  width 220
+  height 3
+  fill #34C759
+  rounded 2
+  inside "Toast" at center left
+  at 20 90%

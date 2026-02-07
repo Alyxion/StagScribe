@@ -1,0 +1,92 @@
+-- Sunset Scene
+-- A warm sunset with layered sky gradients, a glowing sun, and a dark horizon line.
+
+canvas 800 by 500 pixels
+  background midnightblue
+
+-- Sky gradient layers from top to bottom
+rectangle "UpperSky"
+  width 800
+  height 150
+  fill darkslateblue
+  at 0% 0%
+
+rectangle "MidSky"
+  width 800
+  height 120
+  fill darkorange
+  at 0% 30%
+  opacity 0.85
+
+rectangle "LowerSky"
+  width 800
+  height 100
+  fill orangered
+  at 0% 54%
+  opacity 0.9
+
+rectangle "HorizonGlow"
+  width 800
+  height 80
+  fill gold
+  at 0% 74%
+  opacity 0.7
+
+-- Sun
+circle "Sun"
+  radius 55
+  fill gold
+  stroke lightyellow 4 pixels
+  opacity 0.95
+  at 50% 58%
+
+-- Sun inner glow
+circle "SunCore"
+  radius 30
+  fill lightyellow
+  opacity 0.8
+  at center of "Sun"
+
+-- Horizon land silhouette
+rectangle "HorizonLand"
+  width 800
+  height 60
+  fill #1a1a2e
+  at 0% 88%
+
+-- Ground
+rectangle "Ground"
+  width 800
+  height 20
+  fill #0d0d1a
+  at 0% 96%
+
+-- Distant clouds
+ellipse "CloudLeft"
+  width 160
+  height 35
+  fill #c0392b
+  opacity 0.4
+  at 10% 25%
+
+ellipse "CloudRight"
+  width 200
+  height 40
+  fill #e74c3c
+  opacity 0.35
+  at 65% 20%
+
+ellipse "CloudCenter"
+  width 120
+  height 25
+  fill darkorange
+  opacity 0.5
+  at 40% 35%
+
+-- Water reflection on horizon
+rectangle "WaterReflection"
+  width 800
+  height 12
+  fill gold
+  opacity 0.25
+  at 0% 86%

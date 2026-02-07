@@ -1,0 +1,226 @@
+-- Office Floor Plan
+-- Open plan office with workstations, meeting room, and break area
+
+canvas 1100 by 700 pixels
+  background white
+
+-- Outer walls
+rectangle "Office Walls"
+  width 1050
+  height 650
+  fill #F8F8F8
+  stroke black 3 pixels
+  at center
+
+-- Reception area
+rectangle "Reception Area"
+  width 250
+  height 150
+  fill #FFF5E6
+  stroke dark gray 1 pixels
+  inside "Office Walls" at bottom left
+
+text "Reception Label"
+  inside "Reception Area" at center
+
+rectangle "Reception Desk"
+  width 180
+  height 40
+  fill tan
+  stroke gray 1 pixels
+  inside "Reception Area" at top left
+  rounded 5
+
+rectangle "Waiting Chair 1"
+  width 40
+  height 40
+  fill sky blue
+  stroke gray 1 pixels
+  inside "Reception Area" at bottom left
+
+rectangle "Waiting Chair 2"
+  width 40
+  height 40
+  fill sky blue
+  stroke gray 1 pixels
+  inside "Reception Area" at bottom right
+
+-- Open workspace
+rectangle "Workspace Floor"
+  width 500
+  height 450
+  fill #FAFAFA
+  stroke dark gray 1 pixels
+  inside "Office Walls" at top left
+
+text "Open Workspace Label"
+  inside "Workspace Floor" at center
+
+-- Row 1 of desks
+rectangle "Desk A1"
+  width 100
+  height 60
+  fill tan
+  stroke gray 1 pixels
+  inside "Workspace Floor" at top left
+
+rectangle "Desk A2"
+  width 100
+  height 60
+  fill tan
+  stroke gray 1 pixels
+  below "Desk A1" with gap 20
+
+rectangle "Desk A3"
+  width 100
+  height 60
+  fill tan
+  stroke gray 1 pixels
+  below "Desk A2" with gap 20
+
+-- Row 2 of desks
+rectangle "Desk B1"
+  width 100
+  height 60
+  fill tan
+  stroke gray 1 pixels
+  inside "Workspace Floor" at top right
+
+rectangle "Desk B2"
+  width 100
+  height 60
+  fill tan
+  stroke gray 1 pixels
+  below "Desk B1" with gap 20
+
+rectangle "Desk B3"
+  width 100
+  height 60
+  fill tan
+  stroke gray 1 pixels
+  below "Desk B2" with gap 20
+
+-- Meeting Room
+rectangle "Meeting Floor"
+  width 300
+  height 250
+  fill #E6F0FF
+  stroke dark gray 2 pixels
+  inside "Office Walls" at top right
+
+text "Meeting Room Label"
+  inside "Meeting Floor" at center
+
+rectangle "Conference Table"
+  width 200
+  height 100
+  fill tan
+  stroke gray 1 pixels
+  inside "Meeting Floor" at center
+  rounded 8
+
+rectangle "Chair M1"
+  width 30
+  height 30
+  fill gray
+  stroke dark gray 1 pixels
+  inside "Meeting Floor" at top left
+
+rectangle "Chair M2"
+  width 30
+  height 30
+  fill gray
+  stroke dark gray 1 pixels
+  inside "Meeting Floor" at top right
+
+rectangle "Chair M3"
+  width 30
+  height 30
+  fill gray
+  stroke dark gray 1 pixels
+  inside "Meeting Floor" at bottom left
+
+rectangle "Chair M4"
+  width 30
+  height 30
+  fill gray
+  stroke dark gray 1 pixels
+  inside "Meeting Floor" at bottom right
+
+rectangle "Whiteboard"
+  width 150
+  height 10
+  fill white
+  stroke black 2 pixels
+  inside "Meeting Floor" at top left
+
+-- Manager Office
+rectangle "Manager Floor"
+  width 250
+  height 180
+  fill #F0FFE6
+  stroke dark gray 2 pixels
+  inside "Office Walls" at bottom right
+
+text "Manager Office Label"
+  inside "Manager Floor" at center
+
+rectangle "Manager Desk"
+  width 140
+  height 70
+  fill tan
+  stroke gray 1 pixels
+  inside "Manager Floor" at top left
+
+rectangle "Manager Chair"
+  width 40
+  height 40
+  fill gray
+  stroke dark gray 1 pixels
+  below "Manager Desk" with gap 10
+
+rectangle "Bookshelf"
+  width 20
+  height 150
+  fill brown
+  stroke dark gray 1 pixels
+  inside "Manager Floor" at top right
+
+-- Break Area
+rectangle "Break Floor"
+  width 200
+  height 150
+  fill #FFF0F0
+  stroke dark gray 1 pixels
+  below "Workspace Floor" with gap 10
+
+text "Break Room"
+  inside "Break Floor" at center
+
+rectangle "Kitchenette"
+  width 180
+  height 30
+  fill light gray
+  stroke gray 1 pixels
+  inside "Break Floor" at top left
+
+circle "Cafe Table"
+  radius 30
+  fill tan
+  stroke gray 1 pixels
+  inside "Break Floor" at bottom left
+
+-- Front entrance
+rectangle "Main Entrance"
+  width 100
+  height 10
+  fill brown
+  stroke black 2 pixels
+  inside "Office Walls" at bottom left
+
+text "Entrance"
+  above "Main Entrance" with gap 5
+
+-- Title
+text "Office Floor Plan"
+  at top left

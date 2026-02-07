@@ -1,0 +1,1 @@
+A settings gear icon on a 64x64 transparent canvas. The gear is drawn as a path with eight protruding teeth around its perimeter, filled in a muted gray tone. A white circle at the center represents the axle hole, with a smaller gray inner ring adding visual depth and mechanical detail.

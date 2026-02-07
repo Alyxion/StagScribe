@@ -1,0 +1,240 @@
+// StagScribe Grammar v0.3
+// Indentation-aware grammar for Lark LALR(1) parser
+// v3: Comma-free natural syntax, "is" assignments, one property per line
+
+start: (_NL | statement)*
+
+?statement: element_stmt
+          | is_stmt
+          | colors_block
+          | define_block
+          | place_stmt
+
+// --- Variable assignment ---
+is_stmt: NAME "is" expr _NL
+
+// --- Color palette ---
+colors_block: "colors" ":" _NL _INDENT color_assignment+ _DEDENT
+color_assignment: NAME "is" color_value _NL
+
+// --- Template definition ---
+define_block: "define" NAME ":" _NL body
+
+// --- Template instantiation ---
+place_stmt: "place" NAME element_name? _NL body?
+
+// Element statement: element_type [name] [size_by] body
+element_stmt: element_type element_name? size_by_prop? _NL body?
+
+body: _INDENT (property_line | element_stmt)+ _DEDENT
+
+element_type: ELEMENT_KW
+element_name: ESCAPED_STRING
+
+// Properties: one per line (no commas)
+property_line: prop_pair _NL
+
+?prop_pair: dimension_prop
+          | size_by_prop
+          | fill_prop
+          | stroke_prop
+          | background_prop
+          | position_prop
+          | text_style_prop
+          | opacity_prop
+          | rounded_prop
+          | rotate_prop
+          | radius_prop
+          | line_endpoint_prop
+          | path_prop
+          | src_prop
+          | points_prop
+          | font_prop
+          | dashed_prop
+          | scale_prop
+
+// --- Canvas/element size via "W by H" ---
+size_by_prop: expr "by" expr
+
+// --- Dimension properties ---
+dimension_prop: DIM_KW expr
+
+// --- Fill ---
+fill_prop: "fill" color_value
+
+// --- Stroke (no comma: "stroke gray 2 pixels") ---
+stroke_prop: "stroke" color_value expr?
+
+// --- Background ---
+background_prop: "background" color_value
+
+// --- Opacity ---
+opacity_prop: "opacity" expr
+
+// --- Rounded corners ---
+rounded_prop: "rounded" expr
+
+// --- Rotation ---
+rotate_prop: "rotate" expr
+
+// --- Scale (for place statements) ---
+scale_prop: "scale" expr
+
+// --- Radius ---
+radius_prop: "radius" expr
+
+// --- Font ---
+font_prop: "font" ESCAPED_STRING
+
+// --- Dashed/dotted ---
+dashed_prop: DASH_STYLE
+
+// --- Path data ---
+path_prop: "d" ESCAPED_STRING
+
+// --- Image source ---
+src_prop: SRC_KW ESCAPED_STRING
+
+// --- Points (for polygon): parenthesized pairs ---
+points_prop: "points" point+
+point: "(" expr expr ")"
+
+// --- Line endpoints (no comma: "from 100 200") ---
+line_endpoint_prop: ENDPOINT_KW expr expr
+
+// --- Position properties ---
+?position_prop: at_position
+              | relative_position
+
+at_position: "at" at_target
+?at_target: anchor_position
+          | coord_position
+
+anchor_position: ANCHOR of_ref?
+coord_position: expr expr
+of_ref: "of" ESCAPED_STRING
+
+relative_position: RELATIVE_KW ESCAPED_STRING relative_anchor? gap_clause?
+relative_anchor: "at" ANCHOR
+gap_clause: "with" "gap" expr
+
+// --- Text style properties ---
+?text_style_prop: size_prop
+                | color_prop
+                | weight_prop
+                | italic_prop
+                | align_prop
+
+size_prop: "size" expr
+color_prop: "color" color_value
+weight_prop: WEIGHT_KW
+italic_prop: "italic"
+align_prop: "align" ALIGN_KW
+
+// --- Expression hierarchy ---
+?expr: add_expr
+?add_expr: mul_expr
+         | add_expr "+" mul_expr -> expr_add
+         | add_expr "-" mul_expr -> expr_sub
+?mul_expr: unary_expr
+         | mul_expr "*" unary_expr -> expr_mul
+         | mul_expr "/" unary_expr -> expr_div
+?unary_expr: atom_expr
+           | "-" atom_expr -> expr_neg
+?atom_expr: NUMBER UNIT -> unit_value
+          | NUMBER "%" -> percent_value
+          | NUMBER NATURAL_SIZE -> natural_value
+          | NATURAL_SIZE -> natural_bare
+          | NUMBER -> bare_number
+          | NAME -> var_ref
+          | "(" expr ")" -> paren_expr
+
+// --- Color values ---
+?color_value: HEX_COLOR
+            | FRIENDLY_COLOR
+            | COLOR_NAME
+            | "rgb" "(" NUMBER NUMBER NUMBER ")"  -> rgb_color
+            | NAME -> color_var_ref
+
+// --- Terminals ---
+ELEMENT_KW.1: "canvas" | "rectangle" | "rect" | "circle" | "ellipse"
+          | "line" | "path" | "polygon" | "text" | "group" | "image" | "arc"
+
+DIM_KW.1: "width" | "height"
+
+ENDPOINT_KW.1: "from" | "to"
+
+SRC_KW.1: "src" | "href"
+
+ANCHOR.2: "top left" | "top right" | "bottom left" | "bottom right"
+        | "center left" | "center right" | "center top" | "center bottom"
+        | "center" | "top" | "bottom" | "left" | "right"
+
+RELATIVE_KW.1: "above" | "below" | "left of" | "right of" | "inside"
+
+WEIGHT_KW.1: "bold" | "light"
+
+ALIGN_KW.1: "left" | "center" | "right"
+
+DASH_STYLE.1: "dashed" | "dotted"
+
+UNIT.2: "pixels" | "px" | "cm" | "mm" | "meters" | "m" | "in" | "pt"
+
+NATURAL_SIZE.1: "tiny" | "small" | "medium" | "large" | "huge" | "full" | "half" | "third" | "quarter"
+
+HEX_COLOR: /#[0-9a-fA-F]{3,8}/
+
+// Friendly multi-word color names (most common)
+FRIENDLY_COLOR.3: "light gray" | "light grey" | "dark gray" | "dark grey"
+              | "sky blue" | "light blue" | "dark blue"
+              | "light green" | "dark green" | "light pink"
+              | "hot pink" | "deep pink" | "dark red"
+              | "dark orange" | "royal blue" | "steel blue"
+              | "forest green" | "sea green" | "midnight blue"
+
+// Single-word CSS color names
+COLOR_NAME.1: "aliceblue" | "antiquewhite" | "aqua" | "aquamarine" | "azure"
+          | "beige" | "bisque" | "black" | "blanchedalmond" | "blue"
+          | "blueviolet" | "brown" | "burlywood" | "cadetblue" | "chartreuse"
+          | "chocolate" | "coral" | "cornflowerblue" | "cornsilk" | "crimson"
+          | "cyan" | "darkblue" | "darkcyan" | "darkgoldenrod" | "darkgray"
+          | "darkgreen" | "darkgrey" | "darkkhaki" | "darkmagenta" | "darkolivegreen"
+          | "darkorange" | "darkorchid" | "darkred" | "darksalmon" | "darkseagreen"
+          | "darkslateblue" | "darkslategray" | "darkslategrey" | "darkturquoise"
+          | "darkviolet" | "deeppink" | "deepskyblue" | "dimgray" | "dimgrey"
+          | "dodgerblue" | "firebrick" | "floralwhite" | "forestgreen" | "fuchsia"
+          | "gainsboro" | "ghostwhite" | "gold" | "goldenrod" | "gray" | "green"
+          | "greenyellow" | "grey" | "honeydew" | "hotpink" | "indianred" | "indigo"
+          | "ivory" | "khaki" | "lavender" | "lavenderblush" | "lawngreen"
+          | "lemonchiffon" | "lightblue" | "lightcoral" | "lightcyan"
+          | "lightgoldenrodyellow" | "lightgray" | "lightgreen" | "lightgrey"
+          | "lightpink" | "lightsalmon" | "lightseagreen" | "lightskyblue"
+          | "lightslategray" | "lightslategrey" | "lightsteelblue" | "lightyellow"
+          | "lime" | "limegreen" | "linen" | "magenta" | "maroon"
+          | "mediumaquamarine" | "mediumblue" | "mediumorchid" | "mediumpurple"
+          | "mediumseagreen" | "mediumslateblue" | "mediumspringgreen"
+          | "mediumturquoise" | "mediumvioletred" | "midnightblue" | "mintcream"
+          | "mistyrose" | "moccasin" | "navajowhite" | "navy" | "oldlace"
+          | "olive" | "olivedrab" | "orange" | "orangered" | "orchid"
+          | "palegoldenrod" | "palegreen" | "paleturquoise" | "palevioletred"
+          | "papayawhip" | "peachpuff" | "peru" | "pink" | "plum" | "powderblue"
+          | "purple" | "rebeccapurple" | "red" | "rosybrown" | "royalblue"
+          | "saddlebrown" | "salmon" | "sandybrown" | "seagreen" | "seashell"
+          | "sienna" | "silver" | "skyblue" | "slateblue" | "slategray"
+          | "slategrey" | "snow" | "springgreen" | "steelblue" | "tan" | "teal"
+          | "thistle" | "tomato" | "turquoise" | "violet" | "wheat" | "white"
+          | "whitesmoke" | "yellow" | "yellowgreen"
+          | "none" | "transparent"
+
+// Variable/identifier name — lowest priority so reserved words win
+NAME.0: /[a-zA-Z_][a-zA-Z0-9_]*/
+
+COMMENT: /--[^\n]*/
+
+%import common.ESCAPED_STRING
+%import common.NUMBER
+
+%ignore /[\t \f]+/
+
+%declare _INDENT _DEDENT
+_NL: ( /\r?\n[\t ]*/ | COMMENT )+

@@ -1,0 +1,1 @@
+A pie chart legend representing FY 2025 budget allocation across five departments. Each category is shown as a colored square paired with a percentage label: Engineering at 35%, Marketing at 25%, Operations at 20%, Research at 12%, and Admin at 8%. A decorative circle in the center serves as a visual placeholder for the pie chart itself.

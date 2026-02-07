@@ -1,0 +1,141 @@
+-- Classroom Floor Plan (v2 — using variables and templates)
+-- Standard classroom with student desks, teacher area, and whiteboard
+
+desk_width is 80
+desk_height is 50
+desk_gap is 25
+col_gap is 30
+first_row_gap is 80
+
+colors:
+  wall is #FAFAFA
+  desk_color is #EDE8D0
+  window_blue is light blue
+
+define student_desk:
+  rect desk_width by desk_height
+    fill desk_color
+    stroke gray 1 pixels
+
+canvas 900 by 650 pixels
+  background white
+
+-- Outer walls
+rect "Classroom Walls" 850 by 600
+  fill wall
+  stroke black 3 pixels
+  at center
+
+-- Whiteboard at front of room
+rect "Whiteboard" 400 by 15
+  fill white
+  stroke black 2 pixels
+  inside "Classroom Walls" at top left
+
+text "Whiteboard Label"
+  below "Whiteboard" with gap 5
+
+-- Teacher's area
+rect "Teacher Desk" 150 by 70
+  fill tan
+  stroke gray 1 pixels
+  inside "Classroom Walls" at top right
+
+text "Teacher"
+  inside "Teacher Desk" at center
+
+rect "Teacher Chair" 40 by 40
+  fill gray
+  stroke dark gray 1 pixels
+  below "Teacher Desk" with gap 8
+
+-- Student desks - Row 1
+place student_desk "Desk R1C1"
+  below "Whiteboard" with gap first_row_gap
+place student_desk "Desk R1C2"
+  right of "Desk R1C1" with gap col_gap
+place student_desk "Desk R1C3"
+  right of "Desk R1C2" with gap col_gap
+place student_desk "Desk R1C4"
+  right of "Desk R1C3" with gap col_gap
+
+-- Student desks - Row 2
+place student_desk "Desk R2C1"
+  below "Desk R1C1" with gap desk_gap
+place student_desk "Desk R2C2"
+  below "Desk R1C2" with gap desk_gap
+place student_desk "Desk R2C3"
+  below "Desk R1C3" with gap desk_gap
+place student_desk "Desk R2C4"
+  below "Desk R1C4" with gap desk_gap
+
+-- Student desks - Row 3
+place student_desk "Desk R3C1"
+  below "Desk R2C1" with gap desk_gap
+place student_desk "Desk R3C2"
+  below "Desk R2C2" with gap desk_gap
+place student_desk "Desk R3C3"
+  below "Desk R2C3" with gap desk_gap
+place student_desk "Desk R3C4"
+  below "Desk R2C4" with gap desk_gap
+
+-- Student desks - Row 4
+place student_desk "Desk R4C1"
+  below "Desk R3C1" with gap desk_gap
+place student_desk "Desk R4C2"
+  below "Desk R3C2" with gap desk_gap
+place student_desk "Desk R4C3"
+  below "Desk R3C3" with gap desk_gap
+place student_desk "Desk R4C4"
+  below "Desk R3C4" with gap desk_gap
+
+-- Bookshelf along right wall
+rect "Bookshelf" 30 by 300
+  fill brown
+  stroke dark gray 1 pixels
+  inside "Classroom Walls" at bottom right
+
+text "Books"
+  inside "Bookshelf" at center
+
+-- Door
+rect "Classroom Door" 70 by 10
+  fill brown
+  stroke black 2 pixels
+  inside "Classroom Walls" at bottom left
+
+text "Door"
+  above "Classroom Door" with gap 5
+
+-- Supply cabinet
+rect "Supply Cabinet" 100 by 40
+  fill gray
+  stroke dark gray 1 pixels
+  above "Classroom Door" with gap 25
+
+text "Supplies"
+  inside "Supply Cabinet" at center
+
+-- Trash can
+circle "Trash Can"
+  radius 15
+  fill dark gray
+  stroke black 1 pixels
+  right of "Supply Cabinet" with gap 15
+
+-- Window indicators on left wall
+define window:
+  rect 10 by 80
+    fill window_blue
+    stroke gray 1 pixels
+
+place window "Window 1"
+  inside "Classroom Walls" at top left
+place window "Window 2"
+  below "Window 1" with gap 30
+place window "Window 3"
+  below "Window 2" with gap 30
+
+-- Title
+text "Classroom Layout"
+  at top left

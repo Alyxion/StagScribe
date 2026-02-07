@@ -1,0 +1,57 @@
+-- Checkerboard Pattern
+-- A 4x4 alternating grid of dark and light squares
+
+canvas 400 by 400 pixels
+  background white
+
+-- Row 1
+rectangle "R1C1"
+  width 100
+  height 100
+  fill #2c3e50
+  at 0% 0%
+
+rectangle "R1C3"
+  width 100
+  height 100
+  fill #2c3e50
+  at 50% 0%
+
+-- Row 2
+rectangle "R2C2"
+  width 100
+  height 100
+  fill #2c3e50
+  at 25% 25%
+
+rectangle "R2C4"
+  width 100
+  height 100
+  fill #2c3e50
+  at 75% 25%
+
+-- Row 3
+rectangle "R3C1"
+  width 100
+  height 100
+  fill #2c3e50
+  at 0% 50%
+
+rectangle "R3C3"
+  width 100
+  height 100
+  fill #2c3e50
+  at 50% 50%
+
+-- Row 4
+rectangle "R4C2"
+  width 100
+  height 100
+  fill #2c3e50
+  at 25% 75%
+
+rectangle "R4C4"
+  width 100
+  height 100
+  fill #2c3e50
+  at 75% 75%

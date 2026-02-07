@@ -1,0 +1,226 @@
+-- Network Topology Diagram
+-- Central router connected to a server and multiple client devices
+
+canvas 800 by 600 pixels
+  background #F5F5F5
+
+-- Title
+text "Network Topology"
+  size 22
+  bold
+  color #212121
+  at 50% 5%
+
+-- Central Router
+rectangle "Router"
+  width 140
+  height 60
+  fill #FF6F00
+  stroke #E65100 3 pixels
+  rounded 10
+  at center
+
+text "Core Router"
+  size 14
+  bold
+  color white
+  inside "Router" at center
+
+-- Cloud / Internet
+rectangle "Internet"
+  width 160
+  height 55
+  fill #5C6BC0
+  stroke #3949AB 2 pixels
+  rounded 28
+  at 50% 12%
+
+text "Internet Label"
+  size 14
+  bold
+  color white
+  inside "Internet" at center
+
+-- Line: Internet to Router
+line "Internet to Router"
+  from 400 99
+  to 400 270
+  stroke #78909C 2 pixels
+  dashed
+
+-- Firewall indicator
+rectangle "Firewall"
+  width 100
+  height 28
+  fill #C62828
+  stroke #B71C1C 2 pixels
+  rounded 4
+  at 50% 30%
+
+text "Firewall Label"
+  size 11
+  bold
+  color white
+  inside "Firewall" at center
+
+-- Main Server
+rectangle "Server"
+  width 140
+  height 70
+  fill #1565C0
+  stroke #0D47A1 2 pixels
+  rounded 6
+  at 15% 50%
+
+text "App Server"
+  size 13
+  bold
+  color white
+  inside "Server" at center
+
+text "10.0.1.10"
+  size 10
+  color #BBDEFB
+  at 15% 56%
+
+-- Line: Router to Server
+line "Router to Server"
+  from 330 300
+  to 190 300
+  stroke #546E7A 2 pixels
+
+-- Database Server
+rectangle "Database"
+  width 140
+  height 70
+  fill #4527A0
+  stroke #311B92 2 pixels
+  rounded 6
+  at 15% 78%
+
+text "Database Label"
+  size 13
+  bold
+  color white
+  inside "Database" at center
+
+text "10.0.1.20"
+  size 10
+  color #D1C4E9
+  at 15% 84%
+
+-- Line: Server to Database
+line "Server to DB"
+  from 120 365
+  to 120 435
+  stroke #546E7A 2 pixels
+
+-- Workstation 1
+rectangle "PC1"
+  width 120
+  height 50
+  fill #00897B
+  stroke #00695C 2 pixels
+  rounded 6
+  at 75% 70%
+
+text "Workstation 1"
+  size 12
+  color white
+  inside "PC1" at center
+
+-- Line: Router to PC1
+line "Router to PC1"
+  from 470 320
+  to 560 400
+  stroke #546E7A 2 pixels
+
+-- Workstation 2
+rectangle "PC2"
+  width 120
+  height 50
+  fill #00897B
+  stroke #00695C 2 pixels
+  rounded 6
+  at 92% 70%
+
+text "Workstation 2"
+  size 12
+  color white
+  inside "PC2" at center
+
+-- Line: Router to PC2
+line "Router to PC2"
+  from 470 310
+  to 690 400
+  stroke #546E7A 2 pixels
+
+-- Laptop
+rectangle "Laptop"
+  width 120
+  height 50
+  fill #558B2F
+  stroke #33691E 2 pixels
+  rounded 6
+  at 85% 45%
+
+text "Laptop (WiFi)"
+  size 12
+  color white
+  inside "Laptop" at center
+
+-- Line: Router to Laptop (dashed for wireless)
+line "Router to Laptop"
+  from 470 295
+  to 620 270
+  stroke #546E7A 2 pixels
+  dotted
+
+-- Printer
+rectangle "Printer"
+  width 120
+  height 50
+  fill #6D4C41
+  stroke #4E342E 2 pixels
+  rounded 6
+  at 50% 88%
+
+text "Network Printer"
+  size 12
+  color white
+  inside "Printer" at center
+
+-- Line: Router to Printer
+line "Router to Printer"
+  from 400 330
+  to 400 500
+  stroke #546E7A 1 pixels
+  dashed
+
+-- Legend
+text "Legend"
+  size 12
+  bold
+  color #616161
+  at 7% 93%
+
+line "Wired Example"
+  from 20 570
+  to 60 570
+  stroke #546E7A 2 pixels
+
+text "Wired"
+  size 10
+  color #757575
+  at 12% 96%
+
+line "Wireless Example"
+  from 90 570
+  to 130 570
+  stroke #546E7A 2 pixels
+  dotted
+
+text "Wireless"
+  size 10
+  color #757575
+  at 22% 96%

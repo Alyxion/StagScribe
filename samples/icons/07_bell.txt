@@ -1,0 +1,1 @@
+A notification bell icon on a 64x64 transparent canvas. The bell body is an orange path that flares outward from a narrow top to a wide bottom, topped with a small circular knob. A wide rectangular brim runs along the bottom of the bell, and a darker orange circular clapper hangs below it.

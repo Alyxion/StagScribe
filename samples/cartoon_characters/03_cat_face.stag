@@ -1,0 +1,105 @@
+-- Cat Face
+-- A cute cat face with pointy ears, whiskers, and big eyes
+
+canvas 220 by 220 pixels
+  background lavender
+
+-- Left Ear
+path "LeftEar"
+  d "M55 70 L75 20 L95 70"
+  fill sandybrown
+  stroke sienna 2 pixels
+
+-- Left Ear Inner
+path "LeftEarInner"
+  d "M65 65 L75 32 L85 65"
+  fill pink
+  stroke none
+
+-- Right Ear
+path "RightEar"
+  d "M125 70 L145 20 L165 70"
+  fill sandybrown
+  stroke sienna 2 pixels
+
+-- Right Ear Inner
+path "RightEarInner"
+  d "M135 65 L145 32 L155 65"
+  fill pink
+  stroke none
+
+-- Face
+ellipse "Face"
+  width 130
+  height 110
+  fill sandybrown
+  stroke sienna 2 pixels
+  at center
+
+-- Left Eye
+ellipse "LeftEye"
+  width 28
+  height 32
+  fill white
+  stroke darkslategray 2 pixels
+  at 42% 46%
+
+-- Left Pupil
+ellipse "LeftPupil"
+  width 12
+  height 22
+  fill darkslategray
+  at center of "LeftEye"
+
+-- Right Eye
+ellipse "RightEye"
+  width 28
+  height 32
+  fill white
+  stroke darkslategray 2 pixels
+  at 58% 46%
+
+-- Right Pupil
+ellipse "RightPupil"
+  width 12
+  height 22
+  fill darkslategray
+  at center of "RightEye"
+
+-- Nose
+path "Nose"
+  d "M106 115 L110 120 L114 115"
+  fill pink
+  stroke hotpink 1 pixels
+
+-- Left Whisker Top
+line "LeftWhiskerTop"
+  d "M30 105 L85 110"
+  stroke darkslategray 1 pixels
+
+-- Left Whisker Bottom
+line "LeftWhiskerBottom"
+  d "M32 125 L85 120"
+  stroke darkslategray 1 pixels
+
+-- Right Whisker Top
+line "RightWhiskerTop"
+  d "M135 110 L190 105"
+  stroke darkslategray 1 pixels
+
+-- Right Whisker Bottom
+line "RightWhiskerBottom"
+  d "M135 120 L188 125"
+  stroke darkslategray 1 pixels
+
+-- Mouth Left
+path "MouthLeft"
+  d "M110 120 Q100 135 92 128"
+  stroke darkslategray 1.5 pixels
+  fill none
+
+-- Mouth Right
+path "MouthRight"
+  d "M110 120 Q120 135 128 128"
+  stroke darkslategray 1.5 pixels
+  fill none

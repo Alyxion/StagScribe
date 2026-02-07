@@ -1,0 +1,25 @@
+-- Settings gear icon
+-- A gear with teeth and a center hole
+
+canvas 64 by 64 pixels
+  background transparent
+
+-- Gear body with teeth as a path
+path "GearBody"
+  d "M28 4 L36 4 L38 12 L44 14 L50 8 L56 14 L50 20 L52 26 L60 28 L60 36 L52 38 L50 44 L56 50 L50 56 L44 50 L38 52 L36 60 L28 60 L26 52 L20 50 L14 56 L8 50 L14 44 L12 38 L4 36 L4 28 L12 26 L14 20 L8 14 L14 8 L20 14 L26 12 Z"
+  fill #95A5A6
+  stroke #7F8C8D 2 pixels
+
+-- Center hole
+circle "CenterHole"
+  radius 8
+  fill #FFFFFF
+  stroke #7F8C8D 2 pixels
+  at 50% 50%
+
+-- Inner ring for detail
+circle "InnerRing"
+  radius 5
+  fill #95A5A6
+  stroke #7F8C8D 1 pixels
+  at 50% 50%

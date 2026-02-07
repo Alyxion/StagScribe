@@ -1,0 +1,25 @@
+-- User profile icon
+-- A simple avatar with head and shoulders silhouette
+
+canvas 64 by 64 pixels
+  background transparent
+
+-- Background circle (avatar frame)
+circle "Frame"
+  radius 30
+  fill #EBF5FB
+  stroke #2980B9 2 pixels
+  at 50% 50%
+
+-- Head
+circle "Head"
+  radius 10
+  fill #5DADE2
+  stroke #2E86C1 2 pixels
+  at 50% 36%
+
+-- Shoulders / body arc
+path "Shoulders"
+  d "M16 58 C16 44 24 38 32 38 C40 38 48 44 48 58"
+  fill #5DADE2
+  stroke #2E86C1 2 pixels

@@ -1,0 +1,11 @@
+-- Five-pointed star icon
+-- A classic star shape using polygon points
+
+canvas 64 by 64 pixels
+  background transparent
+
+-- Five-pointed star with outer and inner vertices
+polygon "Star"
+  points (32 4) (39 24) (60 24) (43 37) (50 58) (32 46) (14 58) (21 37) (4 24) (25 24)
+  fill #F1C40F
+  stroke #D4A00A 2 pixels
