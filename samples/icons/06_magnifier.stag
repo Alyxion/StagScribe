@@ -1,32 +1,13 @@
 -- Search magnifying glass icon
--- A circular lens with a diagonal handle
-
 canvas 64 by 64 pixels
   background transparent
 
--- Glass lens (outer ring)
-circle "Lens"
-  radius 18
-  fill #D6EAF8
-  stroke #2980B9 3 pixels
-  at 38% 38%
+circle "Lens" radius 18 fill #D6EAF8 stroke #2980B9 3 pixels at 38% 38%
+circle "Highlight" radius 5 fill #FFFFFF at 30% 30%
 
--- Glass highlight
-circle "Highlight"
-  radius 5
-  fill #FFFFFF
-  at 30% 30%
-
--- Handle
 line "Handle"
   from 38 38
   to 56 56
   stroke #7F8C8D 6 pixels
 
--- Handle cap
-rectangle "HandleCap"
-  width 8
-  height 4
-  fill #95A5A6
-  stroke #7F8C8D 1 pixels
-  at 88% 88%
+rectangle "HandleCap" 8 by 4 fill #95A5A6 stroke #7F8C8D 1 pixels at 88% 88%

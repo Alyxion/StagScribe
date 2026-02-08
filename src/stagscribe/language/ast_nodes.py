@@ -98,9 +98,22 @@ class PlaceStatement:
     column: int | None = None
 
 
+@dataclass
+class ForStatement:
+    """For loop: for var from start to end [step s] body."""
+
+    var_name: str
+    start: Expr
+    end: Expr  # inclusive upper bound
+    step: Expr | None = None  # defaults to 1
+    body: list[Statement] = field(default_factory=list)
+    line: int | None = None
+    column: int | None = None
+
+
 # Type alias for all statement types
 Statement = Union[
-    "Element", IsStatement, ColorsBlock, DefineBlock, PlaceStatement
+    "Element", IsStatement, ColorsBlock, DefineBlock, PlaceStatement, "ForStatement"
 ]
 
 

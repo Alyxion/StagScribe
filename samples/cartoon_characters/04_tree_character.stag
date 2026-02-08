@@ -4,126 +4,46 @@
 canvas 240 by 320 pixels
   background lightyellow
 
--- Trunk
-rectangle "Trunk"
-  width 50
-  height 120
-  fill sienna
-  stroke saddlebrown 3 pixels
+rectangle "Trunk" 50 by 120 fill sienna stroke saddlebrown 3 pixels at 50% 72%
   rounded 6
-  at 50% 72%
 
--- Left Branch
 path "LeftBranch"
   d "M95 195 Q70 175 55 195"
   stroke saddlebrown 5 pixels
   fill none
 
--- Right Branch
 path "RightBranch"
   d "M145 195 Q170 175 185 195"
   stroke saddlebrown 5 pixels
   fill none
 
--- Canopy Bottom
-ellipse "CanopyBottom"
-  width 170
-  height 100
-  fill forestgreen
-  stroke darkgreen 3 pixels
-  at 50% 45%
+ellipse "CanopyBottom" 170 by 100 fill forestgreen stroke darkgreen 3 pixels at 50% 45%
+ellipse "CanopyTop" 130 by 90 fill limegreen stroke forestgreen 2 pixels at 50% 30%
+ellipse "CanopyHighlight" 80 by 50 fill mediumseagreen opacity 0.6 at 45% 25%
 
--- Canopy Top
-ellipse "CanopyTop"
-  width 130
-  height 90
-  fill limegreen
-  stroke forestgreen 2 pixels
-  at 50% 30%
+circle "LeftEye" radius 12 fill white stroke darkslategray 2 pixels at 43% 42%
+circle "LeftPupil" radius 6 fill darkslategray at center of "LeftEye"
+circle "RightEye" radius 12 fill white stroke darkslategray 2 pixels at 57% 42%
+circle "RightPupil" radius 6 fill darkslategray at center of "RightEye"
 
--- Canopy Highlight
-ellipse "CanopyHighlight"
-  width 80
-  height 50
-  fill mediumseagreen
-  opacity 0.6
-  at 45% 25%
-
--- Left Eye
-circle "LeftEye"
-  radius 12
-  fill white
-  stroke darkslategray 2 pixels
-  at 43% 42%
-
--- Left Pupil
-circle "LeftPupil"
-  radius 6
-  fill darkslategray
-  at center of "LeftEye"
-
--- Right Eye
-circle "RightEye"
-  radius 12
-  fill white
-  stroke darkslategray 2 pixels
-  at 57% 42%
-
--- Right Pupil
-circle "RightPupil"
-  radius 6
-  fill darkslategray
-  at center of "RightEye"
-
--- Smile
 path "Smile"
   d "M90 155 Q120 180 150 155"
   stroke darkslategray 3 pixels
   fill none
 
--- Left Cheek
-circle "LeftCheek"
-  radius 7
-  fill peachpuff
-  opacity 0.6
-  at 36% 50%
+circle "LeftCheek" radius 7 fill peachpuff opacity 0.6 at 36% 50%
+circle "RightCheek" radius 7 fill peachpuff opacity 0.6 at 64% 50%
 
--- Right Cheek
-circle "RightCheek"
-  radius 7
-  fill peachpuff
-  opacity 0.6
-  at 64% 50%
+circle "AppleLeft" radius 6 fill tomato stroke firebrick 1 pixels at 35% 35%
+circle "AppleRight" radius 6 fill tomato stroke firebrick 1 pixels at 62% 28%
 
--- Apple Left
-circle "AppleLeft"
-  radius 6
-  fill tomato
-  stroke firebrick 1 pixels
-  at 35% 35%
+rectangle "Ground" 240 by 30 fill darkkhaki stroke olivedrab 2 pixels at 50% 95%
 
--- Apple Right
-circle "AppleRight"
-  radius 6
-  fill tomato
-  stroke firebrick 1 pixels
-  at 62% 28%
-
--- Ground
-rectangle "Ground"
-  width 240
-  height 30
-  fill darkkhaki
-  stroke olivedrab 2 pixels
-  at 50% 95%
-
--- Grass Left
 path "GrassLeft"
   d "M30 285 L40 270 L50 285"
   fill olivedrab
   stroke none
 
--- Grass Right
 path "GrassRight"
   d "M170 285 L180 268 L190 285"
   fill olivedrab

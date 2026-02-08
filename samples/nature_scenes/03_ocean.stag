@@ -4,121 +4,37 @@
 canvas 800 by 500 pixels
   background deepskyblue
 
--- Upper sky
-rectangle "UpperSky"
-  width 800
-  height 200
-  fill skyblue
-  at top left
-
--- Lower sky near horizon
-rectangle "LowerSky"
-  width 800
-  height 60
-  fill lightskyblue
-  opacity 0.7
+rectangle "UpperSky" 800 by 200 fill skyblue at top left
+rectangle "LowerSky" 800 by 60 fill lightskyblue opacity 0.7
   below "UpperSky" with gap 0
-
--- Ocean body
-rectangle "Ocean"
-  width 800
-  height 240
-  fill steelblue
+rectangle "Ocean" 800 by 240 fill steelblue
   below "LowerSky" with gap 0
 
 -- Clouds
-ellipse "CloudA"
-  width 140
-  height 35
-  fill white
-  opacity 0.85
-  at 15% 10%
-
-ellipse "CloudA2"
-  width 100
-  height 28
-  fill white
-  opacity 0.8
-  at 25% 8%
-
-ellipse "CloudB"
-  width 120
-  height 30
-  fill white
-  opacity 0.8
-  at 72% 15%
+ellipse "CloudA" 140 by 35 fill white opacity 0.85 at 15% 10%
+ellipse "CloudA2" 100 by 28 fill white opacity 0.8 at 25% 8%
+ellipse "CloudB" 120 by 30 fill white opacity 0.8 at 72% 15%
 
 -- Sun
-circle "Sun"
-  radius 30
-  fill lightyellow
-  opacity 0.9
-  at 85% 10%
+circle "Sun" radius 30 fill lightyellow opacity 0.9 at 85% 10%
 
 -- Wave layers
-ellipse "Wave1"
-  width 820
-  height 40
-  fill #4682b4
-  opacity 0.6
-  at 50% 54%
-
-ellipse "Wave2"
-  width 830
-  height 35
-  fill #5a9bd4
-  opacity 0.5
-  at 50% 62%
-
-ellipse "Wave3"
-  width 820
-  height 30
-  fill #3a75a8
-  opacity 0.55
-  at 50% 70%
-
-ellipse "Wave4"
-  width 810
-  height 35
-  fill #4a8ac2
-  opacity 0.45
-  at 50% 78%
+ellipse "Wave1" 820 by 40 fill #4682b4 opacity 0.6 at 50% 54%
+ellipse "Wave2" 830 by 35 fill #5a9bd4 opacity 0.5 at 50% 62%
+ellipse "Wave3" 820 by 30 fill #3a75a8 opacity 0.55 at 50% 70%
+ellipse "Wave4" 810 by 35 fill #4a8ac2 opacity 0.45 at 50% 78%
 
 -- Foam lines
-rectangle "Foam1"
-  width 120
-  height 3
-  fill white
-  opacity 0.5
-  rounded 2
-  at 22% 57%
-
-rectangle "Foam2"
-  width 90
-  height 3
-  fill white
-  opacity 0.45
-  rounded 2
-  at 58% 66%
-
-rectangle "Foam3"
-  width 110
-  height 3
-  fill white
-  opacity 0.4
-  rounded 2
-  at 38% 74%
+rectangle "Foam1" 120 by 3 fill white opacity 0.5 rounded 2 at 22% 57%
+rectangle "Foam2" 90 by 3 fill white opacity 0.45 rounded 2 at 58% 66%
+rectangle "Foam3" 110 by 3 fill white opacity 0.4 rounded 2 at 38% 74%
 
 -- Sailboat
 polygon "Hull"
   points (340 290) (360 310) (440 310) (460 290)
   fill saddlebrown
 
-rectangle "Mast"
-  width 3
-  height 70
-  fill #4a3728
-  at 400 255
+rectangle "Mast" 3 by 70 fill #4a3728 at 400 255
 
 polygon "Sail"
   points (401 225) (401 285) (450 275)
@@ -138,11 +54,9 @@ polygon "Flag"
 path "Bird1"
   d "M200 100 Q205 95 210 100 Q215 95 220 100"
   stroke #333333 2 pixels
-
 path "Bird2"
   d "M250 120 Q254 116 258 120 Q262 116 266 120"
   stroke #333333 2 pixels
-
 path "Bird3"
   d "M550 90 Q555 85 560 90 Q565 85 570 90"
   stroke #333333 2 pixels

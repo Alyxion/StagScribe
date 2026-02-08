@@ -4,99 +4,39 @@
 canvas 375 by 812 pixels
   background white
 
--- App logo area
-circle "Logo"
-  radius 40
-  fill #007AFF
-  at 50% 12%
+circle "Logo" radius 40 fill #007AFF at 50% 12%
 
-text "StagScribe"
-  size 28
-  bold
-  color #333333
+text "StagScribe" size 28 bold color #333333
   below "Logo" with gap 16
-
-text "Sign in to your account"
-  size 14
-  color gray
-  below "StagScribe" with gap 8
+text "Sign in to your account" size 14 color gray
+  below "StagScribe" with gap 28
 
 -- Email field
-rectangle "EmailField"
-  width 300
-  height 48
-  fill #F5F5F5
-  stroke light gray 1 pixels
-  rounded 10
+rectangle "EmailField" 300 by 48 fill #F5F5F5 stroke light gray 1 pixels rounded 10
   below "Sign in to your account" with gap 40
-
-text "Email address"
-  size 15
-  color gray
-  at center of "EmailField"
+text "Email address" size 15 color gray at center of "EmailField"
 
 -- Password field
-rectangle "PasswordField"
-  width 300
-  height 48
-  fill #F5F5F5
-  stroke light gray 1 pixels
-  rounded 10
+rectangle "PasswordField" 300 by 48 fill #F5F5F5 stroke light gray 1 pixels rounded 10
   below "EmailField" with gap 16
+text "Password" size 15 color gray at center of "PasswordField"
 
-text "Password"
-  size 15
-  color gray
-  at center of "PasswordField"
-
--- Forgot password link
-text "Forgot password?"
-  size 13
-  color #007AFF
+text "Forgot password?" size 13 color #007AFF
   below "PasswordField" with gap 12
 
 -- Sign in button
-rectangle "SignInButton"
-  width 300
-  height 50
-  fill #007AFF
-  rounded 12
+rectangle "SignInButton" 300 by 50 fill #007AFF rounded 12
   below "Forgot password?" with gap 24
-
-text "Sign In"
-  size 17
-  bold
-  color white
-  at center of "SignInButton"
+text "Sign In" size 17 bold color white at center of "SignInButton"
 
 -- Divider
-rectangle "DividerLeft"
-  width 120
-  height 1
-  fill light gray
+rectangle "DividerLeft" 280 by 1 fill light gray
   below "SignInButton" with gap 32
-
-text "or"
-  size 13
-  color gray
-  at center of "DividerLeft"
+text "or" size 13 color gray at center of "DividerLeft"
 
 -- Social login button
-rectangle "GoogleButton"
-  width 300
-  height 48
-  fill white
-  stroke light gray 1 pixels
-  rounded 10
+rectangle "GoogleButton" 300 by 48 fill white stroke light gray 1 pixels rounded 10
   below "DividerLeft" with gap 32
+text "Continue with Google" size 15 color #333333 at center of "GoogleButton"
 
-text "Continue with Google"
-  size 15
-  color #333333
-  at center of "GoogleButton"
-
--- Sign up prompt
-text "Don't have an account? Sign Up"
-  size 14
-  color gray
-  at 50% 92%
+text "Don't have an account? Sign Up" size 14 color gray at 50% 92%

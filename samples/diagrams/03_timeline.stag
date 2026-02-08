@@ -4,99 +4,36 @@
 canvas 900 by 350 pixels
   background #FFFFFF
 
--- Title
-text "Project Timeline"
-  size 24
-  bold
-  color #212121
-  at 50% 10%
+text "Project Timeline" size 24 bold color #212121 at 50% 10%
 
 -- Main horizontal timeline bar
-rectangle "Timeline Bar"
-  width 760
-  height 6
-  fill #B0BEC5
-  rounded 3
-  at 50% 50%
+rectangle "Timeline Bar" 760 by 6 fill #B0BEC5 rounded 3 at 50% 50%
 
 -- Milestone 1: Planning
-circle "M1 Dot"
-  radius 14
-  fill #1E88E5
-  stroke #0D47A1 2 pixels
-  at 15% 50%
-
-text "Jan 2025"
-  size 11
-  color #757575
-  at 15% 60%
-
-text "Planning"
-  size 14
-  bold
-  color #1E88E5
-  at 15% 38%
+circle "M1 Dot" radius 14 fill #1E88E5 stroke #0D47A1 2 pixels at 15% 50%
+text "Jan 2025" size 11 color #757575 at 15% 60%
+text "Planning" size 14 bold color #1E88E5 at 15% 38%
 
 -- Milestone 2: Development
-circle "M2 Dot"
-  radius 14
-  fill #43A047
-  stroke #2E7D32 2 pixels
-  at 38% 50%
-
-text "Apr 2025"
-  size 11
-  color #757575
-  at 38% 60%
-
-text "Development"
-  size 14
-  bold
-  color #43A047
-  at 38% 38%
+circle "M2 Dot" radius 14 fill #43A047 stroke #2E7D32 2 pixels at 38% 50%
+text "Apr 2025" size 11 color #757575 at 38% 60%
+text "Development" size 14 bold color #43A047 at 38% 38%
 
 -- Milestone 3: Testing
-circle "M3 Dot"
-  radius 14
-  fill #FB8C00
-  stroke #E65100 2 pixels
-  at 62% 50%
-
-text "Jul 2025"
-  size 11
-  color #757575
-  at 62% 60%
-
-text "Testing"
-  size 14
-  bold
-  color #FB8C00
-  at 62% 38%
+circle "M3 Dot" radius 14 fill #FB8C00 stroke #E65100 2 pixels at 62% 50%
+text "Jul 2025" size 11 color #757575 at 62% 60%
+text "Testing" size 14 bold color #FB8C00 at 62% 38%
 
 -- Milestone 4: Launch
-circle "M4 Dot"
-  radius 14
-  fill #E53935
-  stroke #B71C1C 2 pixels
-  at 85% 50%
-
-text "Oct 2025"
-  size 11
-  color #757575
-  at 85% 60%
-
-text "Launch"
-  size 14
-  bold
-  color #E53935
-  at 85% 38%
+circle "M4 Dot" radius 14 fill #E53935 stroke #B71C1C 2 pixels at 85% 50%
+text "Oct 2025" size 11 color #757575 at 85% 60%
+text "Launch" size 14 bold color #E53935 at 85% 38%
 
 -- Decorative arrow at end of timeline
 line "Arrow Top"
   from 868 165
   to 885 175
   stroke #B0BEC5 2 pixels
-
 line "Arrow Bottom"
   from 868 185
   to 885 175

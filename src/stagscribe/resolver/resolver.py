@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import copy
+import re
 
 from stagscribe.language.ast_nodes import (
     BinaryExpr,
@@ -11,6 +12,7 @@ from stagscribe.language.ast_nodes import (
     Document,
     Element,
     Expr,
+    ForStatement,
     IsStatement,
     LiteralExpr,
     PlaceStatement,
@@ -21,6 +23,10 @@ from stagscribe.language.ast_nodes import (
     VarRefExpr,
 )
 from stagscribe.language.colors import resolve_color
+
+# Safety limits for for-loops
+_MAX_LOOP_ITERATIONS = 10_000
+_MAX_LOOP_DEPTH = 5
 
 
 class ResolveError(Exception):
@@ -34,12 +40,18 @@ class Resolver:
         self.variables: dict[str, Value] = {}
         self.color_vars: dict[str, str] = {}
         self.templates: dict[str, DefineBlock] = {}
+        self._loop_depth: int = 0
 
     def resolve(self, doc: Document) -> Document:
         """Resolve all v2 constructs and return a Document with only Elements."""
         resolved_elements: list[Element] = []
+        self._resolve_statements(doc.statements, resolved_elements)
+        return Document(statements=list(resolved_elements))  # type: ignore[arg-type]
 
-        for stmt in doc.statements:
+    def _resolve_statements(
+        self, statements: list, resolved_elements: list[Element]  # type: ignore[type-arg]
+    ) -> None:
+        for stmt in statements:
             if isinstance(stmt, IsStatement):
                 self._handle_is(stmt)
             elif isinstance(stmt, ColorsBlock):
@@ -49,10 +61,11 @@ class Resolver:
             elif isinstance(stmt, PlaceStatement):
                 elements = self._handle_place(stmt)
                 resolved_elements.extend(elements)
+            elif isinstance(stmt, ForStatement):
+                elements = self._handle_for(stmt)
+                resolved_elements.extend(elements)
             elif isinstance(stmt, Element):
                 resolved_elements.append(self._resolve_element(stmt))
-
-        return Document(statements=list(resolved_elements))  # type: ignore[arg-type]
 
     def _handle_is(self, stmt: IsStatement) -> None:
         value = self._eval_expr(stmt.expr)
@@ -108,6 +121,111 @@ class Resolver:
                 val = self._eval_expr(stmt.rotate_expr)
                 group.rotate = val.number
             return [self._resolve_element(group)]
+
+    def _handle_for(self, stmt: ForStatement) -> list[Element]:
+        """Unroll a for loop into resolved Elements."""
+        if self._loop_depth >= _MAX_LOOP_DEPTH:
+            raise ResolveError(
+                f"Maximum loop nesting depth ({_MAX_LOOP_DEPTH}) exceeded"
+            )
+
+        start_val = self._eval_expr(stmt.start)
+        end_val = self._eval_expr(stmt.end)
+
+        # Validate: must be unitless integers
+        if start_val.unit is not None:
+            raise ResolveError("For loop 'from' value must be unitless")
+        if end_val.unit is not None:
+            raise ResolveError("For loop 'to' value must be unitless")
+
+        start_n = start_val.number
+        end_n = end_val.number
+
+        if stmt.step is not None:
+            step_val = self._eval_expr(stmt.step)
+            if step_val.unit is not None:
+                raise ResolveError("For loop 'step' value must be unitless")
+            step_n = step_val.number
+        else:
+            step_n = 1.0 if end_n >= start_n else -1.0
+
+        if step_n == 0:
+            raise ResolveError("For loop step cannot be zero")
+        if step_n > 0 and end_n < start_n:
+            raise ResolveError(
+                "For loop step direction does not match range "
+                "(positive step, end < start)"
+            )
+        if step_n < 0 and end_n > start_n:
+            raise ResolveError(
+                "For loop step direction does not match range "
+                "(negative step, end > start)"
+            )
+
+        # Count iterations for safety
+        n_iters = int(abs(end_n - start_n) / abs(step_n)) + 1
+        if n_iters > _MAX_LOOP_ITERATIONS:
+            raise ResolveError(
+                f"For loop would produce {n_iters} iterations "
+                f"(max {_MAX_LOOP_ITERATIONS})"
+            )
+
+        # Save/restore variable if shadowed
+        old_var = self.variables.get(stmt.var_name)
+        resolved_elements: list[Element] = []
+
+        self._loop_depth += 1
+        try:
+            i = start_n
+            while (step_n > 0 and i <= end_n + 1e-9) or (step_n < 0 and i >= end_n - 1e-9):
+                self.variables[stmt.var_name] = Value(number=float(i))
+                body_copy = copy.deepcopy(stmt.body)
+                # Interpolate names
+                self._interpolate_names(body_copy)
+                self._resolve_statements(body_copy, resolved_elements)
+                i += step_n
+        finally:
+            self._loop_depth -= 1
+            # Restore old variable
+            if old_var is not None:
+                self.variables[stmt.var_name] = old_var
+            else:
+                self.variables.pop(stmt.var_name, None)
+
+        return resolved_elements
+
+    def _interpolate_names(self, stmts: list) -> None:  # type: ignore[type-arg]
+        """Replace {var} patterns in element names and references."""
+        for stmt in stmts:
+            if isinstance(stmt, Element):
+                if stmt.name is not None:
+                    stmt.name = self._interpolate_string(stmt.name)
+                if stmt.position is not None:
+                    self._interpolate_position(stmt.position)
+                self._interpolate_names(stmt.children)
+            elif isinstance(stmt, PlaceStatement):
+                if stmt.instance_name is not None:
+                    stmt.instance_name = self._interpolate_string(stmt.instance_name)
+                if stmt.position is not None:
+                    self._interpolate_position(stmt.position)
+            elif isinstance(stmt, ForStatement):
+                self._interpolate_names(stmt.body)
+
+    def _interpolate_position(self, pos: Position) -> None:
+        """Interpolate {var} in position reference strings."""
+        if pos.reference is not None:
+            pos.reference = self._interpolate_string(pos.reference)
+
+    def _interpolate_string(self, s: str) -> str:
+        """Replace {var_name} with the current integer value of the variable."""
+        def _replace(m: re.Match[str]) -> str:
+            var_name = m.group(1)
+            val = self.variables.get(var_name)
+            if val is None:
+                return m.group(0)  # leave unreplaced
+            n = val.number
+            return str(int(n)) if n == int(n) else str(n)
+        return re.sub(r"\{(\w+)\}", _replace, s)
 
     def _apply_scale(self, el: Element, scale_val: Value) -> None:
         factor = scale_val.number

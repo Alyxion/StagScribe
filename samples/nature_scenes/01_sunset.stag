@@ -5,88 +5,29 @@ canvas 800 by 500 pixels
   background midnightblue
 
 -- Sky gradient layers stacked from top to bottom
-rectangle "UpperSky"
-  width 800
-  height 150
-  fill darkslateblue
-  at top left
-
-rectangle "MidSky"
-  width 800
-  height 120
-  fill darkorange
-  opacity 0.85
+rectangle "UpperSky" 800 by 150 fill darkslateblue at top left
+rectangle "MidSky" 800 by 120 fill darkorange opacity 0.85
   below "UpperSky" with gap 0
-
-rectangle "LowerSky"
-  width 800
-  height 100
-  fill orangered
-  opacity 0.9
+rectangle "LowerSky" 800 by 100 fill orangered opacity 0.9
   below "MidSky" with gap 0
-
-rectangle "HorizonGlow"
-  width 800
-  height 80
-  fill gold
-  opacity 0.7
+rectangle "HorizonGlow" 800 by 80 fill gold opacity 0.7
   below "LowerSky" with gap 0
 
 -- Horizon land silhouette
-rectangle "HorizonLand"
-  width 800
-  height 30
-  fill #1a1a2e
+rectangle "HorizonLand" 800 by 30 fill #1a1a2e
   below "HorizonGlow" with gap 0
-
--- Ground
-rectangle "Ground"
-  width 800
-  height 20
-  fill #0d0d1a
+rectangle "Ground" 800 by 20 fill #0d0d1a
   below "HorizonLand" with gap 0
 
 -- Sun
-circle "Sun"
-  radius 55
-  fill gold
-  stroke lightyellow 4 pixels
+circle "Sun" radius 55 fill gold stroke lightyellow 4 pixels at 50% 58%
   opacity 0.95
-  at 50% 58%
-
--- Sun inner glow
-circle "SunCore"
-  radius 30
-  fill lightyellow
-  opacity 0.8
-  at center of "Sun"
+circle "SunCore" radius 30 fill lightyellow opacity 0.8 at center of "Sun"
 
 -- Water reflection near horizon
-rectangle "WaterReflection"
-  width 800
-  height 12
-  fill gold
-  opacity 0.25
-  at 50% 89%
+rectangle "WaterReflection" 800 by 12 fill gold opacity 0.25 at 50% 89%
 
 -- Distant clouds
-ellipse "CloudLeft"
-  width 160
-  height 35
-  fill #c0392b
-  opacity 0.4
-  at 15% 18%
-
-ellipse "CloudRight"
-  width 200
-  height 40
-  fill #e74c3c
-  opacity 0.35
-  at 65% 15%
-
-ellipse "CloudCenter"
-  width 120
-  height 25
-  fill darkorange
-  opacity 0.5
-  at 42% 28%
+ellipse "CloudLeft" 160 by 35 fill #c0392b opacity 0.4 at 15% 18%
+ellipse "CloudRight" 200 by 40 fill #e74c3c opacity 0.35 at 65% 15%
+ellipse "CloudCenter" 120 by 25 fill darkorange opacity 0.5 at 42% 28%

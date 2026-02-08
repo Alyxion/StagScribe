@@ -12,6 +12,7 @@ from stagscribe.language.ast_nodes import (
     Document,
     Element,
     Expr,
+    ForStatement,
     GradientFill,
     IsStatement,
     LiteralExpr,
@@ -36,25 +37,32 @@ class StagTransformer(Transformer):  # type: ignore[type-arg]
             for item in items
             if isinstance(
                 item,
-                (Element, IsStatement, ColorsBlock, DefineBlock, PlaceStatement),
+                (Element, IsStatement, ColorsBlock, DefineBlock, PlaceStatement, ForStatement),
             )
         ]
         return Document(statements=statements)
 
     def element_stmt(self, items: list) -> Element:  # type: ignore[type-arg]
-        element_type = str(items[0])
+        element_type = None
         name = None
         props: dict = {}  # type: ignore[type-arg]
         children: list[Element] = []
 
-        for item in items[1:]:
+        for item in items:
             if item is None:
                 continue
-            if isinstance(item, str) and not isinstance(item, Element):
+            # Skip AND_KW tokens
+            if isinstance(item, Token) and item.type == "AND_KW":
+                continue
+            if element_type is None and isinstance(item, str) and not isinstance(item, Element):
+                element_type = item
+            elif isinstance(item, str) and not isinstance(item, Element):
                 name = item
             elif isinstance(item, dict):
+                # Body props should override inline props (applied later)
                 props.update(item)
             elif isinstance(item, list):
+                # body block — body overrides inline on conflict
                 for sub in item:
                     if isinstance(sub, Element):
                         children.append(sub)
@@ -63,7 +71,7 @@ class StagTransformer(Transformer):  # type: ignore[type-arg]
             elif isinstance(item, Element):
                 children.append(item)
 
-        el = Element(element_type=element_type, name=name, children=children)
+        el = Element(element_type=element_type or "rect", name=name, children=children)
         _apply_props(el, props)
         return el
 
@@ -82,6 +90,49 @@ class StagTransformer(Transformer):  # type: ignore[type-arg]
             if isinstance(item, dict):
                 return item
         return {}
+
+    # --- Pre-fill (color before element type) ---
+    def pre_fill(self, items: list) -> dict:  # type: ignore[type-arg]
+        return {"fill": _resolve_color_item(items[0])}
+
+    # --- Inline props (all properties on one line) ---
+    def inline_props(self, items: list) -> dict:  # type: ignore[type-arg]
+        merged: dict = {}  # type: ignore[type-arg]
+        for item in items:
+            if isinstance(item, Token) and item.type == "AND_KW":
+                continue
+            if isinstance(item, dict):
+                merged.update(item)
+        return merged
+
+    # --- For loop ---
+    def for_stmt(self, items: list) -> ForStatement:  # type: ignore[type-arg]
+        var_name = str(items[0])
+        start_expr = _to_expr(items[1])
+        end_expr = _to_expr(items[2])
+        step_expr = None
+        body: list[Statement] = []
+        for item in items[3:]:
+            if isinstance(item, (Value, Expr)) and step_expr is None:
+                step_expr = _to_expr(item)
+            elif isinstance(item, list):
+                body = item
+        return ForStatement(
+            var_name=var_name,
+            start=start_expr,
+            end=end_expr,
+            step=step_expr,
+            body=body,
+        )
+
+    def step_clause(self, items: list) -> Value | Expr:  # type: ignore[type-arg]
+        return items[0]  # type: ignore[no-any-return]
+
+    def for_body(self, items: list) -> list[Statement]:  # type: ignore[type-arg]
+        return [
+            item for item in items
+            if isinstance(item, (Element, PlaceStatement, ForStatement, IsStatement))
+        ]
 
     # --- Is statement ---
     def is_stmt(self, items: list) -> IsStatement:  # type: ignore[type-arg]
@@ -156,11 +207,11 @@ class StagTransformer(Transformer):  # type: ignore[type-arg]
     # --- Fill (solid or gradient) ---
     def fill_prop(self, items: list) -> dict:  # type: ignore[type-arg]
         # Solid: items = [color_value]
-        # Gradient: items = [color_value, ENDPOINT_KW('to'), color_value]
+        # Gradient: items = [color_value, color_value] ("gradient" and "to" consumed by grammar)
         if len(items) == 1:
             return {"fill": _resolve_color_item(items[0])}
         color1 = _resolve_color_item(items[0])
-        color2 = _resolve_color_item(items[2])
+        color2 = _resolve_color_item(items[1])
         return {"gradient": GradientFill(color1=color1, color2=color2)}
 
     # --- Stroke ---
@@ -251,13 +302,11 @@ class StagTransformer(Transformer):  # type: ignore[type-arg]
         return (xv, yv)
 
     # --- Line endpoints ---
-    def line_endpoint_prop(self, items: list) -> dict:  # type: ignore[type-arg]
-        keyword = str(items[0])
-        x = items[1]
-        y = items[2]
-        if keyword == "from":
-            return {"line_from": (x, y)}
-        return {"line_to": (x, y)}
+    def line_from_prop(self, items: list) -> dict:  # type: ignore[type-arg]
+        return {"line_from": (items[0], items[1])}
+
+    def line_to_prop(self, items: list) -> dict:  # type: ignore[type-arg]
+        return {"line_to": (items[0], items[1])}
 
     # --- Position ---
     def at_position(self, items: list) -> dict:  # type: ignore[type-arg]

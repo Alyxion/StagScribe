@@ -1,50 +1,18 @@
 -- Simple house icon
--- A minimal house shape with roof, walls, and door
-
 canvas 64 by 64 pixels
   background transparent
 
--- Main house body
-rectangle "Walls"
-  width 36
-  height 28
-  fill #4A90D9
-  stroke #2C5F8A 2 pixels
-  at 50% 70%
+rectangle "Walls" 36 by 28 fill #4A90D9 stroke #2C5F8A 2 pixels at 50% 70%
 
--- Triangular roof
 polygon "Roof"
   points (8 36) (32 8) (56 36)
   fill #D9534F
   stroke #A3362E 2 pixels
 
--- Front door
-rectangle "Door"
-  width 10
-  height 16
-  fill #8B5E3C
-  stroke #5C3D28 1 pixels
-  at 50% 82%
+rectangle "Door" 10 by 16 fill #8B5E3C stroke #5C3D28 1 pixels at 50% 82%
   rounded 2
 
--- Door knob
-circle "Knob"
-  radius 1
-  fill #F0C040
-  at 55% 82%
+circle "Knob" radius 1 fill #F0C040 at 55% 82%
 
--- Left window
-rectangle "LeftWindow"
-  width 8
-  height 8
-  fill #ADE1F5
-  stroke #2C5F8A 1 pixels
-  at 35% 65%
-
--- Right window
-rectangle "RightWindow"
-  width 8
-  height 8
-  fill #ADE1F5
-  stroke #2C5F8A 1 pixels
-  at 65% 65%
+rectangle "LeftWindow" 8 by 8 fill #ADE1F5 stroke #2C5F8A 1 pixels at 35% 65%
+rectangle "RightWindow" 8 by 8 fill #ADE1F5 stroke #2C5F8A 1 pixels at 65% 65%

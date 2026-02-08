@@ -1,138 +1,72 @@
 -- Simple Decision Flowchart
 -- Start -> Process -> Decision -> Yes/No -> End
 
-canvas 600 by 800 pixels
+canvas 600 by 600 pixels
   background #f9f9f9
 
 -- Start node
-rectangle "Start"
-  width 140
-  height 50
-  fill #4CAF50
-  stroke #388E3C 2 pixels
+rectangle "Start Box" 140 by 50 fill #4CAF50 stroke #388E3C 2 pixels at 50% 9%
   rounded 25
-  at 50% 8%
+text "Start" size 16 bold color white
+  inside "Start Box" at center
 
-text "Start Text"
-  size 16
-  bold
-  color white
-  inside "Start" at center
+line "Start to Process"
+  from 300 79
+  to 300 129
+  stroke #555555 2 pixels
 
 -- Process step
-rectangle "Process"
-  width 160
-  height 60
-  fill #2196F3
-  stroke #1565C0 2 pixels
-  rounded 8
-  below "Start" with gap 60
-
-text "Process Data"
-  size 15
-  bold
-  color white
+rectangle "Process" 160 by 60 fill #2196F3 stroke #1565C0 2 pixels rounded 8
+  below "Start Box" with gap 50
+text "Process Data" size 15 bold color white
   inside "Process" at center
 
--- Connector line: Start to Process
-line "Start to Process"
-  from 300 89
-  to 300 150
+line "Process to Decision"
+  from 300 189
+  to 300 239
   stroke #555555 2 pixels
 
--- Decision diamond (represented as rotated rectangle)
-rectangle "Decision"
-  width 160
-  height 80
-  fill #FF9800
-  stroke #E65100 2 pixels
-  rounded 4
-  below "Process" with gap 60
-
-text "Is Valid?"
-  size 15
-  bold
-  color white
+-- Decision node
+rectangle "Decision" 160 by 80 fill #FF9800 stroke #E65100 2 pixels rounded 4
+  below "Process" with gap 50
+text "Is Valid?" size 15 bold color white
   inside "Decision" at center
 
--- Connector line: Process to Decision
-line "Process to Decision"
-  from 300 239
-  to 300 300
-  stroke #555555 2 pixels
+-- Yes path (down)
+text "Yes" size 13 bold color #4CAF50 at 315 344
 
--- Yes path
-rectangle "YesAction"
-  width 140
-  height 50
-  fill #66BB6A
-  stroke #2E7D32 2 pixels
-  rounded 8
-  below "Decision" with gap 60
-
-text "Save Result"
-  size 14
-  bold
-  color white
-  inside "YesAction" at center
-
-text "Yes"
-  size 13
-  bold
-  color #4CAF50
-  at 55% 48%
-
--- Connector line: Decision to YesAction
 line "Decision to Yes"
-  from 300 389
-  to 300 450
+  from 300 319
+  to 300 369
   stroke #4CAF50 2 pixels
 
--- No path
-rectangle "NoAction"
-  width 140
-  height 50
-  fill #EF5350
-  stroke #C62828 2 pixels
-  rounded 8
-  at 75% 48%
+rectangle "YesAction" 140 by 50 fill #66BB6A stroke #2E7D32 2 pixels rounded 8
+  below "Decision" with gap 50
+text "Save Result" size 14 bold color white
+  inside "YesAction" at center
 
-text "Retry"
-  size 14
-  bold
-  color white
-  inside "NoAction" at center
+-- No path (right)
+text "No" size 13 bold color #EF5350 at 400 267
 
-text "No"
-  size 13
-  bold
-  color #EF5350
-  at 72% 38%
-
--- Connector line: Decision to NoAction
 line "Decision to No"
-  from 420 340
-  to 480 340
+  from 380 279
+  to 420 279
   stroke #EF5350 2 pixels
   dashed
 
--- End node
-rectangle "End"
-  width 140
-  height 50
-  fill #9C27B0
-  stroke #6A1B9A 2 pixels
-  rounded 25
-  below "YesAction" with gap 60
+rectangle "NoAction" 140 by 50 fill #EF5350 stroke #C62828 2 pixels rounded 8
+  right of "Decision" with gap 40
+text "Retry" size 14 bold color white
+  inside "NoAction" at center
 
-text "End Text"
-  size 16
-  bold
-  color white
-  inside "End" at center
-
--- Connector line: YesAction to End
+-- Connector: YesAction to End
 line "YesAction to End"
-  from 300 509
-  to 300 570
+  from 300 419
+  to 300 469
   stroke #555555 2 pixels
+
+-- End node
+rectangle "End Box" 140 by 50 fill #9C27B0 stroke #6A1B9A 2 pixels rounded 25
+  below "YesAction" with gap 50
+text "End" size 16 bold color white
+  inside "End Box" at center

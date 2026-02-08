@@ -4,119 +4,41 @@
 canvas 240 by 300 pixels
   background lightskyblue
 
--- Antenna Ball
-circle "AntennaBall"
-  radius 8
-  fill tomato
-  at 50% 8%
+circle "AntennaBall" radius 8 fill tomato at 50% 8%
 
--- Antenna Stick
 line "AntennaStick"
   from 120 24
   to 120 60
   stroke slategray 3 pixels
 
--- Head
-rectangle "Head"
-  width 80
-  height 60
-  fill silver
-  stroke slategray 3 pixels
+rectangle "Head" 80 by 60 fill silver stroke slategray 3 pixels at 50% 30%
   rounded 8
-  at 50% 30%
 
--- Left Eye
-circle "LeftEye"
-  radius 10
-  fill white
-  stroke slategray 2 pixels
-  at 43% 28%
+circle "LeftEye" radius 10 fill white stroke slategray 2 pixels at 43% 28%
+circle "LeftPupil" radius 5 fill cornflowerblue at center of "LeftEye"
+circle "RightEye" radius 10 fill white stroke slategray 2 pixels at 57% 28%
+circle "RightPupil" radius 5 fill cornflowerblue at center of "RightEye"
 
--- Left Pupil
-circle "LeftPupil"
-  radius 5
-  fill cornflowerblue
-  at center of "LeftEye"
+rectangle "Mouth" 30 by 8 fill darkslategray rounded 4 at 50% 38%
 
--- Right Eye
-circle "RightEye"
-  radius 10
-  fill white
-  stroke slategray 2 pixels
-  at 57% 28%
-
--- Right Pupil
-circle "RightPupil"
-  radius 5
-  fill cornflowerblue
-  at center of "RightEye"
-
--- Mouth
-rectangle "Mouth"
-  width 30
-  height 8
-  fill darkslategray
-  rounded 4
-  at 50% 38%
-
--- Body
-rectangle "Body"
-  width 100
-  height 90
-  fill lightsteelblue
-  stroke slategray 3 pixels
+rectangle "Body" 100 by 90 fill lightsteelblue stroke slategray 3 pixels
   rounded 10
   below "Head" with gap 5
 
--- Chest Panel
-rectangle "ChestPanel"
-  width 40
-  height 30
-  fill white
-  stroke slategray 2 pixels
+rectangle "ChestPanel" 40 by 30 fill white stroke slategray 2 pixels
   rounded 4
   inside "Body" at center
 
--- Power Light
-circle "PowerLight"
-  radius 6
-  fill limegreen
-  at center of "ChestPanel"
+circle "PowerLight" radius 6 fill limegreen at center of "ChestPanel"
 
--- Left Arm
-rectangle "LeftArm"
-  width 18
-  height 50
-  fill silver
-  stroke slategray 2 pixels
+rectangle "LeftArm" 18 by 50 fill silver stroke slategray 2 pixels at 22% 55%
   rounded 6
-  at 22% 55%
-
--- Right Arm
-rectangle "RightArm"
-  width 18
-  height 50
-  fill silver
-  stroke slategray 2 pixels
+rectangle "RightArm" 18 by 50 fill silver stroke slategray 2 pixels at 78% 55%
   rounded 6
-  at 78% 55%
 
--- Left Leg
-rectangle "LeftLeg"
-  width 24
-  height 40
-  fill slategray
-  stroke darkslategray 2 pixels
+rectangle "LeftLeg" 24 by 40 fill slategray stroke darkslategray 2 pixels at 40% 90%
   rounded 4
   below "Body" with gap 5
-  at 40% 90%
-
--- Right Leg
-rectangle "RightLeg"
-  width 24
-  height 40
-  fill slategray
-  stroke darkslategray 2 pixels
+rectangle "RightLeg" 24 by 40 fill slategray stroke darkslategray 2 pixels at 60% 90%
   rounded 4
   below "Body" with gap 5
-  at 60% 90%

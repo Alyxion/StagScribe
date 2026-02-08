@@ -1,5 +1,5 @@
 #!/bin/bash
-# render_samples.sh — Render .stag samples to PNG.
+# render_samples.sh — Render .stag samples to PNG (16 parallel processes).
 #
 # Usage:
 #   ./scripts/render_samples.sh                          # render all samples
@@ -15,6 +15,7 @@ cd "$(git rev-parse --show-toplevel)"
 
 SAMPLES_DIR="samples"
 RENDER_DIR="tmp/samples"
+PARALLEL=16
 CLEAN=false
 DEBUG_FLAG=""
 FILTER=""
@@ -31,7 +32,7 @@ while [[ $# -gt 0 ]]; do
         echo "Error: --debug requires a value (e.g. --debug all, --debug labels,grid)" >&2
         exit 1
       fi
-      DEBUG_FLAG="--debug $2"
+      DEBUG_FLAG="$2"
       shift 2
       ;;
     -*)
@@ -63,7 +64,6 @@ find_stag_files() {
   elif [[ -d "$SAMPLES_DIR/$FILTER" ]]; then
     find "$SAMPLES_DIR/$FILTER" -name "*.stag" -type f | sort
   else
-    # Try as a glob/partial match
     find "$SAMPLES_DIR" -path "*${FILTER}*" -name "*.stag" -type f | sort
   fi
 }
@@ -75,26 +75,34 @@ if [[ -z "$FILES" ]]; then
 fi
 
 TOTAL=$(echo "$FILES" | wc -l | tr -d ' ')
-COUNT=0
-FAILED=0
 
-echo "$FILES" | while read -r stag; do
+# Worker function — renders one .stag file
+render_one() {
+  local stag="$1"
+  local category name key png
   category=$(basename "$(dirname "$stag")")
   name=$(basename "$stag" .stag)
   key="${category}_${name}"
   png="${RENDER_DIR}/${key}.png"
-  COUNT=$((COUNT + 1))
 
-  echo "[$COUNT/$TOTAL] $key"
-  # shellcheck disable=SC2086
-  if ! poetry run stagscribe render "$stag" -o "$png" $DEBUG_FLAG 2>/dev/null; then
-    echo "  FAILED" >&2
-    FAILED=$((FAILED + 1))
+  local cmd=(poetry run stagscribe render "$stag" -o "$png")
+  if [[ -n "$DEBUG_FLAG" ]]; then
+    cmd+=(--debug "$DEBUG_FLAG")
   fi
-done
+
+  if "${cmd[@]}" 2>/dev/null; then
+    echo "  ok  $key"
+  else
+    echo "  FAIL $key" >&2
+    return 1
+  fi
+}
+export -f render_one
+export RENDER_DIR DEBUG_FLAG
+
+echo "Rendering $TOTAL samples with $PARALLEL parallel processes..."
+
+echo "$FILES" | xargs -P "$PARALLEL" -I {} bash -c 'render_one "$@"' _ {}
 
 echo ""
-echo "Rendered to $RENDER_DIR/"
-if [[ $FAILED -gt 0 ]]; then
-  echo "WARNING: $FAILED file(s) failed to render"
-fi
+echo "Done. Output: $RENDER_DIR/"

@@ -1,6 +1,6 @@
-// StagScribe Grammar v0.3
+// StagScribe Grammar v0.4
 // Indentation-aware grammar for Lark LALR(1) parser
-// v3: Comma-free natural syntax, "is" assignments, one property per line
+// v4: For loops, inline properties, natural language feel
 
 start: (_NL | statement)*
 
@@ -9,6 +9,13 @@ start: (_NL | statement)*
           | colors_block
           | define_block
           | place_stmt
+          | for_stmt
+
+// --- For loops ---
+for_stmt: "for" NAME "from" expr "to" expr step_clause? _NL for_body
+step_clause: "step" expr
+for_body: _INDENT for_body_stmt+ _DEDENT
+?for_body_stmt: element_stmt | place_stmt | for_stmt | is_stmt
 
 // --- Variable assignment ---
 is_stmt: NAME "is" expr _NL
@@ -23,8 +30,17 @@ define_block: "define" NAME ":" _NL body
 // --- Template instantiation ---
 place_stmt: "place" NAME element_name? _NL body?
 
-// Element statement: element_type [name] [size_by] body
-element_stmt: element_type element_name? size_by_prop? _NL body?
+// Element statement: [pre_fill] element_type [name] [size_by] [inline_props] body?
+element_stmt: pre_fill? element_type element_name? size_by_prop? inline_props? _NL body?
+
+pre_fill: HEX_COLOR | FRIENDLY_COLOR | COLOR_NAME
+
+inline_props: "with"? inline_prop (AND_KW? inline_prop)*
+
+?inline_prop: fill_prop | stroke_prop | dimension_prop | opacity_prop
+            | rounded_prop | rotate_prop | radius_prop | position_prop
+            | text_style_prop | dashed_prop | font_prop | scale_prop
+            | background_prop | line_endpoint_prop | teeth_prop | module_prop
 
 body: _INDENT (property_line | element_stmt)+ _DEDENT
 
@@ -63,7 +79,7 @@ dimension_prop: DIM_KW expr
 
 // --- Fill (solid or gradient) ---
 fill_prop: "fill" color_value
-         | "fill" "gradient" color_value ENDPOINT_KW color_value
+         | "fill" "gradient" color_value "to" color_value
 
 // --- Stroke (no comma: "stroke gray 2 pixels") ---
 stroke_prop: "stroke" color_value expr?
@@ -72,10 +88,10 @@ stroke_prop: "stroke" color_value expr?
 background_prop: "background" color_value
 
 // --- Opacity ---
-opacity_prop: "opacity" expr
+opacity_prop: "opacity" "of"? expr
 
 // --- Rounded corners ---
-rounded_prop: "rounded" expr
+rounded_prop: "rounded" "of"? expr
 
 // --- Rotation ---
 rotate_prop: "rotate" expr
@@ -84,7 +100,7 @@ rotate_prop: "rotate" expr
 scale_prop: "scale" expr
 
 // --- Radius ---
-radius_prop: "radius" expr
+radius_prop: "radius" "of"? expr
 
 // --- Font ---
 font_prop: "font" ESCAPED_STRING
@@ -103,7 +119,8 @@ points_prop: "points" point+
 point: "(" expr expr ")"
 
 // --- Line endpoints (no comma: "from 100 200") ---
-line_endpoint_prop: ENDPOINT_KW expr expr
+line_endpoint_prop: "from" expr expr -> line_from_prop
+                  | "to" expr expr -> line_to_prop
 
 // --- Gear properties ---
 teeth_prop: "teeth" expr
@@ -135,7 +152,7 @@ gap_clause: "with" "gap" expr
                 | italic_prop
                 | align_prop
 
-size_prop: "size" expr
+size_prop: "size" "of"? expr
 color_prop: "color" color_value
 weight_prop: WEIGHT_KW
 italic_prop: "italic"
@@ -173,9 +190,9 @@ ELEMENT_KW.1: "canvas" | "rectangle" | "rect" | "circle" | "ellipse"
 
 DIM_KW.1: "width" | "height"
 
-ENDPOINT_KW.1: "from" | "to"
-
 SRC_KW.1: "src" | "href"
+
+AND_KW.1: "and"
 
 ANCHOR.2: "top left" | "top right" | "bottom left" | "bottom right"
         | "center left" | "center right" | "center top" | "center bottom"

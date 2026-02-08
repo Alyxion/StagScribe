@@ -5,64 +5,20 @@ canvas 400 by 160 pixels
   background #F5F5F5
 
 -- Toast container with shadow effect
-rectangle "ToastShadow"
-  width 364
-  height 80
-  fill #E0E0E0
-  rounded 16
-  at 50% 52%
-
-rectangle "Toast"
-  width 360
-  height 78
-  fill white
-  stroke #E8E8E8 1 pixels
-  rounded 16
-  at 50% 50%
+rectangle "ToastShadow" 364 by 80 fill #E0E0E0 rounded 16 at 50% 52%
+rectangle "Toast" 360 by 78 fill white stroke #E8E8E8 1 pixels rounded 16 at 50% 50%
 
 -- Success icon circle
-circle "IconCircle"
-  radius 20
-  fill #E8F5E9
-  at 16% 42%
-
--- Checkmark
-text "ok"
-  size 20
-  bold
-  color #2E7D32
-  at center of "IconCircle"
+circle "IconCircle" radius 20 fill #E8F5E9 at 16% 42%
+text "ok" size 20 bold color #2E7D32 at center of "IconCircle"
 
 -- Message content
-text "File uploaded successfully"
-  size 15
-  bold
-  color #333333
-  at 52% 38%
-
-text "report_Q4.pdf -- 2.4 MB"
-  size 12
-  color gray
-  at 47% 52%
+text "File uploaded successfully" size 15 bold color #333333 at 52% 38%
+text "report_Q4.pdf -- 2.4 MB" size 12 color gray at 47% 52%
 
 -- Dismiss button
-text "Dismiss"
-  size 13
-  bold
-  color #007AFF
-  at 88% 45%
+text "Dismiss" size 13 bold color #007AFF at 88% 45%
 
--- Progress bar at bottom of toast
-rectangle "ProgressTrack"
-  width 320
-  height 3
-  fill #E8E8E8
-  rounded 2
-  at 50% 62%
-
-rectangle "ProgressFill"
-  width 220
-  height 3
-  fill #34C759
-  rounded 2
-  at 38% 62%
+-- Progress bar
+rectangle "ProgressTrack" 320 by 3 fill #E8E8E8 rounded 2 at 50% 62%
+rectangle "ProgressFill" 220 by 3 fill #34C759 rounded 2 at 38% 62%

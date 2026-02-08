@@ -1,129 +1,63 @@
 -- Studio Apartment Floor Plan
 -- A compact living space with combined living/sleeping area
 
-canvas 800 by 600 pixels
+canvas 800 by 620 pixels
   background white
 
 -- Outer walls
-rectangle "Outer Walls"
-  width 750
-  height 550
-  fill #F5F5F5
-  stroke black 3 pixels
-  at center
+rectangle "Outer Walls" 760 by 560 fill #F5F5F5 stroke black 3 pixels at center
 
 -- Main living/sleeping area
-rectangle "Living Area"
-  width 450
-  height 350
-  fill #FAFAFA
-  stroke dark gray 1 pixels
+rectangle "Living Area" 500 by 560 fill #FAFAFA stroke dark gray 2 pixels
   inside "Outer Walls" at top left
 
--- Bed
-rectangle "Bed"
-  width 120
-  height 180
-  fill light blue
-  stroke gray 1 pixels
+rectangle "Bed Area" 120 by 160 fill light blue stroke gray 1 pixels
   inside "Living Area" at top right
+text "Bed" size 14
+  inside "Bed Area" at center
 
-text "Bed Label"
-  inside "Bed" at center
+rectangle "TV Stand" 140 by 24 fill dark gray stroke black 1 pixels
+  inside "Living Area" at top left
 
--- Sofa
-rectangle "Sofa"
-  width 160
-  height 60
-  fill sky blue
-  stroke gray 1 pixels
+rectangle "Sofa Area" 180 by 65 fill sky blue stroke gray 1 pixels
   inside "Living Area" at bottom left
+text "Sofa" size 14
+  inside "Sofa Area" at center
 
-text "Sofa Label"
-  inside "Sofa" at center
-
--- Coffee Table
-rectangle "Coffee Table"
-  width 80
-  height 40
-  fill tan
-  stroke gray 1 pixels
-  above "Sofa" with gap 15
+rectangle "Coffee Table" 90 by 45 fill tan stroke gray 1 pixels
+  above "Sofa Area" with gap 20
 
 -- Kitchen area
-rectangle "Kitchen Floor"
-  width 250
-  height 200
-  fill #FFF8E7
-  stroke dark gray 1 pixels
+rectangle "Kitchen Floor" 260 by 280 fill #FFF8E7 stroke dark gray 2 pixels
   inside "Outer Walls" at top right
-
-rectangle "Counter"
-  width 230
-  height 40
-  fill tan
-  stroke gray 1 pixels
-  inside "Kitchen Floor" at top left
-
-text "Kitchen Label"
+text "Kitchen" size 16
   inside "Kitchen Floor" at center
 
-rectangle "Stove"
-  width 60
-  height 40
-  fill gray
-  stroke dark gray 1 pixels
+rectangle "Counter" 230 by 60 fill tan stroke gray 1 pixels
+  inside "Kitchen Floor" at top left
+rectangle "Stove" 100 by 60 fill gray stroke dark gray 1 pixels
   inside "Counter" at top left
-
-rectangle "Sink"
-  width 50
-  height 40
-  fill light blue
-  stroke gray 1 pixels
+rectangle "Sink" 80 by 60 fill light blue stroke gray 1 pixels
   inside "Counter" at top right
 
 -- Bathroom
-rectangle "Bathroom Floor"
-  width 200
-  height 180
-  fill #E8F4F8
-  stroke dark gray 2 pixels
+rectangle "Bathroom Floor" 260 by 280 fill #E8F4F8 stroke dark gray 2 pixels
   inside "Outer Walls" at bottom right
-
-text "Bathroom Label"
+text "Bathroom" size 16
   inside "Bathroom Floor" at center
 
-circle "Shower"
-  radius 35
-  fill light blue
-  stroke gray 1 pixels
+circle "Shower" radius 32 fill light blue stroke gray 2 pixels
   inside "Bathroom Floor" at top right
-
-rectangle "Toilet"
-  width 40
-  height 50
-  fill white
-  stroke gray 1 pixels
+rectangle "Toilet" 55 by 65 fill #E0E0E0 stroke gray 2 pixels
   inside "Bathroom Floor" at bottom left
-
-rectangle "Bath Sink"
-  width 45
-  height 35
-  fill light blue
-  stroke gray 1 pixels
+rectangle "Bath Sink" 55 by 45 fill light blue stroke gray 1 pixels
   inside "Bathroom Floor" at top left
 
 -- Entry door
-rectangle "Front Door"
-  width 60
-  height 10
-  fill brown
-  stroke black 2 pixels
+rectangle "Front Door" 60 by 12 fill brown stroke black 2 pixels
   inside "Outer Walls" at bottom left
-
-text "Entry"
-  above "Front Door" with gap 5
+text "Entry" size 12
+  above "Front Door" with gap 8
 
 -- Title
-text "Studio Apartment"
-  at 50% 3%
+text "Studio Apartment" size 18 bold at 400 12

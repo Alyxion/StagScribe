@@ -9,10 +9,8 @@ import pytest
 from stagscribe.converter.converter import convert
 from stagscribe.converter.layout import resolve_layout
 from stagscribe.converter.shapes import _gear_path_data
-from stagscribe.language.ast_nodes import GradientFill
 from stagscribe.parser.parser import parse
 from stagscribe.resolver import resolve
-
 
 # --- Gradient fill tests ---
 

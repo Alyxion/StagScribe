@@ -1,4 +1,4 @@
--- Classroom Floor Plan (v2 — using variables and templates)
+-- Classroom Floor Plan (v3 — using for loops and inline props)
 -- Standard classroom with student desks, teacher area, and whiteboard
 
 desk_width is 80
@@ -21,121 +21,76 @@ canvas 900 by 650 pixels
   background white
 
 -- Outer walls
-rect "Classroom Walls" 850 by 600
-  fill wall
-  stroke black 3 pixels
-  at center
+rect "Classroom Walls" 850 by 600 fill wall stroke black 3 pixels at center
 
 -- Whiteboard at front of room
-rect "Whiteboard" 400 by 15
-  fill white
-  stroke black 2 pixels
+rect "Whiteboard" 400 by 15 fill white stroke black 2 pixels
   inside "Classroom Walls" at top left
 
 text "Whiteboard Label"
   below "Whiteboard" with gap 5
 
 -- Teacher's area
-rect "Teacher Desk" 150 by 70
-  fill tan
-  stroke gray 1 pixels
+rect "Teacher Desk" 150 by 70 fill tan stroke gray 1 pixels
   inside "Classroom Walls" at top right
 
-text "Teacher"
-  inside "Teacher Desk" at center
+text "Teacher" at center of "Teacher Desk"
 
-rect "Teacher Chair" 40 by 40
-  fill gray
-  stroke dark gray 1 pixels
+rect "Teacher Chair" 40 by 40 fill gray stroke dark gray 1 pixels
   below "Teacher Desk" with gap 8
 
--- Student desks - Row 1
+-- Student desks - 4 rows x 4 columns using for loops
+-- Row 1: positioned relative to Whiteboard
 place student_desk "Desk R1C1"
   below "Whiteboard" with gap first_row_gap
-place student_desk "Desk R1C2"
-  right of "Desk R1C1" with gap col_gap
-place student_desk "Desk R1C3"
-  right of "Desk R1C2" with gap col_gap
-place student_desk "Desk R1C4"
-  right of "Desk R1C3" with gap col_gap
 
--- Student desks - Row 2
-place student_desk "Desk R2C1"
-  below "Desk R1C1" with gap desk_gap
-place student_desk "Desk R2C2"
-  below "Desk R1C2" with gap desk_gap
-place student_desk "Desk R2C3"
-  below "Desk R1C3" with gap desk_gap
-place student_desk "Desk R2C4"
-  below "Desk R1C4" with gap desk_gap
+for col from 2 to 4
+  place student_desk "Desk R1C{col}"
+    right of "Desk R1C1" with gap col_gap
 
--- Student desks - Row 3
-place student_desk "Desk R3C1"
-  below "Desk R2C1" with gap desk_gap
-place student_desk "Desk R3C2"
-  below "Desk R2C2" with gap desk_gap
-place student_desk "Desk R3C3"
-  below "Desk R2C3" with gap desk_gap
-place student_desk "Desk R3C4"
-  below "Desk R2C4" with gap desk_gap
+-- Rows 2-4: each positioned below the previous row
+for row from 2 to 4
+  place student_desk "Desk R{row}C1"
+    below "Desk R1C1" with gap desk_gap
 
--- Student desks - Row 4
-place student_desk "Desk R4C1"
-  below "Desk R3C1" with gap desk_gap
-place student_desk "Desk R4C2"
-  below "Desk R3C2" with gap desk_gap
-place student_desk "Desk R4C3"
-  below "Desk R3C3" with gap desk_gap
-place student_desk "Desk R4C4"
-  below "Desk R3C4" with gap desk_gap
+for row from 2 to 4
+  for col from 2 to 4
+    place student_desk "Desk R{row}C{col}"
+      right of "Desk R{row}C1" with gap col_gap
 
 -- Bookshelf along right wall
-rect "Bookshelf" 30 by 300
-  fill brown
-  stroke dark gray 1 pixels
+rect "Bookshelf" 30 by 300 fill brown stroke dark gray 1 pixels
   inside "Classroom Walls" at bottom right
 
-text "Books"
-  inside "Bookshelf" at center
+text "Books" at center of "Bookshelf"
 
 -- Door
-rect "Classroom Door" 70 by 10
-  fill brown
-  stroke black 2 pixels
+rect "Classroom Door" 70 by 10 fill brown stroke black 2 pixels
   inside "Classroom Walls" at bottom left
 
 text "Door"
   above "Classroom Door" with gap 5
 
 -- Supply cabinet
-rect "Supply Cabinet" 100 by 40
-  fill gray
-  stroke dark gray 1 pixels
+rect "Supply Cabinet" 100 by 40 fill gray stroke dark gray 1 pixels
   above "Classroom Door" with gap 25
 
-text "Supplies"
-  inside "Supply Cabinet" at center
+text "Supplies" at center of "Supply Cabinet"
 
 -- Trash can
-circle "Trash Can"
-  radius 15
-  fill dark gray
-  stroke black 1 pixels
+circle "Trash Can" radius 15 fill dark gray stroke black 1 pixels
   right of "Supply Cabinet" with gap 15
 
 -- Window indicators on left wall
 define window:
-  rect 10 by 80
-    fill window_blue
-    stroke gray 1 pixels
+  rect 10 by 80 fill window_blue stroke gray 1 pixels
 
 place window "Window 1"
   inside "Classroom Walls" at top left
-place window "Window 2"
-  below "Window 1" with gap 30
-place window "Window 3"
-  below "Window 2" with gap 30
+
+for w from 2 to 3
+  place window "Window {w}"
+    below "Window 1" with gap 30
 
 -- Title
-text "Classroom Layout"
-  at 50% 2%
+text "Classroom Layout" at 50% 2%

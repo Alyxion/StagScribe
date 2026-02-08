@@ -4,164 +4,81 @@
 canvas 1000 by 700 pixels
   background white
 
--- Outer walls
-rectangle "Outer Walls"
-  width 950
-  height 650
-  fill #F5F5F5
-  stroke black 3 pixels
-  at center
+rectangle "Outer Walls" 960 by 660 fill #F5F5F5 stroke black 3 pixels at center
 
 -- Living Room
-rectangle "Living Room"
-  width 350
-  height 300
-  fill #FAF9F6
-  stroke dark gray 1 pixels
+rectangle "Living Rm Floor" 380 by 360 fill #FAF9F6 stroke dark gray 1 pixels
   inside "Outer Walls" at top left
+text "Living Room"
+  inside "Living Rm Floor" at center
 
-text "Living Room Label"
-  inside "Living Room" at center
-
-rectangle "TV Stand"
-  width 120
-  height 20
-  fill dark gray
-  stroke black 1 pixels
-  inside "Living Room" at top left
-
-rectangle "Couch"
-  width 180
-  height 60
-  fill sky blue
-  stroke gray 1 pixels
-  inside "Living Room" at bottom left
-
-rectangle "Armchair"
-  width 60
-  height 60
-  fill sky blue
-  stroke gray 1 pixels
-  below "TV Stand" with gap 40
+rectangle "TV Stand" 120 by 20 fill dark gray stroke black 1 pixels
+  inside "Living Rm Floor" at top left
+rectangle "Couch" 160 by 55 fill sky blue stroke gray 1 pixels
+  inside "Living Rm Floor" at bottom left
+rectangle "Armchair" 55 by 55 fill sky blue stroke gray 1 pixels
+  inside "Living Rm Floor" at bottom right
 
 -- Kitchen and Dining
-rectangle "Kitchen Area"
-  width 350
-  height 300
-  fill #FFF8E7
-  stroke dark gray 1 pixels
+rectangle "Kitchen Area" 380 by 300 fill #FFF8E7 stroke dark gray 1 pixels
   inside "Outer Walls" at bottom left
-
 text "Kitchen / Dining"
   inside "Kitchen Area" at center
 
-rectangle "Kitchen Counter"
-  width 300
-  height 45
-  fill tan
-  stroke gray 1 pixels
+rectangle "Kitchen Counter" 340 by 40 fill tan stroke gray 1 pixels
   inside "Kitchen Area" at bottom left
-
-rectangle "Fridge"
-  width 60
-  height 60
-  fill light gray
-  stroke gray 1 pixels
+rectangle "Fridge" 55 by 55 fill light gray stroke gray 1 pixels
   inside "Kitchen Area" at bottom right
-
-rectangle "Dining Table"
-  width 140
-  height 90
-  fill tan
-  stroke gray 1 pixels
+rectangle "Dining Table" 130 by 80 fill tan stroke gray 1 pixels
   inside "Kitchen Area" at top left
 
--- Hallway
-rectangle "Hallway"
-  width 100
-  height 650
-  fill #F0F0F0
-  stroke dark gray 1 pixels
-  inside "Outer Walls" at center
-
+-- Central Hallway
+rectangle "Hallway" 80 by 660 fill #F0F0F0 stroke dark gray 1 pixels at 440 350
 text "Hall"
   inside "Hallway" at center
 
 -- Master Bedroom
-rectangle "Master Floor"
-  width 280
-  height 300
-  fill #E8F0E8
-  stroke dark gray 1 pixels
+rectangle "Master Floor" 500 by 320 fill #E8F0E8 stroke dark gray 1 pixels
   inside "Outer Walls" at top right
-
-text "Master Bedroom Label"
+text "Master Bedroom"
   inside "Master Floor" at center
 
-rectangle "Master Bed"
-  width 150
-  height 180
-  fill light blue
-  stroke gray 1 pixels
+rectangle "Master Bed" 140 by 170 fill light blue stroke gray 1 pixels
   inside "Master Floor" at top right
-
-rectangle "Master Closet"
-  width 100
-  height 50
-  fill #DDD
-  stroke gray 1 pixels
+rectangle "Master Closet" 100 by 50 fill #DDD stroke gray 1 pixels
   inside "Master Floor" at bottom left
-
 text "Closet"
   inside "Master Closet" at center
 
--- Second Bedroom
-rectangle "Bedroom 2 Floor"
-  width 280
-  height 220
-  fill #F0E8F0
-  stroke dark gray 1 pixels
-  inside "Outer Walls" at bottom right
-
-text "Bedroom 2"
-  inside "Bedroom 2 Floor" at center
-
-rectangle "Bed 2"
-  width 120
-  height 150
-  fill light blue
-  stroke gray 1 pixels
-  inside "Bedroom 2 Floor" at top right
-
-rectangle "Desk 2"
-  width 90
-  height 45
-  fill tan
-  stroke gray 1 pixels
-  inside "Bedroom 2 Floor" at bottom left
-
 -- Bathroom
-rectangle "Bathroom"
-  width 150
-  height 120
-  fill #E8F4F8
-  stroke dark gray 2 pixels
-  above "Bedroom 2 Floor" with gap 10
+rectangle "Bath Floor" 500 by 120 fill #E8F4F8 stroke dark gray 2 pixels
+  below "Master Floor" with gap 0
+text "Bathroom"
+  inside "Bath Floor" at center
 
-text "Bathroom Label"
-  inside "Bathroom" at center
+circle "Shower" radius 25 fill light blue stroke gray 1 pixels
+  inside "Bath Floor" at top right
+rectangle "Toilet" 40 by 50 fill white stroke gray 1 pixels
+  inside "Bath Floor" at bottom left
+rectangle "Bath Sink" 45 by 35 fill light blue stroke gray 1 pixels
+  inside "Bath Floor" at top left
+
+-- Bedroom 2
+rectangle "Bed 2 Floor" 500 by 220 fill #F0E8F0 stroke dark gray 1 pixels
+  below "Bath Floor" with gap 0
+text "Bedroom 2"
+  inside "Bed 2 Floor" at center
+
+rectangle "Bed 2" 120 by 150 fill light blue stroke gray 1 pixels
+  inside "Bed 2 Floor" at top right
+rectangle "Desk 2" 90 by 45 fill tan stroke gray 1 pixels
+  inside "Bed 2 Floor" at bottom left
 
 -- Front Door
-rectangle "Front Door"
-  width 80
-  height 10
-  fill brown
-  stroke black 2 pixels
+rectangle "Front Door" 80 by 10 fill brown stroke black 2 pixels
   inside "Outer Walls" at bottom left
-
 text "Entry"
   above "Front Door" with gap 5
 
 -- Title
-text "Two Bedroom Apartment"
-  at 50% 2%
+text "Two Bedroom Apartment" at 50% 2%
