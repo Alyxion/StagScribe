@@ -5,147 +5,67 @@ canvas 375 by 680 pixels
   background #F2F2F7
 
 -- Navigation bar
-rectangle "NavBar"
-  width 375
-  height 56
-  fill white
-  at top left
+rectangle "NavBar" 375 by 56 fill white at top left
 
-text "Settings"
-  size 17
-  bold
-  color #333333
+text "Settings" size 17 bold color #333333
   at center of "NavBar"
 
 -- Notifications section header
-text "NOTIFICATIONS"
-  size 13
-  bold
-  color gray
-  at 30% 12%
+text "NOTIFICATIONS" size 13 bold color gray at 30% 12%
 
 -- Notifications group background
-rectangle "NotifBg"
-  width 350
-  height 140
-  fill white
-  rounded 12
-  at 50% 25%
+rectangle "NotifBg" 350 by 140 fill white rounded 12 at 50% 25%
 
-text "Push Notifications"
-  size 16
-  color #333333
-  at 34% 20%
+text "Push Notifications" size 16 color #333333 at 34% 20%
 
-rectangle "PushToggleBg"
-  width 51
-  height 31
-  fill #34C759
-  rounded 16
-  at 85% 20%
+-- Push toggle (ON: green bg, white knob on right)
+rectangle "PushToggleBg" 51 by 31 fill #34C759 rounded 16 at 85% 20%
+circle "PushToggleKnob" radius 13 fill white at 89% 20%
 
-text "Email Alerts"
-  size 16
-  color #333333
-  at 28% 25%
+text "Email Alerts" size 16 color #333333 at 28% 25%
 
-rectangle "EmailToggleBg"
-  width 51
-  height 31
-  fill #E5E5EA
-  rounded 16
-  at 85% 25%
+-- Email toggle (OFF: gray bg, white knob on left)
+rectangle "EmailToggleBg" 51 by 31 fill #E5E5EA rounded 16 at 85% 25%
+circle "EmailToggleKnob" radius 13 fill white at 81% 25%
 
-text "Sound"
-  size 16
-  color #333333
-  at 22% 30%
+text "Sound" size 16 color #333333 at 22% 30%
 
-rectangle "SoundToggleBg"
-  width 51
-  height 31
-  fill #34C759
-  rounded 16
-  at 85% 30%
+-- Sound toggle (ON)
+rectangle "SoundToggleBg" 51 by 31 fill #34C759 rounded 16 at 85% 30%
+circle "SoundToggleKnob" radius 13 fill white at 89% 30%
 
 -- Appearance section header
-text "APPEARANCE"
-  size 13
-  bold
-  color gray
-  at 28% 40%
+text "APPEARANCE" size 13 bold color gray at 28% 40%
 
 -- Appearance group background
-rectangle "AppearBg"
-  width 350
-  height 96
-  fill white
-  rounded 12
-  at 50% 49%
+rectangle "AppearBg" 350 by 96 fill white rounded 12 at 50% 49%
 
-text "Dark Mode"
-  size 16
-  color #333333
-  at 26% 46%
+text "Dark Mode" size 16 color #333333 at 26% 46%
 
-rectangle "DarkToggleBg"
-  width 51
-  height 31
-  fill #E5E5EA
-  rounded 16
-  at 85% 46%
+-- Dark mode toggle (OFF)
+rectangle "DarkToggleBg" 51 by 31 fill #E5E5EA rounded 16 at 85% 46%
+circle "DarkToggleKnob" radius 13 fill white at 81% 46%
 
-text "Text Size"
-  size 16
-  color #333333
-  at 24% 52%
-
-text "Medium"
-  size 16
-  color gray
-  at 82% 52%
+text "Text Size" size 16 color #333333 at 24% 52%
+text "Medium" size 16 color gray at 82% 52%
 
 -- Privacy section header
-text "PRIVACY"
-  size 13
-  bold
-  color gray
-  at 24% 61%
+text "PRIVACY" size 13 bold color gray at 24% 61%
 
 -- Privacy group background
-rectangle "PrivacyBg"
-  width 350
-  height 96
-  fill white
-  rounded 12
-  at 50% 70%
+rectangle "PrivacyBg" 350 by 96 fill white rounded 12 at 50% 70%
 
-text "Location Services"
-  size 16
-  color #333333
-  at 32% 67%
+text "Location Services" size 16 color #333333 at 32% 67%
 
-rectangle "LocationToggleBg"
-  width 51
-  height 31
-  fill #34C759
-  rounded 16
-  at 85% 67%
+-- Location toggle (ON)
+rectangle "LocationToggleBg" 51 by 31 fill #34C759 rounded 16 at 85% 67%
+circle "LocationToggleKnob" radius 13 fill white at 89% 67%
 
-text "Share Analytics"
-  size 16
-  color #333333
-  at 30% 73%
+text "Share Analytics" size 16 color #333333 at 30% 73%
 
-rectangle "AnalyticsToggleBg"
-  width 51
-  height 31
-  fill #E5E5EA
-  rounded 16
-  at 85% 73%
+-- Analytics toggle (OFF)
+rectangle "AnalyticsToggleBg" 51 by 31 fill #E5E5EA rounded 16 at 85% 73%
+circle "AnalyticsToggleKnob" radius 13 fill white at 81% 73%
 
 -- Version info
-text "StagScribe v1.0.3 (build 42)"
-  size 12
-  color gray
-  at 50% 84%
+text "StagScribe v1.0.3 (build 42)" size 12 color gray at 50% 84%

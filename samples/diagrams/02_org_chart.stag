@@ -1,204 +1,111 @@
 -- Organization Chart
 -- CEO with three department heads and their teams
 
-canvas 800 by 600 pixels
+canvas 900 by 600 pixels
   background #FAFAFA
 
 -- CEO box
-rectangle "CEO"
-  width 180
-  height 60
-  fill #1A237E
-  stroke #0D1642 2 pixels
-  rounded 6
-  at 50% 10%
+rectangle "CEOBox" 180 by 70 fill #1A237E stroke #0D1642 2 pixels rounded 6 at 450 55
 
-text "CEO Title"
-  size 18
-  bold
-  color white
-  inside "CEO" at center
-
-text "Jane Morgan"
-  size 12
-  color #BBDEFB
-  at 50% 13%
+text "CEO" size 18 bold color white at 450 48
+text "Jane Morgan" size 11 color #BBDEFB at 450 68
 
 -- Engineering department
-rectangle "Engineering"
-  width 160
-  height 50
-  fill #1565C0
-  stroke #0D47A1 2 pixels
-  rounded 6
-  at 20% 35%
+rectangle "EngBox" 150 by 48 fill #1565C0 stroke #0D47A1 2 pixels rounded 6 at 180 210
 
-text "Engineering Title"
-  size 14
-  bold
-  color white
-  inside "Engineering" at center
+text "Engineering" size 13 bold color white
+  inside "EngBox" at center
 
 -- Marketing department
-rectangle "Marketing"
-  width 160
-  height 50
-  fill #2E7D32
-  stroke #1B5E20 2 pixels
-  rounded 6
-  at 50% 35%
+rectangle "MktBox" 150 by 48 fill #2E7D32 stroke #1B5E20 2 pixels rounded 6 at 450 210
 
-text "Marketing Title"
-  size 14
-  bold
-  color white
-  inside "Marketing" at center
+text "Marketing" size 13 bold color white
+  inside "MktBox" at center
 
 -- Finance department
-rectangle "Finance"
-  width 160
-  height 50
-  fill #E65100
-  stroke #BF360C 2 pixels
-  rounded 6
-  at 80% 35%
+rectangle "FinBox" 150 by 48 fill #E65100 stroke #BF360C 2 pixels rounded 6 at 720 210
 
-text "Finance Title"
-  size 14
-  bold
-  color white
-  inside "Finance" at center
+text "Finance" size 13 bold color white
+  inside "FinBox" at center
 
 -- Lines from CEO to departments
 line "CEO to Eng"
-  from 400 90
-  to 160 185
+  from 450 90
+  to 180 186
   stroke #90A4AE 2 pixels
 
 line "CEO to Mkt"
-  from 400 90
-  to 400 185
+  from 450 90
+  to 450 186
   stroke #90A4AE 2 pixels
 
 line "CEO to Fin"
-  from 400 90
-  to 640 185
+  from 450 90
+  to 720 186
   stroke #90A4AE 2 pixels
 
--- Engineering team members
-rectangle "FrontEnd"
-  width 130
-  height 40
-  fill #42A5F5
-  stroke #1E88E5 1 pixels
-  rounded 4
-  at 12% 58%
+-- Engineering team members (evenly spaced at 140px intervals, 110px wide)
+rectangle "FEBox" 110 by 38 fill #42A5F5 stroke #1E88E5 1 pixels rounded 4 at 100 348
 
-text "Front-End"
-  size 12
-  color white
-  inside "FrontEnd" at center
+text "Front-End" size 11 color white
+  inside "FEBox" at center
 
-rectangle "BackEnd"
-  width 130
-  height 40
-  fill #42A5F5
-  stroke #1E88E5 1 pixels
-  rounded 4
-  at 28% 58%
+rectangle "BEBox" 110 by 38 fill #42A5F5 stroke #1E88E5 1 pixels rounded 4 at 240 348
 
-text "Back-End"
-  size 12
-  color white
-  inside "BackEnd" at center
+text "Back-End" size 11 color white
+  inside "BEBox" at center
 
 line "Eng to FE"
-  from 160 235
-  to 96 325
+  from 180 234
+  to 100 329
   stroke #90A4AE 1 pixels
 
 line "Eng to BE"
-  from 160 235
-  to 224 325
+  from 180 234
+  to 240 329
   stroke #90A4AE 1 pixels
 
 -- Marketing team members
-rectangle "Digital"
-  width 130
-  height 40
-  fill #66BB6A
-  stroke #43A047 1 pixels
-  rounded 4
-  at 42% 58%
+rectangle "DigBox" 110 by 38 fill #66BB6A stroke #43A047 1 pixels rounded 4 at 380 348
 
-text "Digital Title"
-  size 12
-  color white
-  inside "Digital" at center
+text "Digital" size 11 color white
+  inside "DigBox" at center
 
-rectangle "Brand"
-  width 130
-  height 40
-  fill #66BB6A
-  stroke #43A047 1 pixels
-  rounded 4
-  at 58% 58%
+rectangle "BrandBox" 110 by 38 fill #66BB6A stroke #43A047 1 pixels rounded 4 at 520 348
 
-text "Brand Title"
-  size 12
-  color white
-  inside "Brand" at center
+text "Brand" size 11 color white
+  inside "BrandBox" at center
 
 line "Mkt to Dig"
-  from 400 235
-  to 336 325
+  from 450 234
+  to 380 329
   stroke #90A4AE 1 pixels
 
 line "Mkt to Brand"
-  from 400 235
-  to 464 325
+  from 450 234
+  to 520 329
   stroke #90A4AE 1 pixels
 
 -- Finance team members
-rectangle "Accounting"
-  width 130
-  height 40
-  fill #FFA726
-  stroke #FB8C00 1 pixels
-  rounded 4
-  at 72% 58%
+rectangle "AccBox" 110 by 38 fill #FFA726 stroke #FB8C00 1 pixels rounded 4 at 660 348
 
-text "Accounting Title"
-  size 12
-  color white
-  inside "Accounting" at center
+text "Accounting" size 11 color white
+  inside "AccBox" at center
 
-rectangle "Payroll"
-  width 130
-  height 40
-  fill #FFA726
-  stroke #FB8C00 1 pixels
-  rounded 4
-  at 88% 58%
+rectangle "PayBox" 110 by 38 fill #FFA726 stroke #FB8C00 1 pixels rounded 4 at 800 348
 
-text "Payroll Title"
-  size 12
-  color white
-  inside "Payroll" at center
+text "Payroll" size 11 color white
+  inside "PayBox" at center
 
 line "Fin to Acc"
-  from 640 235
-  to 576 325
+  from 720 234
+  to 660 329
   stroke #90A4AE 1 pixels
 
 line "Fin to Pay"
-  from 640 235
-  to 704 325
+  from 720 234
+  to 800 329
   stroke #90A4AE 1 pixels
 
 -- Title
-text "Organization Chart"
-  size 22
-  bold
-  color #333333
-  at 50% 92%
+text "Organization Chart" size 22 bold color #333333 at 50% 92%

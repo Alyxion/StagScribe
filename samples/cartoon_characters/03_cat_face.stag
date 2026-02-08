@@ -4,6 +4,17 @@
 canvas 220 by 220 pixels
   background lavender
 
+-- Ear shadows for depth
+path "LeftEarShadow"
+  d "M53 72 L73 20 L93 72"
+  fill #A0764A
+  stroke none
+
+path "RightEarShadow"
+  d "M127 72 L147 20 L167 72"
+  fill #A0764A
+  stroke none
+
 -- Left Ear
 path "LeftEar"
   d "M55 70 L75 20 L95 70"
@@ -28,43 +39,20 @@ path "RightEarInner"
   fill pink
   stroke none
 
--- Face
-ellipse "Face"
-  width 130
-  height 110
-  fill sandybrown
-  stroke sienna 2 pixels
-  at center
+-- Face with subtle highlight
+ellipse "FaceShadow" 132 by 112 fill #B08050 at 51% 52%
+ellipse "Face" 130 by 110 fill sandybrown stroke sienna 2 pixels at center
+ellipse "FaceHighlight" 80 by 40 fill #DEB887 opacity 0.3 at 48% 46%
 
 -- Left Eye
-ellipse "LeftEye"
-  width 28
-  height 32
-  fill white
-  stroke darkslategray 2 pixels
-  at 42% 46%
-
--- Left Pupil
-ellipse "LeftPupil"
-  width 12
-  height 22
-  fill darkslategray
-  at center of "LeftEye"
+ellipse "LeftEye" 28 by 32 fill white stroke darkslategray 2 pixels at 42% 46%
+ellipse "LeftPupil" 12 by 22 fill darkslategray at center of "LeftEye"
+ellipse "LeftEyeHighlight" 4 by 6 fill white at 40% 43%
 
 -- Right Eye
-ellipse "RightEye"
-  width 28
-  height 32
-  fill white
-  stroke darkslategray 2 pixels
-  at 58% 46%
-
--- Right Pupil
-ellipse "RightPupil"
-  width 12
-  height 22
-  fill darkslategray
-  at center of "RightEye"
+ellipse "RightEye" 28 by 32 fill white stroke darkslategray 2 pixels at 58% 46%
+ellipse "RightPupil" 12 by 22 fill darkslategray at center of "RightEye"
+ellipse "RightEyeHighlight" 4 by 6 fill white at 56% 43%
 
 -- Nose
 path "Nose"
@@ -72,33 +60,33 @@ path "Nose"
   fill pink
   stroke hotpink 1 pixels
 
--- Left Whisker Top
+-- Whiskers
 line "LeftWhiskerTop"
-  d "M30 105 L85 110"
+  from 30 105
+  to 85 110
   stroke darkslategray 1 pixels
 
--- Left Whisker Bottom
 line "LeftWhiskerBottom"
-  d "M32 125 L85 120"
+  from 32 125
+  to 85 120
   stroke darkslategray 1 pixels
 
--- Right Whisker Top
 line "RightWhiskerTop"
-  d "M135 110 L190 105"
+  from 135 110
+  to 190 105
   stroke darkslategray 1 pixels
 
--- Right Whisker Bottom
 line "RightWhiskerBottom"
-  d "M135 120 L188 125"
+  from 135 120
+  to 188 125
   stroke darkslategray 1 pixels
 
--- Mouth Left
+-- Mouth
 path "MouthLeft"
   d "M110 120 Q100 135 92 128"
   stroke darkslategray 1.5 pixels
   fill none
 
--- Mouth Right
 path "MouthRight"
   d "M110 120 Q120 135 128 128"
   stroke darkslategray 1.5 pixels

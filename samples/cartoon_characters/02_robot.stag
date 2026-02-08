@@ -4,41 +4,60 @@
 canvas 240 by 300 pixels
   background lightskyblue
 
-circle "AntennaBall" radius 8 fill tomato at 50% 8%
+-- Shadow under robot
+ellipse "Shadow" 100 by 16 fill #00000022 at 50% 94%
 
+-- Antenna
+circle "AntennaBall" radius 8 fill tomato stroke #CC3333 2 pixels at 50% 8%
 line "AntennaStick"
   from 120 24
   to 120 60
   stroke slategray 3 pixels
 
+-- Head with gradient effect
+rectangle "HeadShadow" 82 by 62 fill #8899AA at 51% 31%
+  rounded 8
 rectangle "Head" 80 by 60 fill silver stroke slategray 3 pixels at 50% 30%
   rounded 8
+rectangle "HeadHighlight" 60 by 15 fill #D8D8D8 opacity 0.5 rounded 4 at 50% 25%
 
-circle "LeftEye" radius 10 fill white stroke slategray 2 pixels at 43% 28%
-circle "LeftPupil" radius 5 fill cornflowerblue at center of "LeftEye"
-circle "RightEye" radius 10 fill white stroke slategray 2 pixels at 57% 28%
-circle "RightPupil" radius 5 fill cornflowerblue at center of "RightEye"
+-- Eyes with reflections
+circle "LeftEye" radius 12 fill white stroke slategray 2 pixels at 43% 28%
+circle "LeftPupil" radius 6 fill cornflowerblue at center of "LeftEye"
+circle "LeftEyeHighlight" radius 2 fill white at 41% 26%
+circle "RightEye" radius 12 fill white stroke slategray 2 pixels at 57% 28%
+circle "RightPupil" radius 6 fill cornflowerblue at center of "RightEye"
+circle "RightEyeHighlight" radius 2 fill white at 55% 26%
 
+-- Mouth (series of small segments for expression)
 rectangle "Mouth" 30 by 8 fill darkslategray rounded 4 at 50% 38%
 
-rectangle "Body" 100 by 90 fill lightsteelblue stroke slategray 3 pixels
+-- Body with depth
+rectangle "BodyShadow" 102 by 92 fill #8899AA at 51% 58%
   rounded 10
-  below "Head" with gap 5
+rectangle "Body" 100 by 90 fill lightsteelblue stroke slategray 3 pixels at 50% 57%
+  rounded 10
+rectangle "BodyHighlight" 70 by 12 fill #C8D8E8 opacity 0.4 rounded 4 at 50% 49%
 
-rectangle "ChestPanel" 40 by 30 fill white stroke slategray 2 pixels
-  rounded 4
+-- Chest panel with details
+rectangle "ChestPanel" 42 by 32 fill white stroke slategray 2 pixels rounded 4
   inside "Body" at center
+circle "PowerLight" radius 6 fill limegreen stroke #228B22 1 pixels at center of "ChestPanel"
 
-circle "PowerLight" radius 6 fill limegreen at center of "ChestPanel"
+-- Rivets on body
+circle "Rivet1" radius 2 fill #888888 at 32% 50%
+circle "Rivet2" radius 2 fill #888888 at 68% 50%
+circle "Rivet3" radius 2 fill #888888 at 32% 65%
+circle "Rivet4" radius 2 fill #888888 at 68% 65%
 
-rectangle "LeftArm" 18 by 50 fill silver stroke slategray 2 pixels at 22% 55%
-  rounded 6
-rectangle "RightArm" 18 by 50 fill silver stroke slategray 2 pixels at 78% 55%
-  rounded 6
+-- Arms with rounded ends
+rectangle "LeftArm" 18 by 50 fill silver stroke slategray 2 pixels rounded 8 at 20% 55%
+circle "LeftHand" radius 8 fill silver stroke slategray 2 pixels at 20% 65%
+rectangle "RightArm" 18 by 50 fill silver stroke slategray 2 pixels rounded 8 at 80% 55%
+circle "RightHand" radius 8 fill silver stroke slategray 2 pixels at 80% 65%
 
-rectangle "LeftLeg" 24 by 40 fill slategray stroke darkslategray 2 pixels at 40% 90%
-  rounded 4
-  below "Body" with gap 5
-rectangle "RightLeg" 24 by 40 fill slategray stroke darkslategray 2 pixels at 60% 90%
-  rounded 4
-  below "Body" with gap 5
+-- Legs
+rectangle "LeftLeg" 24 by 40 fill slategray stroke darkslategray 2 pixels rounded 6 at 40% 87%
+rectangle "LeftFoot" 30 by 10 fill slategray stroke darkslategray 2 pixels rounded 4 at 40% 93%
+rectangle "RightLeg" 24 by 40 fill slategray stroke darkslategray 2 pixels rounded 6 at 60% 87%
+rectangle "RightFoot" 30 by 10 fill slategray stroke darkslategray 2 pixels rounded 4 at 60% 93%

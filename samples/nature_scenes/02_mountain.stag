@@ -5,11 +5,7 @@ canvas 800 by 500 pixels
   background cornflowerblue
 
 -- Sky
-rectangle "Sky"
-  width 800
-  height 320
-  fill cornflowerblue
-  at top left
+rectangle "Sky" 800 by 320 fill cornflowerblue at top left
 
 -- Distant mountain range (back layer)
 polygon "FarMountainLeft"
@@ -49,85 +45,59 @@ polygon "NearMountainRight"
   fill #4a6741
   opacity 0.85
 
--- Meadow
-rectangle "Meadow"
-  width 800
-  height 180
-  fill limegreen
-  at 50% 82%
+-- Meadow layers (starting at mountain base y=320, extending to canvas bottom)
+rectangle "Meadow" 800 by 180 fill limegreen at 50% 82%
+rectangle "MeadowMid" 800 by 100 fill #3CB371 at 50% 88%
+rectangle "MeadowDark" 800 by 40 fill forestgreen at 50% 96%
 
--- Meadow darker layer
-rectangle "MeadowDark"
-  width 800
-  height 80
-  fill forestgreen
-  at 50% 92%
-
--- Trees (simple triangle shapes)
+-- Trees (simple triangle shapes with shadows)
+polygon "TreeShadow1"
+  points (102 312) (122 242) (142 312)
+  fill #2d4a25
+  opacity 0.5
 polygon "Tree1"
   points (100 310) (120 240) (140 310)
   fill darkgreen
+rectangle "Trunk1" 8 by 20 fill saddlebrown at 120 320
 
-rectangle "Trunk1"
-  width 8
-  height 20
-  fill saddlebrown
-  at 120 320
-
+polygon "TreeShadow2"
+  points (182 312) (207 232) (232 312)
+  fill #2d4a25
+  opacity 0.5
 polygon "Tree2"
   points (180 310) (205 230) (230 310)
   fill forestgreen
-
-rectangle "Trunk2"
-  width 8
-  height 20
-  fill saddlebrown
-  at 205 320
+rectangle "Trunk2" 8 by 20 fill saddlebrown at 205 320
 
 polygon "Tree3"
   points (620 310) (645 225) (670 310)
   fill darkgreen
-
-rectangle "Trunk3"
-  width 8
-  height 20
-  fill saddlebrown
-  at 645 320
+rectangle "Trunk3" 8 by 20 fill saddlebrown at 645 320
 
 polygon "Tree4"
   points (700 310) (720 250) (740 310)
   fill forestgreen
+rectangle "Trunk4" 8 by 20 fill saddlebrown at 720 320
 
-rectangle "Trunk4"
-  width 8
-  height 20
-  fill saddlebrown
-  at 720 320
-
--- Sun in the sky
-circle "Sun"
-  radius 35
-  fill gold
-  at 80% 12%
-
--- Small cloud
-ellipse "Cloud1"
-  width 100
-  height 30
-  fill white
-  opacity 0.8
-  at 18% 10%
-
-ellipse "Cloud2"
-  width 80
-  height 25
-  fill white
-  opacity 0.75
-  at 48% 16%
-
--- Path through the meadow
-path "MeadowPath"
-  d "M380 500 Q390 420 400 370 Q420 340 450 320"
-  stroke sandybrown 12 pixels
-  fill sandybrown
+-- Small background trees for depth
+polygon "FarTree1"
+  points (340 318) (355 275) (370 318)
+  fill #2d5a2d
   opacity 0.6
+polygon "FarTree2"
+  points (440 318) (455 280) (470 318)
+  fill #2d5a2d
+  opacity 0.6
+
+-- Horizontal path/road through meadow (stays in meadow, never cuts into mountains)
+rectangle "Road" 800 by 14 fill sandybrown opacity 0.5 at 50% 74%
+rectangle "RoadLine" 800 by 2 fill #D2B48C opacity 0.7 at 50% 74%
+
+-- Sun with glow
+circle "SunGlow" radius 50 fill gold opacity 0.2 at 80% 12%
+circle "Sun" radius 35 fill gold at 80% 12%
+
+-- Clouds
+ellipse "Cloud1" 120 by 32 fill white opacity 0.8 at 18% 10%
+ellipse "Cloud1b" 80 by 24 fill white opacity 0.7 at 24% 8%
+ellipse "Cloud2" 100 by 28 fill white opacity 0.75 at 48% 16%

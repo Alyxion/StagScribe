@@ -5,29 +5,38 @@ canvas 800 by 500 pixels
   background midnightblue
 
 -- Sky gradient layers stacked from top to bottom
-rectangle "UpperSky" 800 by 150 fill darkslateblue at top left
-rectangle "MidSky" 800 by 120 fill darkorange opacity 0.85
+rectangle "UpperSky" 800 by 100 fill #1a1a4e at top left
+rectangle "MidUpperSky" 800 by 80 fill #4B2C5E
   below "UpperSky" with gap 0
-rectangle "LowerSky" 800 by 100 fill orangered opacity 0.9
+rectangle "MidSky" 800 by 80 fill #8B3A62
+  below "MidUpperSky" with gap 0
+rectangle "LowerSky" 800 by 80 fill darkorange
   below "MidSky" with gap 0
-rectangle "HorizonGlow" 800 by 80 fill gold opacity 0.7
+rectangle "HorizonGlow" 800 by 80 fill gold
   below "LowerSky" with gap 0
-
--- Horizon land silhouette
-rectangle "HorizonLand" 800 by 30 fill #1a1a2e
+rectangle "HorizonBand" 800 by 30 fill #FFE4B5
   below "HorizonGlow" with gap 0
-rectangle "Ground" 800 by 20 fill #0d0d1a
+
+-- Horizon land silhouette and water
+rectangle "HorizonLand" 800 by 25 fill #1a1a2e
+  below "HorizonBand" with gap 0
+rectangle "Water" 800 by 25 fill #0d0d2e
   below "HorizonLand" with gap 0
 
--- Sun
-circle "Sun" radius 55 fill gold stroke lightyellow 4 pixels at 50% 58%
-  opacity 0.95
-circle "SunCore" radius 30 fill lightyellow opacity 0.8 at center of "Sun"
+-- Distant clouds (drawn before sun so sun glows in front)
+ellipse "CloudLeft" 140 by 28 fill #9B5080 opacity 0.5 at 18% 18%
+ellipse "CloudLeftEdge" 100 by 20 fill #AB6090 opacity 0.4 at 12% 20%
+ellipse "CloudRight" 180 by 32 fill #9B5080 opacity 0.4 at 68% 15%
+ellipse "CloudRightEdge" 120 by 22 fill #AB6090 opacity 0.35 at 75% 13%
 
--- Water reflection near horizon
-rectangle "WaterReflection" 800 by 12 fill gold opacity 0.25 at 50% 89%
+-- Sun with glow (drawn AFTER ground so it sits on top at horizon)
+-- Horizon line is at y=450 (top of HorizonLand). Sun center at y=430 = 86%
+circle "SunGlowOuter" radius 65 fill #FFA500 opacity 0.15 at 50% 80%
+circle "SunGlowMiddle" radius 45 fill #FFD700 opacity 0.25 at 50% 80%
+circle "Sun" radius 32 fill gold at 50% 80%
+circle "SunCore" radius 16 fill lightyellow opacity 0.8 at 50% 79%
 
--- Distant clouds
-ellipse "CloudLeft" 160 by 35 fill #c0392b opacity 0.4 at 15% 18%
-ellipse "CloudRight" 200 by 40 fill #e74c3c opacity 0.35 at 65% 15%
-ellipse "CloudCenter" 120 by 25 fill darkorange opacity 0.5 at 42% 28%
+-- Water reflections (drawn AFTER water/ground so they show on top)
+rectangle "WaterReflection1" 220 by 10 fill gold opacity 0.4 at 50% 93%
+rectangle "WaterReflection2" 140 by 6 fill gold opacity 0.3 at 50% 96%
+rectangle "WaterReflection3" 70 by 4 fill lightyellow opacity 0.25 at 50% 98%

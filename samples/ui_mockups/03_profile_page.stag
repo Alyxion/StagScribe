@@ -4,146 +4,47 @@
 canvas 375 by 700 pixels
   background #F5F5F5
 
--- Header background
-rectangle "HeaderBg"
-  width 375
-  height 180
-  fill #007AFF
-  at top left
+-- Header background with gradient effect
+rectangle "HeaderBgDark" 375 by 180 fill #0056B3 at top left
+rectangle "HeaderBg" 375 by 170 fill #007AFF at top left
 
 -- Avatar
-circle "Avatar"
-  radius 48
-  fill white
-  stroke white 4 pixels
-  at 50% 22%
+circle "AvatarShadow" radius 50 fill #00000033 at 51% 23%
+circle "Avatar" radius 48 fill white stroke white 4 pixels at 50% 22%
+circle "AvatarInner" radius 44 fill #C0D8F0 at center of "Avatar"
+text "JD" size 32 bold color #007AFF at center of "Avatar"
 
-circle "AvatarInner"
-  radius 44
-  fill #C0D8F0
-  at center of "Avatar"
-
-text "JD"
-  size 32
-  bold
-  color #007AFF
-  at center of "Avatar"
-
--- User name and handle
-text "Jane Doe"
-  size 22
-  bold
-  color #333333
-  at 50% 29%
-
-text "@janedoe"
-  size 14
-  color gray
-  at 50% 33%
+-- User name and handle (pushed down to avoid overlap)
+text "Jane Doe" size 22 bold color #333333 at 50% 32%
+text "@janedoe" size 14 color gray at 50% 36%
 
 -- Stats row background
-rectangle "StatsBg"
-  width 320
-  height 64
-  fill white
-  rounded 12
-  at 50% 40%
+rectangle "StatsBg" 320 by 64 fill white rounded 12 at 50% 43%
 
--- Stats text positioned with percentages
-text "142"
-  size 20
-  bold
-  color #333333
-  at 22% 38%
+-- Stats text
+text "142" size 20 bold color #333333 at 22% 41%
+text "Posts" size 11 color gray at 22% 45%
 
-text "Posts"
-  size 11
-  color gray
-  at 22% 42%
+text "8.4K" size 20 bold color #333333 at 50% 41%
+text "Followers" size 11 color gray at 50% 45%
 
-text "8.4K"
-  size 20
-  bold
-  color #333333
-  at 50% 38%
+text "520" size 20 bold color #333333 at 78% 41%
+text "Following" size 11 color gray at 78% 45%
 
-text "Followers"
-  size 11
-  color gray
-  at 50% 42%
+-- Action buttons (with gap between them)
+rectangle "FollowButton" 140 by 44 fill #007AFF rounded 10 at 28% 53%
+text "Follow" size 15 bold color white at center of "FollowButton"
 
-text "520"
-  size 20
-  bold
-  color #333333
-  at 78% 38%
-
-text "Following"
-  size 11
-  color gray
-  at 78% 42%
-
--- Action buttons
-rectangle "FollowButton"
-  width 150
-  height 44
-  fill #007AFF
-  rounded 10
-  at 30% 50%
-
-text "Follow"
-  size 15
-  bold
-  color white
-  at center of "FollowButton"
-
-rectangle "MessageButton"
-  width 150
-  height 44
-  fill white
-  stroke #007AFF 1 pixels
-  rounded 10
-  at 70% 50%
-
-text "Message"
-  size 15
-  bold
-  color #007AFF
-  at center of "MessageButton"
+rectangle "MessageButton" 140 by 44 fill white stroke #007AFF 1 pixels rounded 10 at 72% 53%
+text "Message" size 15 bold color #007AFF at center of "MessageButton"
 
 -- Bio section
-rectangle "BioBg"
-  width 340
-  height 120
-  fill white
-  rounded 12
-  at 50% 63%
+rectangle "BioBg" 340 by 110 fill white rounded 12 at 50% 65%
 
-text "About"
-  size 14
-  bold
-  color #333333
-  at 24% 58%
-
-text "Designer and developer."
-  size 13
-  color #555555
-  at 38% 62%
-
-text "Building tools for creative teams."
-  size 13
-  color #555555
-  at 42% 66%
+text "About" size 14 bold color #333333 at 24% 60%
+text "Designer and developer." size 13 color #555555 at 38% 64%
+text "Building tools for creative teams." size 13 color #555555 at 42% 68%
 
 -- Location info
-rectangle "InfoBg"
-  width 340
-  height 40
-  fill white
-  rounded 12
-  at 50% 77%
-
-text "San Francisco, CA"
-  size 13
-  color gray
-  at 35% 77%
+rectangle "InfoBg" 340 by 40 fill white rounded 12 at 50% 78%
+text "San Francisco, CA" size 13 color gray at 35% 78%

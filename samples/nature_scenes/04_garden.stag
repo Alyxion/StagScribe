@@ -12,15 +12,18 @@ rectangle "Grass" 800 by 260 fill limegreen
   below "Sky" with gap 0
 
 -- Darker grass at bottom
-rectangle "GrassDark" 800 by 120 fill forestgreen at 50% 92%
+rectangle "GrassDark" 800 by 100 fill forestgreen at 50% 90%
 
 -- Clouds
-ellipse "Cloud1" 130 by 35 fill white opacity 0.85 at 14% 8%
-ellipse "Cloud2" 100 by 28 fill white opacity 0.8 at 63% 12%
+ellipse "Cloud1a" 130 by 35 fill white opacity 0.85 at 14% 8%
+ellipse "Cloud1b" 90 by 28 fill white opacity 0.8 at 20% 6%
+ellipse "Cloud2a" 110 by 30 fill white opacity 0.8 at 63% 12%
+ellipse "Cloud2b" 80 by 24 fill white opacity 0.75 at 69% 10%
 ellipse "Cloud3" 90 by 25 fill white opacity 0.75 at 38% 6%
 
--- Sun
-circle "Sun" radius 32 fill gold at 90% 10%
+-- Sun with glow
+circle "SunGlow" radius 42 fill gold opacity 0.2 at 90% 10%
+circle "Sun" radius 30 fill gold at 90% 10%
 
 -- Wooden fence horizontal rails
 rectangle "TopRail" 800 by 8 fill burlywood stroke saddlebrown 1 pixels at 50% 42%
@@ -31,63 +34,74 @@ for i from 0 to 7
   rectangle "Post{i}" 12 by 80 fill saddlebrown
     at i * 100 + 56 235
 
--- Red flower 1
-rectangle "Stem_R1" 4 by 60 fill green at 122 330
-circle "Petal_R1a" radius 10 fill red at 122 295
-circle "Petal_R1b" radius 10 fill crimson at 112 285
-circle "Petal_R1c" radius 10 fill red at 132 285
-circle "Center_R1" radius 6 fill gold at 122 288
+-- Red flower (5 petals arranged in circle)
+rectangle "StemR" 4 by 60 fill green at 122 330
+circle "PetalR1" radius 9 fill red at 122 282
+circle "PetalR2" radius 9 fill crimson at 113 290
+circle "PetalR3" radius 9 fill red at 131 290
+circle "PetalR4" radius 9 fill crimson at 115 300
+circle "PetalR5" radius 9 fill red at 129 300
+circle "CenterR" radius 6 fill gold at 122 293
 
--- Yellow flower 1
-rectangle "Stem_Y1" 4 by 55 fill green at 252 340
-circle "Petal_Y1a" radius 9 fill gold at 252 305
-circle "Petal_Y1b" radius 9 fill yellow at 243 297
-circle "Petal_Y1c" radius 9 fill gold at 261 297
-circle "Center_Y1" radius 5 fill saddlebrown at 252 300
+-- Yellow flower (5 petals)
+rectangle "StemY" 4 by 55 fill green at 252 340
+circle "PetalY1" radius 8 fill gold at 252 295
+circle "PetalY2" radius 8 fill yellow at 243 302
+circle "PetalY3" radius 8 fill gold at 261 302
+circle "PetalY4" radius 8 fill yellow at 245 312
+circle "PetalY5" radius 8 fill gold at 259 312
+circle "CenterY" radius 5 fill saddlebrown at 252 304
 
--- Purple flower 1
-rectangle "Stem_P1" 4 by 65 fill darkgreen at 402 325
-circle "Petal_P1a" radius 11 fill mediumpurple at 402 288
-circle "Petal_P1b" radius 11 fill darkorchid at 392 278
-circle "Petal_P1c" radius 11 fill mediumpurple at 412 278
-circle "Petal_P1d" radius 11 fill purple at 402 268
-circle "Center_P1" radius 6 fill lightyellow at 402 278
+-- Purple flower (5 petals)
+rectangle "StemP" 4 by 65 fill darkgreen at 402 325
+circle "PetalP1" radius 10 fill mediumpurple at 402 275
+circle "PetalP2" radius 10 fill darkorchid at 393 283
+circle "PetalP3" radius 10 fill mediumpurple at 411 283
+circle "PetalP4" radius 10 fill purple at 395 293
+circle "PetalP5" radius 10 fill darkorchid at 409 293
+circle "CenterP" radius 6 fill lightyellow at 402 285
 
--- Pink flower 1
-rectangle "Stem_Pk1" 4 by 50 fill green at 542 345
-circle "Petal_Pk1a" radius 9 fill hotpink at 542 310
-circle "Petal_Pk1b" radius 9 fill deeppink at 533 302
-circle "Petal_Pk1c" radius 9 fill hotpink at 551 302
-circle "Center_Pk1" radius 5 fill gold at 542 305
+-- Pink flower (5 petals)
+rectangle "StemPk" 4 by 50 fill green at 542 345
+circle "PetalPk1" radius 8 fill hotpink at 542 302
+circle "PetalPk2" radius 8 fill deeppink at 534 309
+circle "PetalPk3" radius 8 fill hotpink at 550 309
+circle "PetalPk4" radius 8 fill deeppink at 536 318
+circle "PetalPk5" radius 8 fill hotpink at 548 318
+circle "CenterPk" radius 5 fill gold at 542 311
 
--- Orange flower 1
-rectangle "Stem_O1" 4 by 58 fill green at 682 335
-circle "Petal_O1a" radius 10 fill darkorange at 682 298
-circle "Petal_O1b" radius 10 fill orange at 672 288
-circle "Petal_O1c" radius 10 fill darkorange at 692 288
-circle "Center_O1" radius 6 fill brown at 682 292
+-- Orange flower (5 petals)
+rectangle "StemO" 4 by 58 fill green at 682 335
+circle "PetalO1" radius 9 fill darkorange at 682 286
+circle "PetalO2" radius 9 fill orange at 673 294
+circle "PetalO3" radius 9 fill darkorange at 691 294
+circle "PetalO4" radius 9 fill orange at 675 303
+circle "PetalO5" radius 9 fill darkorange at 689 303
+circle "CenterO" radius 5 fill brown at 682 295
 
 -- Small grass tufts
 polygon "Tuft1"
-  points (60 380) (70 350) (80 380)
+  points (60 380) (65 360) (70 345) (75 360) (80 380)
   fill darkgreen
 polygon "Tuft2"
-  points (300 390) (310 360) (320 390)
+  points (300 390) (305 370) (310 355) (315 370) (320 390)
   fill darkgreen
 polygon "Tuft3"
-  points (500 385) (510 355) (520 385)
+  points (500 385) (505 365) (510 350) (515 365) (520 385)
   fill forestgreen
 polygon "Tuft4"
-  points (720 388) (730 358) (740 388)
+  points (720 388) (725 368) (730 353) (735 368) (740 388)
   fill darkgreen
 
--- Butterfly
-ellipse "WingLeft" 18 by 24 fill cornflowerblue opacity 0.8 at 325 200
-ellipse "WingRight" 18 by 24 fill cornflowerblue opacity 0.8 at 347 200
-rectangle "Body_BF" 3 by 16 fill #333333 at 336 200
+-- Butterfly (larger, more visible, in flight above flowers)
+ellipse "WingBL" 24 by 30 fill cornflowerblue opacity 0.75 at 320 175
+ellipse "WingBR" 24 by 30 fill cornflowerblue opacity 0.75 at 350 175
+ellipse "WingBLInner" 12 by 16 fill royalblue opacity 0.6 at 324 178
+ellipse "WingBRInner" 12 by 16 fill royalblue opacity 0.6 at 346 178
+rectangle "BodyBF" 3 by 20 fill #333333 at 335 175
 
--- Garden path
+-- Garden path (wider and more visible)
 path "GardenPath"
-  d "M380 500 Q385 460 395 430 Q410 400 400 380"
-  stroke sandybrown 16 pixels
-  opacity 0.5
+  d "M380 500 Q385 460 395 430 Q410 400 400 375"
+  stroke sandybrown 20 pixels
+  opacity 0.45

@@ -4,17 +4,35 @@
 canvas 200 by 200 pixels
   background white
 
+-- Face with subtle gradient effect (light highlight + main face)
+circle "FaceShadow" radius 82 fill #DAA520 at 51% 51%
 circle "Face" radius 80 fill gold stroke goldenrod 3 pixels at center
+circle "FaceHighlight" radius 60 fill #FFD700 opacity 0.3 at 46% 44%
 
-circle "LeftEye" radius 10 fill white stroke darkslategray 2 pixels at 40% 40%
-circle "LeftPupil" radius 5 fill darkslategray at center of "LeftEye"
-circle "RightEye" radius 10 fill white stroke darkslategray 2 pixels at 60% 40%
-circle "RightPupil" radius 5 fill darkslategray at center of "RightEye"
+-- Eyes with highlights
+circle "LeftEye" radius 12 fill white stroke darkslategray 2 pixels at 40% 40%
+circle "LeftPupil" radius 6 fill darkslategray at center of "LeftEye"
+circle "LeftEyeHighlight" radius 2 fill white at 38% 38%
+circle "RightEye" radius 12 fill white stroke darkslategray 2 pixels at 60% 40%
+circle "RightPupil" radius 6 fill darkslategray at center of "RightEye"
+circle "RightEyeHighlight" radius 2 fill white at 58% 38%
 
-path "Smile"
-  d "M65 120 Q100 155 135 120"
-  stroke darkslategray 3 pixels
+-- Smile (thicker, no endpoints visible)
+path "SmileOuter"
+  d "M68 118 Q100 152 132 118"
+  stroke darkslategray 4 pixels
   fill none
 
-circle "LeftCheek" radius 8 fill peachpuff opacity 0.5 at 32% 62%
-circle "RightCheek" radius 8 fill peachpuff opacity 0.5 at 68% 62%
+-- Cheeks
+circle "LeftCheek" radius 10 fill peachpuff opacity 0.45 at 30% 60%
+circle "RightCheek" radius 10 fill peachpuff opacity 0.45 at 70% 60%
+
+-- Eyebrows for more expression
+path "LeftBrow"
+  d "M62 72 Q70 64 82 70"
+  stroke #8B6914 3 pixels
+  fill none
+path "RightBrow"
+  d "M118 70 Q130 64 138 72"
+  stroke #8B6914 3 pixels
+  fill none

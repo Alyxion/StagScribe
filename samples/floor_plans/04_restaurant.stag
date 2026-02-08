@@ -4,93 +4,71 @@
 canvas 1000 by 750 pixels
   background white
 
+-- Walls and floor areas (drawn first as background)
 rectangle "Restaurant Walls" 960 by 710 fill #FAF8F5 stroke black 3 pixels at center
 
--- Dining Area
-rectangle "Dining Floor" 560 by 510 fill #FFF9F0 stroke dark gray 1 pixels
-  inside "Restaurant Walls" at top left
-text "Dining Area"
-  inside "Dining Floor" at center
+rectangle "Dining Floor" 540 by 470 fill #FFF9F0 stroke dark gray 1 pixels at 290 265
+rectangle "Kitchen Floor" 400 by 470 fill #F0F0F0 stroke dark gray 3 pixels at 780 265
+rectangle "Bar Floor" 630 by 190 fill #F5EEE6 stroke dark gray 1 pixels at 335 620
+rectangle "Restroom Area" 280 by 190 fill #E8F4F8 stroke dark gray 2 pixels at 825 620
 
--- Round tables
-circle "Table 1" radius 35 fill tan stroke gray 1 pixels at 170 120
-circle "Table 2" radius 35 fill tan stroke gray 1 pixels at 400 120
+-- Title (drawn AFTER walls so it shows on top)
+text "Restaurant Floor Plan" size 16 bold color #333333 at 50% 1%
 
--- Rectangular tables
-rectangle "Table 3" 100 by 60 fill tan stroke gray 1 pixels rounded 5 at 170 250
-rectangle "Table 4" 100 by 60 fill tan stroke gray 1 pixels rounded 5 at 400 250
+-- Zone labels (drawn AFTER floor rects)
+text "Dining Area" size 14 bold color #AA8866 at 290 55
+text "Kitchen" size 14 bold color #888888 at 780 55
+text "Bar" size 14 bold color #886644 at 335 540
 
--- Large round tables
-circle "Table 5" radius 40 fill tan stroke gray 1 pixels at 170 380
-circle "Table 6" radius 40 fill tan stroke gray 1 pixels at 400 380
+-- Dining furniture
+circle "Table 1" radius 32 fill tan stroke gray 1 pixels at 130 130
+circle "Table 2" radius 32 fill tan stroke gray 1 pixels at 290 130
+rectangle "Table 3" 90 by 55 fill tan stroke gray 1 pixels rounded 4 at 130 250
+rectangle "Table 4" 90 by 55 fill tan stroke gray 1 pixels rounded 4 at 290 250
+circle "Table 5" radius 36 fill tan stroke gray 1 pixels at 130 370
+circle "Table 6" radius 36 fill tan stroke gray 1 pixels at 290 370
 
 -- Booth seating
-rectangle "Booth 1" 40 by 80 fill #8B4513 stroke dark gray 1 pixels
-  inside "Dining Floor" at bottom left
-rectangle "Booth 2" 40 by 80 fill #8B4513 stroke dark gray 1 pixels
-  above "Booth 1" with gap 15
+rectangle "Booth 1" 35 by 75 fill #8B4513 stroke #654321 1 pixels at 40 130
+rectangle "Booth 2" 35 by 75 fill #8B4513 stroke #654321 1 pixels at 40 250
 
--- Kitchen
-rectangle "Kitchen Floor" 400 by 510 fill #F0F0F0 stroke dark gray 3 pixels
-  inside "Restaurant Walls" at top right
-text "Kitchen"
-  inside "Kitchen Floor" at center
+-- Kitchen equipment
+rectangle "Prep Counter" 350 by 40 fill light gray stroke gray 1 pixels at 780 75
+text "Prep" size 10 color #666666 at 780 75
 
-rectangle "Prep Counter" 280 by 50 fill light gray stroke gray 1 pixels
-  inside "Kitchen Floor" at top left
-rectangle "Stove Area" 140 by 80 fill gray stroke dark gray 2 pixels
-  below "Prep Counter" with gap 15
-rectangle "Grill" 100 by 80 fill dark gray stroke black 2 pixels
-  inside "Kitchen Floor" at bottom right
-rectangle "Walk-in Cooler" 120 by 100 fill light blue stroke dark gray 2 pixels
-  inside "Kitchen Floor" at bottom left
-text "Cooler"
-  inside "Walk-in Cooler" at center
-rectangle "Dish Station" 80 by 50 fill light gray stroke gray 1 pixels
-  inside "Kitchen Floor" at top right
+rectangle "Stove Area" 120 by 70 fill gray stroke dark gray 2 pixels at 680 160
+text "Stove" size 10 color white at 680 160
 
--- Bar Area
-rectangle "Bar Floor" 660 by 200 fill #F5EEE6 stroke dark gray 1 pixels
-  inside "Restaurant Walls" at bottom left
-text "Bar"
-  inside "Bar Floor" at center
+rectangle "GrillRect" 90 by 70 fill dark gray stroke dark gray 2 pixels at 870 160
+text "Grill" size 10 color white at 870 160
 
-rectangle "Bar Counter" 500 by 35 fill #8B4513 stroke black 2 pixels rounded 5
-  inside "Bar Floor" at top left
+rectangle "Walk-in Cooler" 110 by 90 fill light blue stroke dark gray 2 pixels at 680 420
+text "Cooler" size 10 color #555555 at 680 420
 
--- Bar stools
-rectangle "Bar Stool 1" 25 by 25 fill gray stroke dark gray 1 pixels
-  below "Bar Counter" with gap 8
-rectangle "Bar Stool 2" 25 by 25 fill gray stroke dark gray 1 pixels
-  right of "Bar Stool 1" with gap 30
-rectangle "Bar Stool 3" 25 by 25 fill gray stroke dark gray 1 pixels
-  right of "Bar Stool 2" with gap 30
+rectangle "Dish Station" 80 by 45 fill light gray stroke gray 1 pixels at 900 420
+text "Dishes" size 9 color #666666 at 900 420
 
-rectangle "Drink Display" 120 by 30 fill light gray stroke gray 1 pixels
-  inside "Bar Floor" at top right
+-- Bar Counter and stools
+rectangle "Bar Counter" 480 by 30 fill #8B4513 stroke black 2 pixels rounded 5 at 280 565
+
+for i from 0 to 5
+  rectangle "Stool{i}" 22 by 22 fill gray stroke dark gray 1 pixels
+    at 100 + i * 80 600
+
+rectangle "Drink Display" 100 by 25 fill light gray stroke gray 1 pixels at 560 565
+text "Drinks" size 9 color #666666 at 560 565
 
 -- Host Stand
-rectangle "Host Stand" 60 by 30 fill #8B4513 stroke black 2 pixels
-  inside "Bar Floor" at bottom left
-text "Host"
-  inside "Host Stand" at center
+rectangle "Host Stand" 50 by 25 fill #8B4513 stroke black 2 pixels at 80 690
+text "Host" size 9 color white at 80 690
 
 -- Restrooms
-rectangle "Restroom Area" 300 by 200 fill #E8F4F8 stroke dark gray 2 pixels
-  inside "Restaurant Walls" at bottom right
-rectangle "Restroom 1" 130 by 160 fill white stroke gray 1 pixels
-  inside "Restroom Area" at top left
-text "WC 1"
-  inside "Restroom 1" at center
-rectangle "Restroom 2" 130 by 160 fill white stroke gray 1 pixels
-  inside "Restroom Area" at top right
-text "WC 2"
-  inside "Restroom 2" at center
+rectangle "Restroom 1" 115 by 150 fill white stroke gray 1 pixels at 750 610
+text "WC 1" size 11 color #666666 at 750 610
+
+rectangle "Restroom 2" 115 by 150 fill white stroke gray 1 pixels at 895 610
+text "WC 2" size 11 color #666666 at 895 610
 
 -- Front entrance
-rectangle "Front Door" 100 by 8 fill brown stroke black 2 pixels at 250 730
-text "Entrance"
-  above "Front Door" with gap 8
-
--- Title
-text "Restaurant Floor Plan" at 50% 2%
+rectangle "Front Door" 100 by 8 fill brown stroke black 2 pixels at 250 715
+text "Entrance" size 11 color #666666 at 250 695

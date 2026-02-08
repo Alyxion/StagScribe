@@ -4,92 +4,54 @@
 canvas 1120 by 720 pixels
   background white
 
+-- Walls and floor areas (drawn first)
 rectangle "Office Walls" 1060 by 660 fill #F8F8F8 stroke black 3 pixels at center
 
--- Open workspace
-rectangle "Workspace Floor" 660 by 450 fill #FAFAFA stroke dark gray 1 pixels
-  inside "Office Walls" at top left
-text "Open Workspace"
-  inside "Workspace Floor" at center
+rectangle "Workspace Floor" 620 by 400 fill #FAFAFA stroke dark gray 1 pixels at 340 230
+rectangle "Meeting Floor" 400 by 400 fill #E6F0FF stroke dark gray 2 pixels at 870 230
+rectangle "Reception Area" 330 by 220 fill #FFF5E6 stroke dark gray 1 pixels at 195 560
+rectangle "Break Floor" 310 by 220 fill #FFF0F0 stroke dark gray 1 pixels at 510 560
+rectangle "Manager Floor" 390 by 220 fill #F0FFE6 stroke dark gray 2 pixels at 865 560
 
--- Desk rows using for loop
-define desk:
-  rectangle 100 by 60
-    fill tan
-    stroke gray 1 pixels
+-- Title and zone labels (drawn AFTER floors so they appear on top)
+text "Office Floor Plan" size 18 bold color #333333 at 50% 2%
+text "Open Workspace" size 14 bold color #AAAAAA at 340 55
+text "Meeting Room" size 14 bold color #8899BB at 870 75
+text "Reception" size 14 bold color #AA8855 at 195 475
+text "Break Room" size 14 bold color #AA6666 at 510 475
+text "Manager Office" size 14 bold color #66AA55 at 865 475
 
-place desk "Desk A1"
-  inside "Workspace Floor" at top left
-place desk "Desk A2"
-  below "Desk A1" with gap 20
-place desk "Desk A3"
-  below "Desk A2" with gap 20
+-- Whiteboard on meeting room wall
+rectangle "Whiteboard" 300 by 10 fill white stroke black 2 pixels at 870 50
 
-place desk "Desk B1"
-  right of "Desk A1" with gap 40
-place desk "Desk B2"
-  below "Desk B1" with gap 20
-place desk "Desk B3"
-  below "Desk B2" with gap 20
+-- Desk grid (3 columns x 3 rows) in workspace
+for row from 0 to 2
+  for col from 0 to 2
+    rectangle "Desk{row}{col}" 100 by 55 fill tan stroke gray 1 pixels
+      at 120 + col * 160 100 + row * 90
 
--- Meeting Room
-rectangle "Meeting Floor" 400 by 450 fill #E6F0FF stroke dark gray 2 pixels
-  inside "Office Walls" at top right
-text "Meeting Room" at 880 55
+-- Conference table and chairs
+rectangle "Conference Table" 200 by 100 fill tan stroke gray 1 pixels rounded 8 at 870 230
 
-rectangle "Whiteboard" 300 by 10 fill white stroke black 2 pixels
-  inside "Meeting Floor" at top left
-rectangle "Conference Table" 220 by 120 fill tan stroke gray 1 pixels
-  inside "Meeting Floor" at center
-  rounded 8
+rectangle "Chair M1" 35 by 35 fill gray stroke dark gray 1 pixels at 800 150
+rectangle "Chair M2" 35 by 35 fill gray stroke dark gray 1 pixels at 940 150
+rectangle "Chair M3" 35 by 35 fill gray stroke dark gray 1 pixels at 800 310
+rectangle "Chair M4" 35 by 35 fill gray stroke dark gray 1 pixels at 940 310
 
-rectangle "Chair M1" 30 by 30 fill gray stroke dark gray 1 pixels
-  above "Conference Table" with gap 10
-rectangle "Chair M2" 30 by 30 fill gray stroke dark gray 1 pixels
-  below "Conference Table" with gap 10
+-- Reception area furniture
+rectangle "Reception Desk" 260 by 40 fill tan stroke gray 1 pixels rounded 5 at 195 490
+rectangle "Waiting Chair 1" 40 by 40 fill sky blue stroke gray 1 pixels at 80 620
+rectangle "Waiting Chair 2" 40 by 40 fill sky blue stroke gray 1 pixels at 300 620
 
--- Reception
-rectangle "Reception Area" 330 by 210 fill #FFF5E6 stroke dark gray 1 pixels
-  inside "Office Walls" at bottom left
-text "Reception"
-  inside "Reception Area" at center
+-- Main entrance
+rectangle "Main Entrance" 100 by 8 fill brown stroke black 2 pixels at 195 668
+text "Entrance" size 11 color #666666 at 195 648
 
-rectangle "Reception Desk" 280 by 40 fill tan stroke gray 1 pixels rounded 5
-  inside "Reception Area" at top left
-rectangle "Waiting Chair 1" 40 by 40 fill sky blue stroke gray 1 pixels
-  inside "Reception Area" at bottom left
-rectangle "Waiting Chair 2" 40 by 40 fill sky blue stroke gray 1 pixels
-  inside "Reception Area" at bottom right
+-- Break Room furniture
+rectangle "Kitchenette" 270 by 30 fill light gray stroke gray 1 pixels at 510 480
+circle "Cafe Table" radius 28 fill tan stroke gray 1 pixels at 510 590
 
--- Break Room
-rectangle "Break Floor" 330 by 210 fill #FFF0F0 stroke dark gray 1 pixels
-  right of "Reception Area" with gap 0
-text "Break Room"
-  inside "Break Floor" at center
-
-rectangle "Kitchenette" 300 by 30 fill light gray stroke gray 1 pixels
-  inside "Break Floor" at top left
-circle "Cafe Table" radius 30 fill tan stroke gray 1 pixels
-  inside "Break Floor" at bottom left
-
--- Manager Office
-rectangle "Manager Floor" 400 by 210 fill #F0FFE6 stroke dark gray 2 pixels
-  inside "Office Walls" at bottom right
-text "Manager Office"
-  inside "Manager Floor" at center
-
-rectangle "Manager Desk" 140 by 70 fill tan stroke gray 1 pixels
-  inside "Manager Floor" at top left
-rectangle "Manager Chair" 40 by 40 fill gray stroke dark gray 1 pixels
-  below "Manager Desk" with gap 10
-rectangle "Bookshelf" 20 by 170 fill brown stroke dark gray 1 pixels
-  inside "Manager Floor" at top right
-
--- Front entrance
-rectangle "Main Entrance" 100 by 10 fill brown stroke black 2 pixels
-  inside "Reception Area" at bottom
-text "Entrance"
-  above "Main Entrance" with gap 5
-
--- Title
-text "Office Floor Plan" at 560 10
+-- Manager Office furniture
+rectangle "Manager Desk" 140 by 60 fill tan stroke gray 1 pixels at 810 510
+rectangle "Manager Chair" 40 by 40 fill gray stroke dark gray 1 pixels at 810 575
+rectangle "Bookshelf" 15 by 150 fill #8B6B3E stroke #654321 1 pixels at 1035 560

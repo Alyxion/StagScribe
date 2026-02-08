@@ -1,31 +1,60 @@
--- Pie Chart Legend
--- Colored boxes with labels representing budget allocation
+-- Pie Chart — Budget Allocation
+-- Actual pie slices using SVG arc paths
 
 canvas 500 by 450 pixels
   background #FFFFFF
 
 text "Budget Allocation" size 22 bold color #212121 at 50% 8%
 
--- Decorative circle to represent the pie
-circle "PieOutline" radius 90 fill #EEEEEE stroke #BDBDBD 2 pixels at 50% 40%
-text "FY 2025" size 14 bold color #616161 at center of "PieOutline"
+-- Pie chart slices (center 250,180 radius 90, starting from top)
+-- Engineering 35% (126 deg)
+path "SliceEng"
+  d "M250 180 L250 90 A90 90 0 0 1 323 233 Z"
+  fill #1E88E5
+
+-- Marketing 25% (90 deg)
+path "SliceMkt"
+  d "M250 180 L323 233 A90 90 0 0 1 197 253 Z"
+  fill #43A047
+
+-- Operations 20% (72 deg)
+path "SliceOps"
+  d "M250 180 L197 253 A90 90 0 0 1 164 152 Z"
+  fill #FB8C00
+
+-- Research 12% (43.2 deg)
+path "SliceRes"
+  d "M250 180 L164 152 A90 90 0 0 1 207 101 Z"
+  fill #8E24AA
+
+-- Admin 8% (28.8 deg)
+path "SliceAdm"
+  d "M250 180 L207 101 A90 90 0 0 1 250 90 Z"
+  fill #E53935
+
+-- Thin white border between slices for separation
+circle "PieBorder" radius 90 fill none stroke white 2 pixels at 250 180
+
+-- Donut center
+circle "PieCenter" radius 35 fill white at 250 180
+text "FY 2025" size 12 bold color #616161 at 250 180
 
 -- Legend: Left column
-rectangle "EngColor" 24 by 24 fill #1E88E5 rounded 4 at 90 324
-text "Engineering - 35%" size 14 color #333333 at 190 324
+rectangle "EngColor" 24 by 24 fill #1E88E5 rounded 4 at 90 340
+text "Engineering - 35%" size 14 color #333333 at 190 340
 
 rectangle "MktColor" 24 by 24 fill #43A047 rounded 4
   below "EngColor" with gap 12
-text "Marketing - 25%" size 14 color #333333 at 190 360
+text "Marketing - 25%" size 14 color #333333 at 190 376
 
 rectangle "OpsColor" 24 by 24 fill #FB8C00 rounded 4
   below "MktColor" with gap 12
-text "Operations - 20%" size 14 color #333333 at 190 396
+text "Operations - 20%" size 14 color #333333 at 190 412
 
 -- Legend: Right column
-rectangle "ResColor" 24 by 24 fill #8E24AA rounded 4 at 290 324
-text "Research - 12%" size 14 color #333333 at 385 324
+rectangle "ResColor" 24 by 24 fill #8E24AA rounded 4 at 290 340
+text "Research - 12%" size 14 color #333333 at 385 340
 
 rectangle "AdmColor" 24 by 24 fill #E53935 rounded 4
   below "ResColor" with gap 12
-text "Admin - 8%" size 14 color #333333 at 385 360
+text "Admin - 8%" size 14 color #333333 at 385 376

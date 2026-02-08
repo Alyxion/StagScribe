@@ -2,20 +2,22 @@
 canvas 64 by 64 pixels
   background transparent
 
-rectangle "Body" 52 by 36 fill #ECF0F1 stroke #7F8C8D 2 pixels at 50% 55%
+rectangle "Body" 52 by 34 fill #ECF0F1 stroke #7F8C8D 2 pixels at 50% 55%
   rounded 3
 
+-- Back fold lines (V inside body)
 line "FlapLeft"
-  from 6 37
-  to 32 54
-  stroke #7F8C8D 2 pixels
+  from 6 20
+  to 32 42
+  stroke #BDC3C7 2 pixels
 
 line "FlapRight"
-  from 58 37
-  to 32 54
-  stroke #7F8C8D 2 pixels
+  from 58 20
+  to 32 42
+  stroke #BDC3C7 2 pixels
 
+-- Top flap (large triangle covering top half)
 polygon "TopFlap"
-  points (6 37) (32 18) (58 37)
+  points (6 20) (32 4) (58 20)
   fill #D5DBDB
   stroke #7F8C8D 2 pixels

@@ -4,60 +4,79 @@
 canvas 800 by 620 pixels
   background white
 
+-- Title
+text "Studio Apartment" size 18 bold color #333333 at 50% 2%
+
 -- Outer walls
 rectangle "Outer Walls" 760 by 560 fill #F5F5F5 stroke black 3 pixels at center
 
--- Main living/sleeping area
-rectangle "Living Area" 500 by 560 fill #FAFAFA stroke dark gray 2 pixels
+-- Living Area (left half)
+rectangle "Living Floor" 460 by 560 fill #FAFAFA stroke dark gray 1 pixels
   inside "Outer Walls" at top left
 
-rectangle "Bed Area" 120 by 160 fill light blue stroke gray 1 pixels
-  inside "Living Area" at top right
-text "Bed" size 14
-  inside "Bed Area" at center
+-- Bed area (top right of living area)
+rectangle "Bed Frame" 100 by 155 fill #B8CCE0 stroke #7A9CC6 2 pixels at 415 120
+rectangle "Pillow" 85 by 20 fill white stroke #CCCCCC 1 pixels rounded 6 at 415 62
+text "Bed" size 12 color #555555 at 415 145
 
-rectangle "TV Stand" 140 by 24 fill dark gray stroke black 1 pixels
-  inside "Living Area" at top left
+-- TV on left wall
+rectangle "TV Stand" 15 by 100 fill #606060 stroke #444444 1 pixels at 35 200
+rectangle "TV Screen" 4 by 80 fill #333333 at 31 200
 
-rectangle "Sofa Area" 180 by 65 fill sky blue stroke gray 1 pixels
-  inside "Living Area" at bottom left
-text "Sofa" size 14
-  inside "Sofa Area" at center
+-- Sofa facing TV
+rectangle "SofaRect" 50 by 140 fill #6CA6CD stroke #4A7A9C 2 pixels rounded 8 at 150 200
+text "Sofa" size 10 color white at 150 200
 
-rectangle "Coffee Table" 90 by 45 fill tan stroke gray 1 pixels
-  above "Sofa Area" with gap 20
+-- Coffee table between sofa and TV
+rectangle "Coffee Table" 25 by 70 fill tan stroke #A08050 1 pixels rounded 4 at 90 200
 
--- Kitchen area
-rectangle "Kitchen Floor" 260 by 280 fill #FFF8E7 stroke dark gray 2 pixels
+-- Kitchen area (top right)
+rectangle "Kitchen Floor" 300 by 280 fill #FFF8E7 stroke dark gray 2 pixels
   inside "Outer Walls" at top right
-text "Kitchen" size 16
-  inside "Kitchen Floor" at center
+text "Kitchen" size 14 bold color #777777 at 660 170
 
-rectangle "Counter" 230 by 60 fill tan stroke gray 1 pixels
-  inside "Kitchen Floor" at top left
-rectangle "Stove" 100 by 60 fill gray stroke dark gray 1 pixels
-  inside "Counter" at top left
-rectangle "Sink" 80 by 60 fill light blue stroke gray 1 pixels
-  inside "Counter" at top right
+-- Counter along top wall of kitchen
+rectangle "Counter" 260 by 45 fill #D4C4A0 stroke #B0A080 1 pixels at 660 70
+rectangle "Stove" 75 by 45 fill #888888 stroke #666666 2 pixels at 585 70
+circle "Burner1" radius 7 fill #555555 at 572 70
+circle "Burner2" radius 7 fill #555555 at 598 70
+rectangle "Sink" 55 by 40 fill #C0E0F0 stroke #80A0B0 1 pixels rounded 4 at 730 70
 
--- Bathroom
-rectangle "Bathroom Floor" 260 by 280 fill #E8F4F8 stroke dark gray 2 pixels
+-- Fridge
+rectangle "FridgeRect" 55 by 65 fill #E8E8E8 stroke #AAAAAA 2 pixels at 750 250
+text "Fridge" size 9 color #888888 at 750 250
+
+-- Bathroom (bottom right)
+rectangle "Bathroom Floor" 300 by 280 fill #E8F4F8 stroke dark gray 2 pixels
   inside "Outer Walls" at bottom right
-text "Bathroom" size 16
-  inside "Bathroom Floor" at center
+text "Bathroom" size 14 bold color #777777 at 660 470
 
-circle "Shower" radius 32 fill light blue stroke gray 2 pixels
-  inside "Bathroom Floor" at top right
-rectangle "Toilet" 55 by 65 fill #E0E0E0 stroke gray 2 pixels
-  inside "Bathroom Floor" at bottom left
-rectangle "Bath Sink" 55 by 45 fill light blue stroke gray 1 pixels
-  inside "Bathroom Floor" at top left
+-- Shower
+rectangle "ShowerRect" 70 by 70 fill #D0E8F0 stroke #90B8CC 2 pixels rounded 8 at 740 370
+text "Shower" size 9 color #607888 at 740 370
 
--- Entry door
-rectangle "Front Door" 60 by 12 fill brown stroke black 2 pixels
-  inside "Outer Walls" at bottom left
-text "Entry" size 12
-  above "Front Door" with gap 8
+-- Toilet (oval + tank)
+ellipse "Toilet Bowl" 35 by 45 fill white stroke #AAAAAA 2 pixels at 560 530
+rectangle "Toilet Tank" 35 by 15 fill #E8E8E8 stroke #AAAAAA 2 pixels rounded 4 at 560 502
 
--- Title
-text "Studio Apartment" size 18 bold at 400 12
+-- Bath Sink
+rectangle "Bath Sink" 45 by 35 fill #D0E8F0 stroke #5090A8 2 pixels rounded 8 at 570 390
+
+-- Entry door (bottom left) with swing arc
+rectangle "Front Door" 60 by 8 fill #8B5E3C stroke black 2 pixels at 80 575
+path "DoorSwing"
+  d "M50 571 A60 60 0 0 1 110 571"
+  stroke #888888 2 pixels
+  fill none
+  dashed
+text "Entry" size 11 color #666666 at 80 545
+
+-- Room labels
+text "Living / Bedroom" size 12 color #999999 at 250 450
+
+-- Kitchen / bathroom divider wall
+line "DividerV"
+  from 500 30
+  to 500 590
+  stroke #CCCCCC 1 pixels
+  dashed

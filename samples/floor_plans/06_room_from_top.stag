@@ -3,11 +3,9 @@
 
 room_width is 500
 room_height is 400
-wall_thickness is 10
+wall_thickness is 12
 inner_width is room_width - wall_thickness * 2
 inner_height is room_height - wall_thickness * 2
-rug_width is inner_width * 0.6
-rug_height is inner_height * 0.4
 
 colors:
   walls is dark gray
@@ -24,40 +22,55 @@ rect "Room" room_width by room_height
 rect "Floor" inner_width by inner_height
   at center of "Room"
   fill floor_color
-rect "Rug" rug_width by rug_height
+
+-- Rug (smaller, centered)
+rect "Rug" inner_width * 0.45 by inner_height * 0.3
   at center of "Floor"
   fill rug_color
 
 -- Furniture
-table_width is 120
-table_height is 60
+table_width is 100
+table_height is 55
 
 rect "Table" table_width by table_height
   at center of "Floor"
   fill furniture
 
-chair_size is 30
+chair_size is 35
 
 rect "Chair 1" chair_size by chair_size
   fill gray
-  above "Table" with gap 10
+  at 300 175
 rect "Chair 2" chair_size by chair_size
   fill gray
-  below "Table" with gap 10
+  at 300 320
+rect "Chair 3" chair_size by chair_size
+  fill gray
+  at 230 250
+rect "Chair 4" chair_size by chair_size
+  fill gray
+  at 370 250
 
--- Bookshelf on east wall
-rect "Bookshelf" 20 by inner_height * 0.5
+-- Bookshelf against east wall (inside floor, not overlapping rug)
+rect "Bookshelf" 18 by 130
   fill furniture
-  inside "Floor" at center right
+  at 520 200
 
--- Lamp in corner
+-- Lamp in top-left corner (well inside floor)
 circle "Lamp"
-  radius 15
+  radius 14
   fill yellow
-  stroke gray 1 pixels
-  inside "Floor" at top left
+  stroke gold 1 pixels
+  at 100 100
 
--- Door opening
-rect "Door" room_width * 0.15 by wall_thickness
+-- Door opening (visible gap in wall)
+rect "Door" 80 by wall_thickness + 2
   fill floor_color
-  inside "Room" at bottom left
+  at 110 394
+
+-- Door swing arc (inside room only)
+path "DoorSwing"
+  d "M72 388 A75 75 0 0 1 147 388"
+  stroke #888888 2 pixels
+  fill none
+  dashed
